@@ -1,14 +1,18 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import Pacientes from './views/Pacientes';
 
 function App() {
 
   return (
-    <>
-        <p className="text-3xl font-bold">
-          Hello world!
-        </p>
-      
-    </>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Pacientes />} />    
+        
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
