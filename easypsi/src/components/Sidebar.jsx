@@ -20,7 +20,6 @@ const Sidebar = () => {
                   <path d="M12.1113 1V9" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M1 17H41" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-
               </a>
               <a href='/' className='mb-16'>
                 <svg width="30" height="30" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
