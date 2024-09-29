@@ -7,13 +7,13 @@ const Sidebar = () => {
           <div className='flex flex-col justify-between h-full'>
 
             <div className='flex flex-col items-center justify-between mt-16'>
-              <a href='/' className='mb-16'>
+              <a href='/home' className='mb-16'>
                 <svg width="30" height="30" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 15L21 1L41 15V37C41 38.0609 40.5317 39.0783 39.6983 39.8284C38.8648 40.5786 37.7343 41 36.5556 41H5.44444C4.2657 41 3.13524 40.5786 2.30175 39.8284C1.46825 39.0783 1 38.0609 1 37V15Z" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M14.332 41V21H27.6654V41" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
-              <a href='/' className='mb-16'>
+              <a href='/agenda' className='mb-16'>
                 <svg width="30" height="30" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M36.5556 5H5.44444C2.98985 5 1 6.79086 1 9V37C1 39.2091 2.98985 41 5.44444 41H36.5556C39.0102 41 41 39.2091 41 37V9C41 6.79086 39.0102 5 36.5556 5Z" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M29.8887 1V9" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,7 +21,7 @@ const Sidebar = () => {
                   <path d="M1 17H41" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
-              <a href='/' className='mb-16'>
+              <a href='/financeiro' className='mb-16'>
                 <svg width="30" height="30" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16 1V41" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M28.5 8.27246H9.75C7.42936 8.27246 5.20376 8.94291 3.56282 10.1363C1.92187 11.3297 1 12.9484 1 14.6361C1 16.3238 1.92187 17.9425 3.56282 19.1359C5.20376 20.3293 7.42936 20.9997 9.75 20.9997H22.25C24.5706 20.9997 26.7962 21.6702 28.4372 22.8636C30.0781 24.057 31 25.6756 31 27.3634C31 29.0511 30.0781 30.6697 28.4372 31.8631C26.7962 33.0566 24.5706 33.727 22.25 33.727H1" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -39,7 +39,7 @@ const Sidebar = () => {
             </div>
 
             <div className='flex flex-col items-center justify-between mb-16'>
-              <a href='/' className='mb-16'>
+              <a href='/perfil' className='mb-16'>
                 <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M31 30.9999V27.6666C31 25.8985 30.2098 24.2028 28.8033 22.9526C27.3968 21.7024 25.4891 21 23.5 21H8.5C6.51088 21 4.60322 21.7024 3.1967 22.9526C1.79018 24.2028 1 25.8985 1 27.6666V30.9999" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M16 14.3332C20.1421 14.3332 23.5 11.3485 23.5 7.66661C23.5 3.98474 20.1421 1 16 1C11.8579 1 8.5 3.98474 8.5 7.66661C8.5 11.3485 11.8579 14.3332 16 14.3332Z" stroke="#121214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
