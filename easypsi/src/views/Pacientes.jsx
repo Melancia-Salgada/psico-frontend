@@ -1,10 +1,14 @@
 import React from 'react'
-import Header from '../components/Sidebar'
+import Sidebar from '../components/Sidebar'
+import Titulo from '../components/Titulo'
 
 const Pacientes = () => {
   return (
     <div>
-        <Header></Header>
+        <Sidebar/>
+        <div className='container ml-24'>
+          <Titulo>Pacientes</Titulo>
+        </div>
     </div>
   )
 }
