@@ -5,6 +5,7 @@
 @layer base {
   html {
     @apply font-sans;
+    @apply text-preto-whitemode;
   }
 }
 

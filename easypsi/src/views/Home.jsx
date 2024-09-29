@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
         <Sidebar/>
-        <div className='ml-24'>
+        <div className='ml-32'>
             <Titulo>Home</Titulo>
         </div>
         
