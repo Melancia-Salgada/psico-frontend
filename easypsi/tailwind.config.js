@@ -17,6 +17,21 @@ export default {
       'preto-darkmode': '#121214',
       'branco-darkmode': '#FFFFFF'
     },
+    fontSize:{
+      label: '1.625rem'
+    },
+    borderRadius:{
+      'inputBorder':'50px'
+    },
+    margin:{
+      'pat':'92px'
+    },
+    width:{
+      'inputW':'54.938rem'
+    },
+    height:{
+      'inputH':'3.313'
+    }
   },
   plugins: [],
 }
