@@ -2,4 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply font-sans;
+    @apply text-preto-whitemode;
+  }
+}
+
 /*NAO MEXER AQUI, SUJEITO A PAULADA*/

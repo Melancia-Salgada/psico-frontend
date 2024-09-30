@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ['inter', 'sans-serif'],
+      sans: ['Inter', 'ui-sans-serif', 'system-ui'],
     },
     colors: {
       'azul': '#018ABE',
