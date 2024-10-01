@@ -5,10 +5,9 @@ import Sidebar from '../components/Sidebar'
 const Login = () => {
   return (
     <>
-    <Sidebar></Sidebar>
-     <div className='flex flex-col place-items-center  bg-preto-darkmode '>
-        <div className='mt-pat place-items-center '>
-            <div className='mb-28 mt-0'>
+    <div className='container ml-32'>
+      <div className='flex flex-col place-items-center mt-pat '>
+            <div className='mb-40 mt-0'>
                 <img src={Logo} alt="Logo EasyPSI"/>
             </div>
             
@@ -18,14 +17,11 @@ const Login = () => {
                 <input type="email" className="w-inputW h-inputH" id="" />
             </label>
             </div>
-        </div>
-            
-            
-
-        
+      </div>
     </div>
-   
-   
+      
+
+
     </>
   )
 }
