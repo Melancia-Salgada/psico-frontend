@@ -26,17 +26,12 @@ const Pacientes = () => {
   }, []);
 
   useEffect(() => {
-    // Directly setting class here, ensuring no transition occurs
-    if (whiteMode) {
-      document.documentElement.classList.add('whitemode');
-    } else {
-      document.documentElement.classList.remove('whitemode');
-    }
+    document.documentElement.classList.toggle('whitemode', whiteMode);
     localStorage.setItem('whiteMode', whiteMode); 
   }, [whiteMode]);
 
   return (
-    <div className='min-h-screen'>
+    <div className={`min-h-screen`}>
       <Sidebar />
       <div className='container-dash'>
         <Titulo showButton={false}>Pacientes</Titulo>
