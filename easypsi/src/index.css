@@ -4,35 +4,30 @@
 
 @layer base {
   html {
-    @apply font-sans;
-    @apply text-branco-whitemode;
+    @apply font-sans transition-colors duration-[500ms]; 
+    @apply text-branco-darkmode;
     @apply bg-preto-darkmode;
-
   }
 
+  html.whitemode {
+    @apply text-preto-whitemode;
+    @apply bg-branco-whitemode;
+  }
 }
 
 @layer components {
-
-  .ctxt{
-    @apply border-borderw
-    
+  .ctxt {
+    @apply border-borderw;
   }
 
   .container-dash {
     @apply ml-32;
-    @apply mr-page-rigth;
+    @apply mr-4;
   }
 
   .pesquisar {
-    @apply w-[693px];
-    @apply h-[53px];
-    @apply mr-[148px];
-    @apply rounded-full;
-    @apply border-[#d9d9d9];
-    @apply bg-none;
+    @apply w-[693px] h-[53px] mr-[148px] rounded-full border-[#d9d9d9] bg-none;
   }
-
 }
 
-/*NAO MEXER AQUI, SUJEITO A PAULADA*/
+/* DO NOT MODIFY HERE, SUBJECT TO CHANGE */
