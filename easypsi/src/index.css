@@ -5,8 +5,8 @@
 @layer base {
   html {
     @apply font-sans;
-    @apply text-preto-whitemode;
-    @apply bg-preto-darkmode
+    @apply text-branco-whitemode;
+    @apply bg-preto-darkmode;
 
   }
 

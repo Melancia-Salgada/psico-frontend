@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Titulo from '../components/Titulo'
+import WhiteMode from '../components/WhiteMode'
 
 const Home = () => {
   return (
@@ -9,7 +10,7 @@ const Home = () => {
         <div className='ml-32'>
             <Titulo>Home</Titulo>
         </div>
-        
+        <WhiteMode/>
     </div>
   )
 }

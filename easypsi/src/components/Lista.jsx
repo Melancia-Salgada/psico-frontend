@@ -1,16 +1,6 @@
 import React from 'react';
 
-// Componente reutilizável para campos de entrada
-const InputField = ({ label, placeholder }) => (
-  <div className='flex flex-col'>
-    <div className='text-2xl font-bold mb-2'>{label}</div>
-    <input 
-      className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' 
-       
-      
-    />
-  </div>
-);
+
 
 const Lista = () => {
   return (
