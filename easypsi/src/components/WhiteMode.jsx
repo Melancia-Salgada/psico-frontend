@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const WhiteMode = ({ onToggle }) => {
-  const [whiteMode, setWhiteMode] = useState(false);
-
   const toggleWhiteMode = () => {
-    setWhiteMode(!whiteMode);
-    onToggle(!whiteMode); // Notify the parent component about the toggle
+    onToggle(prev => !prev); // Notify the parent component about the toggle
   };
 
   return (

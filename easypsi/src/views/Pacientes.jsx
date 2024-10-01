@@ -8,12 +8,12 @@ import List from '../components/Lista/List';
 const Pacientes = () => {
   const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
   const [data, setData] = useState([]);
-  const [whiteMode, setWhiteMode] = useState(false);
+  const [whiteMode, setWhiteMode] = useState(localStorage.getItem('whiteMode') === 'true');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('URL_DO_SEU_BACKEND'); // Replace with your backend URL
+        const response = await fetch('URL_DO_SEU_BACKEND'); 
         const jsonData = await response.json();
         
         setData(jsonData.pacientes); 
@@ -25,24 +25,25 @@ const Pacientes = () => {
     fetchData();
   }, []);
 
-  // Toggle the white mode class on the html element
   useEffect(() => {
+    // Directly setting class here, ensuring no transition occurs
     if (whiteMode) {
       document.documentElement.classList.add('whitemode');
     } else {
       document.documentElement.classList.remove('whitemode');
     }
+    localStorage.setItem('whiteMode', whiteMode); 
   }, [whiteMode]);
 
   return (
-    <div className={`min-h-screen`}>
+    <div className='min-h-screen'>
       <Sidebar />
       <div className='container-dash'>
         <Titulo showButton={false}>Pacientes</Titulo>
         <Pesquisa showButton={true} />
         <List headers={headers} data={data} />
       </div>
-      <WhiteMode onToggle={setWhiteMode} /> 
+      <WhiteMode onToggle={setWhiteMode} />
     </div>
   );
 };
