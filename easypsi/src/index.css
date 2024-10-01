@@ -7,7 +7,15 @@
     @apply font-sans;
     @apply text-preto-whitemode;
     @apply bg-preto-darkmode
+
   }
+
+  .Ctxt{
+    @apply border-borderw
+    @apply rounded-borderr
+    opacity-0
+  }
+
 }
 
 /*NAO MEXER AQUI, SUJEITO A PAULADA*/

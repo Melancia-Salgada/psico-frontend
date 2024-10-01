@@ -14,7 +14,7 @@ const Login = () => {
             <div>
             <label className='place-self-start'>
                 <span className='font-bold text-branco-darkmode'>EMAIL</span><br />
-                <input type="email" className="w-inputW h-inputH" id="" />
+                <input type="email" className="w-inputW h-inputH Ctxt" />
             </label>
             </div>
       </div>
