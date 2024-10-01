@@ -5,6 +5,7 @@ import Home from './views/Home';
 import Agenda from './views/Agenda';
 import Perfil from './views/Perfil';
 import { Financeiro } from './views/Financeiro';
+import Login from './views/Login';
 
 function App() {
 
