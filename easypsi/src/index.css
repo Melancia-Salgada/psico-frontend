@@ -4,13 +4,15 @@
 
 @layer base {
   html {
-    @apply text-branco-darkmode;
-    @apply bg-preto-darkmode;
+    @apply text-branco-darkmode bg-preto-darkmode transition-colors duration-500;
   }
 
   html.whitemode {
-    @apply text-preto-whitemode;
-    @apply bg-branco-whitemode;
+    @apply text-preto-whitemode bg-branco-whitemode transition-colors duration-500;
+  }
+
+  html.no-transition {
+    @apply transition-none;
   }
 }
 

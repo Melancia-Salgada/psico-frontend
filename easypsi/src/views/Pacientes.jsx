@@ -8,7 +8,6 @@ import List from '../components/Lista/List';
 const Pacientes = () => {
   const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
   const [data, setData] = useState([]);
-  const [whiteMode, setWhiteMode] = useState(localStorage.getItem('whiteMode') === 'true');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +24,6 @@ const Pacientes = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('whitemode', whiteMode);
-    localStorage.setItem('whiteMode', whiteMode); 
-  }, [whiteMode]);
 
   return (
     <div className={`min-h-screen`}>
@@ -38,7 +33,7 @@ const Pacientes = () => {
         <Pesquisa showButton={true} />
         <List headers={headers} data={data} />
       </div>
-      <WhiteMode onToggle={setWhiteMode} />
+      <WhiteMode />
     </div>
   );
 };

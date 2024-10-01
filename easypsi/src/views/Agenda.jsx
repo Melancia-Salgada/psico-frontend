@@ -5,12 +5,6 @@ import WhiteMode from '../components/WhiteMode'
 
 const Agenda = () => {
 
-  const [whiteMode, setWhiteMode] = useState(localStorage.getItem('whiteMode') === 'true');
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('whitemode', whiteMode);
-    localStorage.setItem('whiteMode', whiteMode); 
-  }, [whiteMode]);
 
   return (
     <div>
@@ -18,7 +12,7 @@ const Agenda = () => {
         <div className='container-dash'>
             <Titulo>Agenda</Titulo>
         </div>
-        <WhiteMode onToggle={setWhiteMode} />
+        <WhiteMode />
     </div>
   )
 }
