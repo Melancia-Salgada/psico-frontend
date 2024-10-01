@@ -8,7 +8,7 @@ const Agenda = () => {
     <div>
         <Sidebar/>
         <div className='container-dash'>
-            <Titulo>Agenda</Titulo>
+            <Titulo showButton={true}>Agenda</Titulo>
         </div>
         <WhiteMode/>
     </div>

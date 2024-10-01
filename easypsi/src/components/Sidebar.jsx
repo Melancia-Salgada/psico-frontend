@@ -3,7 +3,7 @@ import React from 'react'
 const Sidebar = () => {
   return (
     <div>
-      <div className='fixed top-0 left-0 w-24 h-screen drop-shadow-[0_0_20px_rgba(241,241,241,0.3)]'>
+      <div className='fixed top-0 left-0 w-24 h-screen drop-shadow-[0_0_20px_rgba(241,241,241,0.1)]'>
         <div className='h-full bg-preto-darkmode'>
           <div className='flex flex-col justify-between h-full'>
 

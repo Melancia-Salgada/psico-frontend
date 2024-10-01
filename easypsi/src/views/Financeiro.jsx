@@ -8,7 +8,7 @@ export const Financeiro = () => {
     <div>
         <Sidebar/>
         <div className='container-dash'>
-            <Titulo>Financeiro</Titulo>
+            <Titulo showButton={false}>Financeiro</Titulo>
         </div>
         <WhiteMode/>
     </div>

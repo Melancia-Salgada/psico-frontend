@@ -8,7 +8,7 @@ const Home = () => {
     <div>
         <Sidebar/>
         <div className='container-dash'>
-            <Titulo>Home</Titulo>
+          <Titulo showButton={false}>Olá, Nome</Titulo>
         </div>
         <WhiteMode/>
     </div>
