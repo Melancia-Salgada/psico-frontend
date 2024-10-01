@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar'
 const Login = () => {
   return (
     <>
-    <div className='container ml-32'>
+   
       <div className='flex flex-col place-items-center mt-pat '>
             <div className='mb-40 mt-0'>
                 <img src={Logo} alt="Logo EasyPSI"/>
@@ -18,7 +18,7 @@ const Login = () => {
             </label>
             </div>
       </div>
-    </div>
+    
       
 
 
