@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
-import Sidebar from '../components/Sidebar'
 import Titulo from '../components/Titulo'
 import Lista from '../components/Lista'
 
