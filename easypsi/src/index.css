@@ -10,7 +10,7 @@
 
   }
 
-  .Ctxt{
+  .ctxt{
     @apply border-borderw
     @apply rounded-borderr
     opacity-0
