@@ -29,7 +29,7 @@ export default {
       },
       margin: {
         'pat': '92px',
-        'page-rigth' :'5.63rem'
+        'page-rigth' :'90px'
       },
       width: {
         'inputW': '54.938rem'

@@ -1,20 +1,40 @@
-import React from 'react'
-import Sidebar from '../components/Sidebar'
-import Titulo from '../components/Titulo'
-import Lista from '../components/Lista'
-import WhiteMode from '../components/WhiteMode'
+import React, { useEffect, useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import Titulo from '../components/Titulo';
+import Pesquisa from '../components/Lista/Pesquisa';
+import WhiteMode from '../components/WhiteMode';
+import List from '../components/Lista/List';
 
 const Pacientes = () => {
+  const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('URL_DO_SEU_BACKEND'); 
+        const jsonData = await response.json();
+        
+        setData(jsonData.pacientes); 
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
-        <Sidebar/>
-        <div className='ml-32 mr-page-rigth'>
-          <Titulo>Pacientes</Titulo>
-          <Lista></Lista>
-        </div>
-        <WhiteMode/>
+      <Sidebar />
+      <div className='container-dash'>
+        <Titulo>Pacientes</Titulo>
+        <Pesquisa showButton={true} />
+        <List headers={headers} data={data} />
+      </div>
+      <WhiteMode />
     </div>
-  )
-}
+  );
+};
 
-export default Pacientes
+export default Pacientes;

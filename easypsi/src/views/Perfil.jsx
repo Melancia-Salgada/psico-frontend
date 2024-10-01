@@ -7,7 +7,7 @@ const Perfil = () => {
   return (
     <div>
         <Sidebar/>
-        <div className='ml-32'>
+        <div className='container-dash'>
             <Titulo>Perfil</Titulo>
         </div>
         <WhiteMode/>
