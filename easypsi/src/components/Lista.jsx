@@ -14,16 +14,20 @@ const InputField = ({ label, placeholder }) => (
 
 const Lista = () => {
   return (
+    
     <div className='p-4'>
-      <div className='flex justify-between items-center'>
+      <div className='flex justify-between items-end gap-4 flex-1'>
 
         {/* Seções de pesquisa e filtro */}
-        <div className='flex'>
-            <div className='mr-20'>
-                <label className='text-2xl font-bold mb-2'>Pesquisar</label>
-                <input className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' type='text' placeholder='Pesquisar'></input>
+        <div className='flex justify-between gap-4'>
+            <div className=''>
+              <label className='text-2xl font-bold mb-2'>Pesquisar</label>
+              <input className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' type='text' placeholder='Pesquisar'></input>
             </div>
-            <div>
+        </div>
+        
+        <div>
+        <div>
                 <label className='text-2xl font-bold mb-2'>Filtro</label>
                 <input className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' type='text' placeholder='Filtra'></input>
             </div>

@@ -7,7 +7,7 @@ const Pacientes = () => {
   return (
     <div>
         <Sidebar/>
-        <div className='container ml-32'>
+        <div className='ml-32'>
           <Titulo>Pacientes</Titulo>
           <Lista></Lista>
         </div>
