@@ -1,6 +1,5 @@
 import React from 'react'
 import Logo from '../assets/Logo.png'
-import Sidebar from '../components/Sidebar'
 
 const Login = () => {
   return (
@@ -14,7 +13,7 @@ const Login = () => {
             <div>
             <label className='place-self-start'>
                 <span className='font-bold text-branco-darkmode'>EMAIL</span><br />
-                <input type="email" className="w-inputW h-inputH Ctxt" />
+                <input type="email" className="w-inputW h-inputH ctxt" />
             </label>
             </div>
       </div>

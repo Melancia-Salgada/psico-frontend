@@ -28,7 +28,8 @@ export default {
         'borderw': '3px'
       },
       margin: {
-        'pat': '92px'
+        'pat': '92px',
+        'page-rigth' :'5.63rem'
       },
       width: {
         'inputW': '54.938rem'

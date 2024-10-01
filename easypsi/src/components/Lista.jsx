@@ -5,25 +5,27 @@ import React from 'react';
 const Lista = () => {
   return (
     
-    <div className='p-4'>
+    <div className='mt-[6.6rem]'>
       <div className='flex justify-between items-end gap-4 flex-1'>
 
-        {/* Seções de pesquisa e filtro */}
+        {/* Pesquisa*/}
         <div className='flex justify-between gap-4'>
             <div className=''>
               <label className='text-2xl font-bold mb-2'>Pesquisar</label>
-              <input className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' type='text' placeholder='Pesquisar'></input>
+              <input className='p-2 w-full pesquisar' type='text' placeholder='Pesquisar'></input>
             </div>
         </div>
         
         <div>
+
+        {/* Filtro */}
         <div>
                 <label className='text-2xl font-bold mb-2'>Filtro</label>
-                <input className='rounded-full p-2 w-full border-solid border-preto-whitemode border-2' type='text' placeholder='Filtra'></input>
+                <input className='p-2 w-full  pesquisar' type='text' placeholder='Filtra'></input>
             </div>
         </div>
 
-        {/* Botão de adicionar */}
+        {/* Botão Novo */}
         <div>
           <a className='flex items-center'>
             <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-12 justify-between pl-9 pr-9 font-bold'>
