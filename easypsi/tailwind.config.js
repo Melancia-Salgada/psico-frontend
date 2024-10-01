@@ -22,7 +22,10 @@ export default {
         'label': '1.625rem'
       },
       borderRadius: {
-        'inputBorder': '50px'
+        'borderr': '50px'
+      },
+      borderWidth: {
+        'borderw': '3px'
       },
       margin: {
         'pat': '92px'

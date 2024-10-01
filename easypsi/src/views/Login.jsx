@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar'
 const Login = () => {
   return (
     <>
-    <div className='container ml-32'>
+   
       <div className='flex flex-col place-items-center mt-pat '>
             <div className='mb-40 mt-0'>
                 <img src={Logo} alt="Logo EasyPSI"/>
@@ -14,11 +14,11 @@ const Login = () => {
             <div>
             <label className='place-self-start'>
                 <span className='font-bold text-branco-darkmode'>EMAIL</span><br />
-                <input type="email" className="w-inputW h-inputH" id="" />
+                <input type="email" className="w-inputW h-inputH Ctxt" />
             </label>
             </div>
       </div>
-    </div>
+    
       
 
 
