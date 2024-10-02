@@ -1,23 +1,26 @@
 import React from 'react';
 
-const Titulo = ({ showButton = true, children }) => {
+const Titulo = ({ showButton = true, buttonLink = '#', buttonText = '', buttonIcon = null, children }) => {
   return (
     <div>
       <div className='flex justify-between mt-20'>
-        <div className=''>
+        <div>
           <span className='text-5xl'>{children}</span>
         </div>
-        
+
         {showButton && (
           <div>
-            <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold'>
-              a
-            </button>
+            <a href={buttonLink}>
+              <button className='bg-roxo gap-2 text-branco-whitemode text-[20px] rounded-full flex items-center w-48 h-[69px] justify-between  pl-5 pr-5 font-semibold'>
+                {buttonIcon && <span className=''>{buttonIcon}</span>}
+                {buttonText}
+              </button>
+            </a>
           </div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Titulo;

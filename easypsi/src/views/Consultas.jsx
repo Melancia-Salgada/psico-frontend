@@ -5,9 +5,11 @@ import Pesquisa from '../components/Lista/Pesquisa';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
 
-const Pacientes = () => {
-  const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
+const Consultas = ({  }) => {
+  const headers = ['Paciente', 'Data', 'Horário', 'Valor', 'Status', 'Atividade'];
   const [data, setData] = useState([]);
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +17,7 @@ const Pacientes = () => {
         const response = await fetch('URL_BACKEND'); 
         const jsonData = await response.json();
         
-        setData(jsonData.pacientes); 
+        setData(jsonData.consultas); 
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
@@ -29,7 +31,7 @@ const Pacientes = () => {
     <div className={`min-h-screen`}>
       <Sidebar />
       <div className='container-dash'>
-        <Titulo showButton={false}>Pacientes</Titulo>
+        <Titulo showButton={false}>Consultas</Titulo>
         <Pesquisa showButton={true} />
         <List headers={headers} data={data} />
       </div>
@@ -38,4 +40,4 @@ const Pacientes = () => {
   );
 };
 
-export default Pacientes;
+export default Consultas;

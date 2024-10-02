@@ -4,8 +4,9 @@ import Pacientes from './views/Pacientes';
 import Home from './views/Home';
 import Agenda from './views/Agenda';
 import Perfil from './views/Perfil';
-import { Financeiro } from './views/Financeiro';
 import Login from './views/Login';
+import Consultas from './views/Consultas';
+import Financeiro from './views/Financeiro';
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
           <Route path="/agenda" element={<Agenda />} />  
           <Route path="/perfil" element={<Perfil />} />  
           <Route path="/financeiro" element={<Financeiro />} />  
+          <Route path="/consultas" element={<Consultas />} /> 
           <Route path="/login" element={<Login />} />    
-            <Route path="/" element={<Home />} />     
+          <Route path="/" element={<Home />} />     
         </Routes>
       </div>
     </BrowserRouter>

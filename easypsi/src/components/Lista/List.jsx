@@ -19,7 +19,7 @@ const List = ({ headers, data }) => {
               <div className="flex justify-between">
                 {headers.map((header, index) => (
                   <div key={index} className='flex-1 text-center'>
-                    <span className='text-branco-darkmode text-[20px] font-extrabold'>{header}</span>
+                    <span className=' text-[20px] font-extrabold'>{header}</span>
                   </div>
                 ))}
               </div>

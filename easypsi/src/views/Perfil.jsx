@@ -9,7 +9,9 @@ const Perfil = () => {
     <div>
         <Sidebar/>
         <div className='container-dash'>
-            <Titulo>Perfil</Titulo>
+            <Titulo showButton={false}>Perfil</Titulo>
+
+            
         </div>
         <WhiteMode />
     </div>
