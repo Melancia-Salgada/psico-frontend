@@ -30,7 +30,7 @@ const Pacientes = () => {
       <Sidebar />
       <div className='container-dash'>
         <Titulo showButton={false}>Pacientes</Titulo>
-        <Pesquisa showButton={true} />
+        <Pesquisa showButton={true} appName='paciente' />
         <List headers={headers} data={data} />
       </div>
       <WhiteMode />

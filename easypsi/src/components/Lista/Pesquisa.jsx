@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
 
-const Pesquisa = ({ showButton = true }) => {
+const Pesquisa = ({ showButton = true, appName = "" }) => {
+  const [activeCard, setActiveCard] = useState(null); // Estado para controlar o card ativo
+
+  const handleAppClick = (appName) => {
+    setActiveCard(appName); // Define o card ativo
+  };
+
+  const renderActiveCard = () => {
+    switch (activeCard) {
+      case 'paciente':
+        return <Paciente />; // Chame os componentes corretamente
+      case 'consulta':
+        return <Consulta />;
+      case 'pagamento':
+        return <Pagamento />;
+      case 'adm':
+        return <Adm />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className='mt-[5rem]'>
       <div className='flex justify-between items-end gap-4 flex-1'>
-
         {/* Pesquisa */}
         <div className='flex justify-between gap-4'>
-          <div className=''>
+          <div>
             <label className='text-2xl font-bold mb-2'>Pesquisar</label>
             <input className='p-2 w-full pesquisar' type='text' placeholder='Pesquisar'></input>
           </div>
@@ -24,7 +45,7 @@ const Pesquisa = ({ showButton = true }) => {
         {/* Botão Novo */}
         {showButton && (
           <div>
-            <a className='flex items-center'>
+            <a className='flex items-center' onClick={() => handleAppClick(appName)}>
               <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold'>
                 <span className=''>
                   <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,6 +65,11 @@ const Pesquisa = ({ showButton = true }) => {
             </a>
           </div>
         )}
+      </div>
+
+      {/* Renderiza o card ativo */}
+      <div className="mt-5">
+        {renderActiveCard()}
       </div>
     </div>
   );

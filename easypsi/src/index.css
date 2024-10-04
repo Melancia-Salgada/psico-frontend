@@ -29,6 +29,16 @@
   .pesquisar {
     @apply w-[693px] h-[53px] mr-[148px] rounded-full border-[#d9d9d9] bg-none;
   }
+
+  /* src/styles.css */
+  .btn {
+    @apply p-2 border border-gray-300 rounded-md hover:bg-gray-200 transition-all;
+  }
+
+  .btn-active {
+    @apply bg-blue-500 text-white;
+  }
+
 }
 
 /* DO NOT MODIFY HERE, SUBJECT TO CHANGE */
