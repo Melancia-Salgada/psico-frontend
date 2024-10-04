@@ -40,7 +40,7 @@ const Login = () => {
           <img
             src={showPassword ? EyeOpen : EyeClosed}
             alt="Mostrar senha"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-[47.67px] h-[32.5px]" // Usando classes de largura e altura personalizadas
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-12 h-8" // Usando classes de largura e altura personalizadas
             onClick={togglePasswordVisibility}
           />
 
