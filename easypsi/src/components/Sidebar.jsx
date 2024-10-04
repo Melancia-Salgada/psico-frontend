@@ -3,7 +3,7 @@ import React from 'react';
 const Sidebar = ({ whiteMode }) => {
   const cor = whiteMode ? '#121214' : '#FFFFFF';
   const background = whiteMode ? 'bg-azul transition-colors duration-500' : 'bg-preto-darkmode transition-colors duration-500';
-  const sombra = whiteMode ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : 'shadow-[0_0_20px_rgba(241,241,241,0.2)]';
+  const sombra = whiteMode ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : '';
 
   return (
     <div className={`fixed top-0 left-0 w-24 h-screen ${sombra}`}>

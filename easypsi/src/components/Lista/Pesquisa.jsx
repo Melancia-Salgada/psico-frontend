@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pesquisa = ({ showButton = true }) => {
   return (
-    <div className='mt-[6.6rem]'>
+    <div className='mt-[5rem]'>
       <div className='flex justify-between items-end gap-4 flex-1'>
 
         {/* Pesquisa */}

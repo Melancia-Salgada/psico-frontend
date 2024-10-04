@@ -26,7 +26,7 @@ const Pacientes = () => {
 
 
   return (
-    <div className={`min-h-screen`}>
+    <div>
       <Sidebar />
       <div className='container-dash'>
         <Titulo showButton={false}>Pacientes</Titulo>
