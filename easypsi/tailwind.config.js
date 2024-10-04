@@ -17,9 +17,14 @@ export default {
         'branco-whitemode': '#F1F1F1',
         'preto-darkmode': '#121214',
         'branco-darkmode': '#FFFFFF'
+
       },
       fontSize: {
         'label': '1.625rem'
+      },
+      padding: {
+        'inputPad': "0.7rem"
+
       },
       borderRadius: {
         'borderr': '50px'
@@ -27,15 +32,19 @@ export default {
       borderWidth: {
         'borderw': '3px'
       },
+      borderColor: {
+        'inputColor': '#D9D9D9'
+      },
       margin: {
         'pat': '92px',
-        'page-rigth' :'90px'
+        'page-rigth': '90px'
       },
       width: {
         'inputW': '54.938rem'
       },
       height: {
         'inputH': '3.313'
+        'eye'
       }
     }
 
