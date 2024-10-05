@@ -19,6 +19,8 @@ export default {
         'branco-darkmode': '#FFFFFF'
 
       },
+
+      //.Rectangle-121 {  width: 205px;  height: 58.7px;  margin: 61px 337px 64.3px 338px;  padding: 0 0 6.7px;  border-radius: 85px;  border: solid 4px #018abe;}
       fontSize: {
         'label': '1.625rem'
       },
@@ -27,10 +29,12 @@ export default {
 
       },
       borderRadius: {
-        'borderr': '50px'
+        'borderr': '50px',
+        'btnRadius':'85px'
       },
       borderWidth: {
-        'borderw': '3px'
+        'borderw': '3px',
+        'btnBorder': 'solid 4px #018abe'
       },
       borderColor: {
         'inputColor': '#D9D9D9'
@@ -40,11 +44,15 @@ export default {
         'page-rigth': '90px'
       },
       width: {
-        'inputW': '54.938rem'
+        'inputW': '54.938rem',
+        'btnW':'205px'
+
       },
       height: {
-        'inputH': '3.313'
-      }
+        'inputH': '3.313',
+        'btnH':'58.7px'
+      },
+    
     }
 
 

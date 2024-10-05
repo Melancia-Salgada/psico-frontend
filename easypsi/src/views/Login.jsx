@@ -21,31 +21,32 @@ const Login = () => {
           <span className="font-bold text-branco-darkmode">EMAIL</span><br />
           <input
             type="email"
-            className="w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-            pl-inputPad text-white focus:w-inputW placeholder-white focus:bg-opacity-20 transition-colors duration-300"
-            placeholder="Digite seu email"
+            className=" w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
+            pl-inputPad text-white focus:w-inputW placeholder-white  placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+            placeholder="DIGITE SEU EMAIL"
           />
         </label>
       </div>
-
       <div className="mb-7 relative">
         <label className="place-self-start">
           <span className="font-bold text-branco-darkmode">SENHA</span><br />
           <input
             type={showPassword ? 'text' : 'password'}
             className="w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-            pl-inputPad text-white focus:w-inputW placeholder-white focus:bg-opacity-20 transition-colors duration-300"
-            placeholder="Digite sua senha"
+            pl-inputPad text-white focus:w-inputW placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+            placeholder="DIGITE SUA SENHA"
           />
           <img
             src={showPassword ? EyeOpen : EyeClosed}
             alt="Mostrar senha"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-12 h-8" // Usando classes de largura e altura personalizadas
+            className="absolute right-4 top-3/4 transform -translate-y-1/2 cursor-pointer w-7 h-" // Usando classes de largura e altura personalizadas
             onClick={togglePasswordVisibility}
           />
 
         </label>
+
       </div>
+      <button className='btn-entrar' type="button">ENTRAR</button>
     </div>
   );
 };

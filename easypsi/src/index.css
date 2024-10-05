@@ -25,6 +25,11 @@
     @apply ml-32;
     @apply mr-4;
   }
+  
+  .btn-entrar {
+    @apply h-14 border-4 border-solid font-bold border-azul bg-transparent hover:text-branco-darkmode text-azul rounded-btnRadius w-btnW hover:bg-azul;
+  
+  }
 
   .pesquisar {
     @apply w-[693px] h-[53px] mr-[148px] rounded-full border-[#d9d9d9] bg-none;
