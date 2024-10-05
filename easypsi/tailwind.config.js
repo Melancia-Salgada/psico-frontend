@@ -44,7 +44,6 @@ export default {
       },
       height: {
         'inputH': '3.313'
-        'eye'
       }
     }
 
