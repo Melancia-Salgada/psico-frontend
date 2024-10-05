@@ -9,6 +9,7 @@ const Pacientes = () => {
   const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
   const [data, setData] = useState([]);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {

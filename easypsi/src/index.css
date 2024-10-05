@@ -44,6 +44,9 @@
     @apply bg-blue-500 text-white;
   }
 
+  .popup {
+    @apply top-0 left-0 w-[100%] h-[100vh] fixed bg-black bg-opacity-35 flex justify-center items-center z-10
+  }
+
 }
 
-/* DO NOT MODIFY HERE, SUBJECT TO CHANGE */

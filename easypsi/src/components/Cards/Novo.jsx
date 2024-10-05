@@ -1,36 +1,13 @@
 import React, { useState } from "react";
-import { Quill } from "react-quill"; // Import Quill if you're using it
+import { Quill } from "../TextEditor/Quill";
 
 export const Paciente = () => {
-  const [formData, setFormData] = useState({
-    nome: "",
-    cpf: "",
-    rg: "",
-    email: "",
-    endereco: "",
-    complemento: "",
-    cep: "",
-    responsavelNome: "",
-    responsavelTelefone: "",
-    responsavelCpf: "",
-    anotacoes: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission (e.g., send data to an API)
-  };
 
   return (
-    <div className="h-[50rem] w-[95rem] bg-roxo rounded-[50px]">
+    <div className="h-[50rem] w-[95rem] bg-roxo rounded-[50px] relative">
       <div className="pt-10 pl-16 pr-16">
         <div className="text-[80px] mb-[30px]">Novo Paciente</div>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="flex justify-between">
             <div>
               {/* Personal Information */}
@@ -41,8 +18,6 @@ export const Paciente = () => {
                   className="p-2 w-full"
                   type="text"
                   placeholder="Digite o nome"
-                  value={formData.nome}
-                  onChange={handleChange}
                 />
               </div>
               <div className="flex justify-between">
@@ -53,8 +28,6 @@ export const Paciente = () => {
                     className="p-2 w-full"
                     type="text"
                     placeholder="Digite o CPF"
-                    value={formData.cpf}
-                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -64,8 +37,6 @@ export const Paciente = () => {
                     className="p-2 w-full"
                     type="text"
                     placeholder="Digite o RG"
-                    value={formData.rg}
-                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -80,8 +51,6 @@ export const Paciente = () => {
                     className="p-2 w-full"
                     type="text"
                     placeholder="Digite o email"
-                    value={formData.email}
-                    onChange={handleChange}
                   />
                 </div>
                 {/* Add more fields as needed */}
@@ -97,8 +66,6 @@ export const Paciente = () => {
                     className="p-2 w-full"
                     type="text"
                     placeholder="Digite o endereço"
-                    value={formData.endereco}
-                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex justify-between">
@@ -109,8 +76,6 @@ export const Paciente = () => {
                       className="p-2 w-full"
                       type="text"
                       placeholder="Digite o complemento"
-                      value={formData.complemento}
-                      onChange={handleChange}
                     />
                   </div>
                   <div>
@@ -120,8 +85,6 @@ export const Paciente = () => {
                       className="p-2 w-full"
                       type="text"
                       placeholder="Digite o CEP"
-                      value={formData.cep}
-                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -143,8 +106,6 @@ export const Paciente = () => {
                   className="p-2 w-full"
                   type="text"
                   placeholder="Digite o nome do responsável"
-                  value={formData.responsavelNome}
-                  onChange={handleChange}
                 />
                 <div className="flex justify-between">
                   <div>
@@ -154,8 +115,6 @@ export const Paciente = () => {
                       className="p-2 w-full"
                       type="text"
                       placeholder="Digite o telefone"
-                      value={formData.responsavelTelefone}
-                      onChange={handleChange}
                     />
                   </div>
                   <div>
@@ -165,8 +124,6 @@ export const Paciente = () => {
                       className="p-2 w-full"
                       type="text"
                       placeholder="Digite o CPF"
-                      value={formData.responsavelCpf}
-                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -175,10 +132,7 @@ export const Paciente = () => {
               {/* Notes */}
               <div>
                 <span className="underline">Anotações</span>
-                <Quill
-                  value={formData.anotacoes}
-                  onChange={(value) => setFormData({ ...formData, anotacoes: value })}
-                />
+                <Quill/>
               </div>
             </div>
           </div>

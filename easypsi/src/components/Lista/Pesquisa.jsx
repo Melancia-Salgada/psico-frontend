@@ -2,26 +2,13 @@ import React, { useState } from 'react';
 import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
 
 const Pesquisa = ({ showButton = true, appName = "" }) => {
-  const [activeCard, setActiveCard] = useState(null); // Estado para controlar o card ativo
+  
+  const [popupAberto, setpopupAberto] = useState(false)
+  
 
-  const handleAppClick = (appName) => {
-    setActiveCard(appName); // Define o card ativo
-  };
+  
 
-  const renderActiveCard = () => {
-    switch (activeCard) {
-      case 'paciente':
-        return <Paciente />; // Chame os componentes corretamente
-      case 'consulta':
-        return <Consulta />;
-      case 'pagamento':
-        return <Pagamento />;
-      case 'adm':
-        return <Adm />;
-      default:
-        return null;
-    }
-  };
+  
 
   return (
     <div className='mt-[5rem]'>
@@ -45,7 +32,7 @@ const Pesquisa = ({ showButton = true, appName = "" }) => {
         {/* Botão Novo */}
         {showButton && (
           <div>
-            <a className='flex items-center' onClick={() => handleAppClick(appName)}>
+            <a className='flex items-center' onClick={() => setpopupAberto(true)}>
               <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold'>
                 <span className=''>
                   <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,12 +52,13 @@ const Pesquisa = ({ showButton = true, appName = "" }) => {
             </a>
           </div>
         )}
+        {( popupAberto &&
+          <div className='popup' onClick={() => setpopupAberto(false)}>
+            <Paciente onClick={() => setpopupAberto(true) }></Paciente>
+          </div>
+        )}
       </div>
 
-      {/* Renderiza o card ativo */}
-      <div className="mt-5">
-        {renderActiveCard()}
-      </div>
     </div>
   );
 };
