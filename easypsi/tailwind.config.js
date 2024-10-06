@@ -49,7 +49,7 @@ export default {
 
       },
       height: {
-        'inputH': '3.313',
+        'inputH': '3.313rem',
         'btnH':'58.7px'
       },
     

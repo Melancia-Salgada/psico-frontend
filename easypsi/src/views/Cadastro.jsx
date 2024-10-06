@@ -101,7 +101,7 @@ function Cadastro() {
                 className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
                 h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
                 pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
-                placeholder="DIGITE SUA SENHA"
+                placeholder="DIGITE SUA SENHA NOVAMENTE"
               />
               <img
                 src={showConfirmPassword ? EyeOpen : EyeClosed}
@@ -117,6 +117,13 @@ function Cadastro() {
       <button className="btn-entrar" type="button">
         CADASTRAR
       </button>
+
+      <div className='mt-10'>
+       <a href="/login" className='hover:text-roxo'> Já tenho uma conta</a>
+      </div>
+
+
+
     </div>
   );
 }

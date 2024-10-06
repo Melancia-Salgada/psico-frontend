@@ -39,7 +39,7 @@ const Login = () => {
           <img
             src={showPassword ? EyeOpen : EyeClosed}
             alt="Mostrar senha"
-            className="absolute right-4 top-3/4 transform -translate-y-1/2 cursor-pointer w-7 h-" // Usando classes de largura e altura personalizadas
+            className="absolute right-4 top-14 transform -translate-y-1/2 cursor-pointer w-9 " // Usando classes de largura e altura personalizadas
             onClick={togglePasswordVisibility}
           />
           
@@ -48,6 +48,10 @@ const Login = () => {
 
       </div>
       <button className='btn-entrar' type="button">ENTRAR</button>
+
+      <div className='mt-10'>
+       <a href="/cadastro" className='hover:text-roxo'> Não tenho uma conta</a>
+      </div>
     </div>
   );
 };
