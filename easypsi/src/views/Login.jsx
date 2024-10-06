@@ -42,6 +42,7 @@ const Login = () => {
             className="absolute right-4 top-3/4 transform -translate-y-1/2 cursor-pointer w-7 h-" // Usando classes de largura e altura personalizadas
             onClick={togglePasswordVisibility}
           />
+          
 
         </label>
 

@@ -7,6 +7,7 @@ import Perfil from './views/Perfil';
 import Login from './views/Login';
 import Consultas from './views/Consultas';
 import Financeiro from './views/Financeiro';
+import Cadastro from './views/Cadastro';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
           <Route path="/consultas" element={<Consultas />} /> 
           <Route path="/login" element={<Login />} />    
           <Route path="/" element={<Home />} />     
+          <Route path="/cadastro" element={<Cadastro />} />     
+          
         </Routes>
       </div>
     </BrowserRouter>
