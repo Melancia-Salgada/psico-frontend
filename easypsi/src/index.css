@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply text-branco-darkmode bg-preto-darkmode transition-colors duration-500;
+    @apply text-branco-darkmode bg-preto-darkmode transition-colors duration-500 font-sans;
   }
 
   html.whitemode {
