@@ -21,8 +21,7 @@ const Login = () => {
           <span className="font-bold text-branco-darkmode">EMAIL</span><br />
           <input
             type="email"
-            className=" w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-            pl-inputPad text-white focus:w-inputW placeholder-white  placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+            className="caixa-texto"
             placeholder="DIGITE SEU EMAIL"
           />
         </label>
@@ -32,8 +31,7 @@ const Login = () => {
           <span className="font-bold text-branco-darkmode">SENHA</span><br />
           <input
             type={showPassword ? 'text' : 'password'}
-            className="w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-            pl-inputPad text-white focus:w-inputW placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+            className="caixa-texto"
             placeholder="DIGITE SUA SENHA"
           />
           <img
@@ -47,7 +45,10 @@ const Login = () => {
         </label>
 
       </div>
+      <a href="/home">
       <button className='btn-entrar' type="button">ENTRAR</button>
+      </a>
+      
 
       <div className='mt-10'>
        <a href="/cadastro" className='hover:text-roxo'> Não tenho uma conta</a>

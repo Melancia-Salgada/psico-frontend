@@ -19,14 +19,15 @@ const Pesquisa = ({ showButton = true, appName = "" }) => {
             <label className='text-2xl font-bold mb-2'>Pesquisar</label>
             <input className='p-2 w-full pesquisar' type='text' placeholder='Pesquisar'></input>
           </div>
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtrar</label>
+            <input className='p-2 w-full pesquisar' type='text' placeholder='Filtrar'></input>
+          </div>
         </div>
 
         <div>
           {/* Filtro */}
-          <div>
-            <label className='text-2xl font-bold mb-2'>Filtro</label>
-            <input className='p-2 w-full pesquisar' type='text' placeholder='Filtra'></input>
-          </div>
+          
         </div>
 
         {/* Botão Novo */}

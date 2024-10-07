@@ -47,7 +47,7 @@ const Sidebar = ({ whiteMode }) => {
                 <path d="M16 14.3332C20.1421 14.3332 23.5 11.3485 23.5 7.66661C23.5 3.98474 20.1421 1 16 1C11.8579 1 8.5 3.98474 8.5 7.66661C8.5 11.3485 11.8579 14.3332 16 14.3332Z" stroke={cor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
-            <a href='/' className=''>
+            <a href='/login' className=''>
               <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.9998 31H4.33328C3.44924 31 2.60141 30.6488 1.97629 30.0237C1.35118 29.3986 1 28.5507 1 27.6667V4.33333C1 3.44928 1.35118 2.60143 1.97629 1.97631C2.60141 1.35119 3.44924 1 4.33328 1H10.9998" stroke={cor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M22.666 24.3332L30.9992 15.9998L22.666 7.6665" stroke={cor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
