@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Pacientes from './views/Pacientes';
 import Home from './views/Home';
 import Agenda from './views/Agenda';
@@ -12,7 +12,8 @@ import { TemaProvider } from './components/WhiteMode'; // Ajuste para TemaProvid
 
 function App() {
   return (
-    <BrowserRouter>
+    <TemaProvider>
+      <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/pacientes" element={<Pacientes />} />   
@@ -28,6 +29,8 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </TemaProvider>
+    
   )
 }
 

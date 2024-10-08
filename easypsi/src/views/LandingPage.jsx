@@ -13,7 +13,7 @@ const LandingPage = () => {
       {/* Header */}
       <header className="w-full bg-cinza py-4 shadow-md">
         <nav className="h20 mx-auto px-6 flex justify-between items-center">
-          <a href="./" className='w-1/3'>
+          <a href="./" className=''>
             <h1 className="text-4xl font-bold text-preto-whitemode dark:text-preto-darkmode">Easy<span className='text-azul'>Psi</span></h1>
           </a>
           <ul className="flex space-x-6">
@@ -22,7 +22,7 @@ const LandingPage = () => {
             <li><a href="#about" className="text-preto-darkmode hover:text-azul transition">Sobre</a></li>
             <li><a href="#contact" className="text-preto-darkmode hover:text-azul transition">Contato</a></li>
           </ul>
-          <Link to="/Login">
+          <Link to="/login">
             <button className="bg-roxo text-branco-darkmode px-8 py-4 rounded-3xl hover:bg-purple-700 transition" >Login</button>
           </Link>
         </nav>
