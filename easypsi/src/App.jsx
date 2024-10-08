@@ -8,6 +8,7 @@ import Login from './views/Login';
 import Consultas from './views/Consultas';
 import Financeiro from './views/Financeiro';
 import Cadastro from './views/Cadastro';
+import LandingPage from './views/LandingPage';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
           <Route path="/financeiro" element={<Financeiro />} />  
           <Route path="/consultas" element={<Consultas />} /> 
           <Route path="/login" element={<Login />} />    
-          <Route path="/" element={<Home />} />     
+          <Route path="/" element={<LandingPage />} />     
           <Route path="/cadastro" element={<Cadastro />} />     
           
         </Routes>

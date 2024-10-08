@@ -53,7 +53,7 @@ export default {
         'btnH':'58.7px'
       },
     
-    }
+    },
 
 
   },

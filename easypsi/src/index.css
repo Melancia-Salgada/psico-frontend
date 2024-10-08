@@ -52,5 +52,9 @@
   .caixa-texto {
     @apply w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr pl-inputPad text-white focus:w-inputW placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300
   }
+
+  .wrapper{
+    @apply w-[90%] mx-auto overflow-hidden max-w-screen-xl
+  }
 }
 
