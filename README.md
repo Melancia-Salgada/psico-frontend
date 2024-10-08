@@ -1,6 +1,6 @@
 #   EasyPsi
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-> Um sistema de gerenciamento de gerenciamento voltado para psicólogos
+> Um sistema de gerenciamento de pacientes e controle financeiro voltado para psicólogos
 
 ### Ajustes e melhorias
 
@@ -20,6 +20,14 @@ Para instalar a EasyPsi, siga estas etapas:
 ```bash
 npm install
 ```
+
+## 🕹️ Rodando o projeto
+1. Abra um terminal na pasta easypsi
+2. Utilize o comando:
+```bash
+npm run dev
+```
+3. Abra o link que o próprio terminal te entregará
 
 ## 🤝 Colaboradores
 
