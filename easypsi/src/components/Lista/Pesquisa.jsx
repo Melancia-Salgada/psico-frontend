@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
+import { TemaContexto } from '../WhiteMode';
 
-const Pesquisa = ({ showButton = true, appName = "" }) => {
+const Pesquisa = ({ showButton = true, appName = ""}) => {
   
   const [popupAberto, setpopupAberto] = useState(false)
   
+  const {tema} =useContext(TemaContexto)
 
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   
 
   
@@ -17,18 +20,14 @@ const Pesquisa = ({ showButton = true, appName = "" }) => {
         <div className='flex justify-between gap-4'>
           <div>
             <label className='text-2xl font-bold mb-2'>Pesquisar</label>
-            <input className='p-2 w-full pesquisar' type='text' placeholder='Pesquisar'></input>
+            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Pesquisar'></input>
           </div>
           <div>
             <label className='text-2xl font-bold mb-2'>Filtrar</label>
-            <input className='p-2 w-full pesquisar' type='text' placeholder='Filtrar'></input>
+            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Filtrar'></input>
           </div>
         </div>
 
-        <div>
-          {/* Filtro */}
-          
-        </div>
 
         {/* Botão Novo */}
         {showButton && (

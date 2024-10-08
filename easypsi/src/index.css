@@ -21,6 +21,10 @@
     @apply border-borderw;
   }
 
+  .no-transition {
+    @apply transition-none;
+  }
+
   .container-dash {
     @apply ml-32;
     @apply mr-4;
@@ -35,9 +39,13 @@
     @apply border-borderw focus:border-borderw bg-transparent mr-[200px] rounded-full  border-inputColor focus:border-inputColor h-inputH text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300;
   }
 
+  .pesquisar.whitemode {
+    @apply  border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
+  }
+
   /* src/styles.css */
   .btn {
-    @apply p-2 border border-gray-300 rounded-md hover:bg-gray-200 transition-all;
+    @apply p-2 border bg-current border-gray-300 rounded-md hover:bg-gray-200 transition-all;
   }
 
   .btn-active {
@@ -53,8 +61,16 @@
     @apply w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr pl-inputPad text-white focus:w-inputW placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300
   }
 
-  .wrapper{
-    @apply w-[90%] mx-auto overflow-hidden max-w-screen-xl
+  .caixa-texto.whitemode {
+    @apply border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
+  }
+
+  .caixa-texto-cad {
+    @apply w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor  h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr pl-inputPad placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300
+  }
+
+  .caixa-texto-cad.whitemode {
+    @apply border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
   }
 }
 

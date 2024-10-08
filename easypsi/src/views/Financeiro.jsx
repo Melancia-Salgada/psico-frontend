@@ -33,12 +33,17 @@ const Financeiro = () => {
         <Titulo showButton={false}>Financeiro</Titulo>
         <div>
           
-          <div className='flex justify-between'>
-            <div className='h-[250px] w-auto bg-roxo'>
-              dados
+          <div className='flex justify-between mt-[3rem]'>
+            <div className='h-[300px] w-auto flex justify-between gap-96'>
+              <div>
+                <span>Valores recebidos no mês (Janeiro/2025)</span>
+              </div>
+              <div>
+                <span>Valores há receber</span>
+              </div>
             </div>
-            <div className='h-[250px] w-auto bg-roxo'>
-              Financeiro
+            <div className='h-[300px] w-auto '>
+              Gráfico
             </div>
           </div> 
           

@@ -1,54 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar'; // Certifique-se de ajustar o caminho conforme necessário
-import Consultas from '../views/Consultas';
-import List from './Lista/List';
+import React, { useState, createContext, useContext, useEffect } from 'react';
+
+// Criação do contexto
+export const TemaContexto = createContext();
+
+// Criando o Provider
+export const TemaProvider = ({ children }) => {
+    const [tema, setTema] = useState(() => {
+        const storedTema = localStorage.getItem('whiteMode');
+        return storedTema === 'true'; // true = modo branco, false = modo escuro
+    });
+
+    return (
+        <TemaContexto.Provider value={{ tema, setTema }}>
+            {children}
+        </TemaContexto.Provider>
+    );
+};
 
 function WhiteMode() {
-    const [whiteMode, setWhiteMode] = useState(false);
+    const { tema, setTema } = useContext(TemaContexto);
+    const [whiteMode, setWhiteMode] = useState(tema);
 
     useEffect(() => {
         const isWhiteMode = localStorage.getItem('whiteMode') === 'true';
         setWhiteMode(isWhiteMode);
         const html = document.documentElement;
         html.classList.toggle('whitemode', isWhiteMode);
-        html.classList.add('no-transition');
+        html.classList.add('no-transition'); // Adiciona a classe de no-transition
         setTimeout(() => {
-            html.classList.remove('no-transition');
+            html.classList.remove('no-transition'); // Remove após 50ms
         }, 50);
-    }, []);
-
-    useEffect(() => {
-        const handleRouteChange = () => {
-            const isWhiteMode = localStorage.getItem('whiteMode') === 'true';
-            setWhiteMode(isWhiteMode);
-            const html = document.documentElement;
-            html.classList.toggle('whitemode', isWhiteMode);
-        };
-
-        window.addEventListener('popstate', handleRouteChange);
-
-        return () => {
-            window.removeEventListener('popstate', handleRouteChange);
-        };
     }, []);
 
     const toggleWhiteMode = () => {
         const newWhiteMode = !whiteMode;
         setWhiteMode(newWhiteMode);
         localStorage.setItem('whiteMode', newWhiteMode);
+        setTema(newWhiteMode);
         const html = document.documentElement;
         html.classList.toggle('whitemode', newWhiteMode);
     };
 
     return (
         <div className="flex">
-            {/* Passando whiteMode como prop para a Sidebar */}
-            <Sidebar whiteMode={whiteMode} />
-            
             <button
                 className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg fixed bottom-5 right-5 ${
                     whiteMode ? 'bg-azul' : 'bg-preto-whitemode'
-                }`} 
+                }`}
                 onClick={toggleWhiteMode}
             >
                 {whiteMode ? (

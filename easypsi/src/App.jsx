@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Pacientes from './views/Pacientes';
 import Home from './views/Home';
 import Agenda from './views/Agenda';
@@ -9,9 +8,9 @@ import Consultas from './views/Consultas';
 import Financeiro from './views/Financeiro';
 import Cadastro from './views/Cadastro';
 import LandingPage from './views/LandingPage';
+import { TemaProvider } from './components/WhiteMode'; // Ajuste para TemaProvider
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">
@@ -32,4 +31,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
