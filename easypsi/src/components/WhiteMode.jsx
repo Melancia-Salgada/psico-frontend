@@ -7,7 +7,7 @@ export const TemaContexto = createContext();
 export const TemaProvider = ({ children }) => {
     const [tema, setTema] = useState(() => {
         const storedTema = localStorage.getItem('whiteMode');
-        return storedTema === 'true'; // true = modo branco, false = modo escuro
+        return storedTema === 'true'; 
     });
 
     return (

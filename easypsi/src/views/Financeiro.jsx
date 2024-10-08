@@ -34,15 +34,15 @@ const Financeiro = () => {
         <div>
           
           <div className='flex justify-between mt-[3rem]'>
-            <div className='h-[300px] w-auto flex justify-between gap-96'>
+            <div className='h-[100px] w-auto flex justify-between gap-96'>
               <div>
                 <span>Valores recebidos no mês (Janeiro/2025)</span>
               </div>
               <div>
-                <span>Valores há receber</span>
+                <span>Valores a receber</span>
               </div>
             </div>
-            <div className='h-[300px] w-auto '>
+            <div className='h-[100px] w-auto '>
               Gráfico
             </div>
           </div> 

@@ -17,10 +17,10 @@ const LandingPage = () => {
             <h1 className="text-4xl font-bold text-preto-whitemode dark:text-preto-darkmode">Easy<span className='text-azul'>Psi</span></h1>
           </a>
           <ul className="flex space-x-6">
-            <li><a href="#home" className="text-preto-darkmode hover:text-azul transition">Início</a></li>
-            <li><a href="#features" className="text-preto-darkmode hover:text-azul transition">Recursos</a></li>
-            <li><a href="#about" className="text-preto-darkmode hover:text-azul transition">Sobre</a></li>
-            <li><a href="#contact" className="text-preto-darkmode hover:text-azul transition">Contato</a></li>
+            <li><a href="#home" className="text-preto-darkmode hover:text-azul transition font-bold">Início</a></li>
+            <li><a href="#features" className="text-preto-darkmode hover:text-azul transition font-bold">Recursos</a></li>
+            <li><a href="#about" className="text-preto-darkmode hover:text-azul transition font-bold">Sobre</a></li>
+            <li><a href="#contact" className="text-preto-darkmode hover:text-azul transition font-bold">Contato</a></li>
           </ul>
           <Link to="/login">
             <button className="bg-roxo text-branco-darkmode px-8 py-4 rounded-3xl hover:bg-purple-700 transition" >Login</button>
@@ -61,7 +61,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {/* Agendamento */}
-            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition">
+            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition hover:scale-105">
               <h4 className="text-2xl font-semibold text-azul mb-4">Agendamento</h4>
               <p className="text-preto-darkmode font-medium text-justify"> 
               
@@ -73,7 +73,7 @@ const LandingPage = () => {
             </div>
 
             {/* Controle Financeiro */}
-            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition">
+            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition hover:scale-105">
               <h4 className="text-2xl font-semibold text-azul mb-4">Controle Financeiro</h4>
               <p className="text-preto-darkmode font-medium text-justify">
                 
@@ -85,7 +85,7 @@ const LandingPage = () => {
             </div>
 
             {/*Controle de Pacientes*/}
-            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition">
+            <div className="p-6 bg-cinza rounded-lg shadow-md hover:shadow-lg transition hover:scale-105">
               <h4 className="text-2xl font-semibold text-azul mb-4">Controle de Pacientes</h4>
               <p className="text-preto-darkmode font-medium text-justify">
 
