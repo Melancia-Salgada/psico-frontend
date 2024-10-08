@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Logo from '../assets/Logo.png';
 import EyeClosed from '../assets/eye-closed.png';
 import EyeOpen from '../assets/eye-open.png';
+import WhiteMode from '../components/WhiteMode';
+import { TemaContexto } from '../components/WhiteMode';
 
 function Cadastro() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const {tema} = useContext(TemaContexto)
+  const inputBorder = tema ? 'whitemode' : ''; 
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -23,37 +28,31 @@ function Cadastro() {
       <div className="w-[1150px] px-12 flex flex-row gap-24 mb-16">
         <div className="flex flex-col gap-4">
           <label className="place-self-start">
-            <span className="font-bold text-branco-darkmode">EMAIL</span>
+            <span className="font-bold ">EMAIL</span>
             <br />
             <input
               type="email"
-              className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-              h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-              pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+              className={`caixa-texto-cad ${inputBorder}`}
               placeholder="DIGITE SEU EMAIL"
             />
           </label>
 
           <label className="place-self-start">
-            <span className="font-bold text-branco-darkmode">NOME</span>
+            <span className="font-bold ">NOME</span>
             <br />
             <input
               type="text"
-              className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-              h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-              pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+              className={`caixa-texto-cad ${inputBorder}`}
               placeholder="DIGITE SEU NOME"
             />
           </label>
 
           <label className="place-self-start">
-            <span className="font-bold text-branco-darkmode">CRP</span>
+            <span className="font-bold ">CRP</span>
             <br />
             <input
               type="text"
-              className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-              h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-              pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+              className={`caixa-texto-cad ${inputBorder}`}
               placeholder="DIGITE SEU CRP"
             />
           </label>
@@ -61,26 +60,22 @@ function Cadastro() {
 
         <div className="flex flex-col gap-4">
           <label className="place-self-start">
-            <span className="font-bold text-branco-darkmode">CNPJ</span>
+            <span className="font-bold ">CNPJ</span>
             <br />
             <input
               type="text"
-              className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-              h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-              pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+              className={`caixa-texto-cad ${inputBorder}`}
               placeholder="DIGITE SEU CNPJ"
             />
           </label>
 
           <label className="place-self-start relative">
-            <span className="font-bold text-branco-darkmode">SENHA</span>
+            <span className="font-bold">SENHA</span>
             <br />
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
-                className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-                h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-                pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+                className={`caixa-texto-cad ${inputBorder}`}
                 placeholder="DIGITE SUA SENHA"
               />
               <img
@@ -93,14 +88,12 @@ function Cadastro() {
           </label>
 
           <label className="place-self-start relative">
-            <span className="font-bold text-branco-darkmode">DIGITE SUA SENHA NOVAMENTE</span>
+            <span className="font-bold ">DIGITE SUA SENHA NOVAMENTE</span>
             <br />
             <div className="relative">
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
-                className="w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor 
-                h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr
-                pl-inputPad text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300"
+                className={`caixa-texto-cad ${inputBorder}`}
                 placeholder="DIGITE SUA SENHA NOVAMENTE"
               />
               <img
@@ -114,13 +107,18 @@ function Cadastro() {
         </div>
       </div>
 
-      <button className="btn-entrar" type="button">
-        CADASTRAR
-      </button>
+      <a href="/home">
+        <button className="btn-entrar" type="button">
+          CADASTRAR
+        </button>
+      </a>
+      
 
       <div className='mt-10'>
-       <a href="/login" className='hover:text-roxo'> Já tenho uma conta</a>
+       <a href="/login" className='hover:text-roxo'>Já tenho uma conta</a>
       </div>
+
+      <WhiteMode></WhiteMode>
 
 
 

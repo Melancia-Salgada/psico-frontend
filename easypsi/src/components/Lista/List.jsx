@@ -5,7 +5,7 @@ const List = ({ headers, data }) => {
 
   const {tema} = useContext(TemaContexto)
 
-  const corErro = tema? "text-red-500" : "text-red-400"
+  const estilos = tema? "text-red-500  bg-cinza w-full rounded-2xl" : "text-red-400"
 
   // Verifica se data está vazia ou se é um erro
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
@@ -16,7 +16,7 @@ const List = ({ headers, data }) => {
         {/* Listagem */}
         <div>
           {isEmpty ? (
-            <div className={`text-[18px] p-4 ${corErro} transition-colors`}>
+            <div className={`text-[18px] p-10 ${estilos} transition-colors transition-all`}>
               <span className='justify-center flex mb-10'>
                 Não há nenhum dado cadastrado.
               </span>

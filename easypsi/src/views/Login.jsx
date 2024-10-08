@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Logo from '../assets/Logo.png';
 import EyeClosed from '../assets/eye-closed.png';
-import EyeOpen from '../assets/eye-open.png';
+import WhiteMode, { TemaContexto } from '../components/WhiteMode';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const {tema} = useContext(TemaContexto)
+  
+
+  const inputBorder = tema ? 'whitemode' : ''; 
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -18,20 +22,20 @@ const Login = () => {
 
       <div className="mb-7">
         <label className="place-self-start">
-          <span className="font-bold text-branco-darkmode">EMAIL</span><br />
+          <span className="font-bold">EMAIL</span><br />
           <input
             type="email"
-            className="caixa-texto"
+            className={`caixa-texto ${inputBorder}`}
             placeholder="DIGITE SEU EMAIL"
           />
         </label>
       </div>
       <div className="mb-7 relative">
         <label className="place-self-start">
-          <span className="font-bold text-branco-darkmode">SENHA</span><br />
+          <span className="font-bold ">SENHA</span><br />
           <input
             type={showPassword ? 'text' : 'password'}
-            className="caixa-texto"
+            className={`caixa-texto ${inputBorder}`}
             placeholder="DIGITE SUA SENHA"
           />
           <img
@@ -51,8 +55,10 @@ const Login = () => {
       
 
       <div className='mt-10'>
-       <a href="/cadastro" className='hover:text-roxo'> Não tenho uma conta</a>
+       <a href="/cadastro" className='hover:text-roxo'>Ainda não tenho uma conta</a>
       </div>
+
+      <WhiteMode></WhiteMode>
     </div>
   );
 };

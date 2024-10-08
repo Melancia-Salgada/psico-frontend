@@ -60,5 +60,17 @@
   .caixa-texto {
     @apply w-inputW border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr pl-inputPad text-white focus:w-inputW placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300
   }
+
+  .caixa-texto.whitemode {
+    @apply border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
+  }
+
+  .caixa-texto-cad {
+    @apply w-[30rem] border-borderw focus:border-borderw bg-transparent border-inputColor focus:border-inputColor  h-inputH focus:h-inputH rounded-borderr focus:rounded-borderr pl-inputPad placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300
+  }
+
+  .caixa-texto-cad.whitemode {
+    @apply border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
+  }
 }
 
