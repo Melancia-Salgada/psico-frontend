@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TemaContexto } from '../components/WhiteMode';
 
-const Sidebar = ({ whiteMode }) => {
-  const cor = whiteMode ? '#121214' : '#FFFFFF';
-  const background = whiteMode ? 'bg-azul transition-colors duration-500' : 'bg-preto-darkmode transition-colors duration-500';
-  const sombra = whiteMode ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : '';
+const Sidebar = () => {
+
+  const {tema} = useContext(TemaContexto)
+
+  const cor = tema ? '#121214' : '#FFFFFF';
+  const background =  tema? 'bg-azul transition-colors duration-500' : 'bg-preto-darkmode transition-colors duration-500';
+  const sombra = tema ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : '';
 
   return (
     <div className={`fixed top-0 left-0 w-24 h-screen ${sombra}`}>

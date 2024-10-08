@@ -11,7 +11,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col place-items-center mt-pat">
+    <div className="flex flex-col place-items-center mt-pat transition-none">
       <div className="mb-20 mt-0">
         <img src={Logo} alt="Logo EasyPSI" />
       </div>

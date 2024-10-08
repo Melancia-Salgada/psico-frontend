@@ -16,7 +16,7 @@ function Cadastro() {
   };
 
   return (
-    <div className="flex flex-col place-items-center mt-pat">
+    <div className="flex flex-col place-items-center mt-pat transition-none">
       <div className="mb-5 mt-0">
         <img src={Logo} alt="Logo EasyPSI" />
       </div>
