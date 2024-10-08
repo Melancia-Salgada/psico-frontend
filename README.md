@@ -21,6 +21,14 @@ Para instalar a EasyPsi, siga estas etapas:
 npm install
 ```
 
+## 🕹️ Rodando o projeto
+1. Abra um terminal na pasta easypsi
+2. Utilize o comando:
+```bash
+npm run dev
+```
+3. Abra o link que o próprio terminal te entregará
+
 ## 🤝 Colaboradores
 
 <table>
