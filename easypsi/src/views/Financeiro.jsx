@@ -49,7 +49,7 @@ const Financeiro = () => {
           
 
           <div>
-            <Pesquisa showButton={true} />
+            <Pesquisa showButton={false} />
             <List headers={headers} data={data} />
           </div>
           

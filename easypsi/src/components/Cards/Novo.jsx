@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Quill } from "../TextEditor/Quill";
 
-export const Paciente = () => {
-
+export const Paciente = ({ closePopup }) => {
   return (
     <div className="h-[50rem] w-[95rem] bg-roxo rounded-[50px] relative">
       <div className="pt-10 pl-16 pr-16">
-        <div className="text-[80px] mb-[30px]">Novo Paciente</div>
+        <div className="flex justify-between font-bold">
+          <div className="text-[80px] mb-[30px]">Novo Paciente</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-[30px] cursor-pointer p-2 " onClick={closePopup}>X</div>
+          </div>
+        </div>
+        
         <form>
           <div className="flex justify-between">
             <div>
@@ -22,7 +27,7 @@ export const Paciente = () => {
               </div>
               <div className="flex justify-between">
                 <div>
-                  <label className="mb-2">CPF</label>
+                  <label className="mb-2">Nascimento</label>
                   <input
                     name="cpf"
                     className="p-2 w-full"
@@ -31,7 +36,7 @@ export const Paciente = () => {
                   />
                 </div>
                 <div>
-                  <label className="mb-2">RG</label>
+                  <label className="mb-2">Telefone</label>
                   <input
                     name="rg"
                     className="p-2 w-full"
@@ -41,7 +46,7 @@ export const Paciente = () => {
                 </div>
               </div>
 
-              {/* Additional Data */}
+              {/* Dados */}
               <div>
                 <span className="underline">Dados Adicionais</span>
                 <div>
@@ -53,10 +58,30 @@ export const Paciente = () => {
                     placeholder="Digite o email"
                   />
                 </div>
-                {/* Add more fields as needed */}
+                <div className="flex justify-between">
+                  <div>
+                    <label className="mb-2">CPF</label>
+                    <input
+                      name="cpf"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o CPF"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-2">RG</label>
+                    <input
+                      name="rg"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o RG"
+                    />
+                  </div>
+                </div>
+                
               </div>
 
-              {/* Address Information */}
+              {/* endereço */}
               <div>
                 <span className="underline">Local</span>
                 <div>
@@ -91,12 +116,12 @@ export const Paciente = () => {
               </div>
             </div>
 
-            {/* Divider */}
+            {/* barra */}
             <div>
               <div className="border-preto-whitemode border-[3px] h-full"></div>
             </div>
 
-            {/* Minor Information */}
+            {/* informação respondavel */}
             <div>
               <span className="underline">Menor de Idade</span>
               <div>
@@ -129,7 +154,7 @@ export const Paciente = () => {
                 </div>
               </div>
 
-              {/* Notes */}
+              {/* Anotações */}
               <div>
                 <span className="underline">Anotações</span>
                 <Quill/>
@@ -137,7 +162,7 @@ export const Paciente = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
+          {/* botao */}
           <div className="mt-4">
             <button type="submit" className="bg-blue-500 text-white p-2 rounded">
               Salvar Paciente
@@ -149,7 +174,121 @@ export const Paciente = () => {
   );
 };
 
-export const Consulta = () => {};
+export const Consulta = ({ closePopup }) => {
+  return (
+    <div className="h-[50rem] w-[95rem] bg-roxo rounded-[50px] relative">
+      <div className="pt-10 pl-16 pr-16">
+        <div className="flex justify-between font-bold">
+          <div className="text-[80px] mb-[30px]">Nova Consulta</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-[30px] cursor-pointer p-2 " onClick={closePopup}>X</div>
+          </div>
+        </div>
+        
+        <form>
+          <div className="flex justify-between">
+            <div>
+              {/* Paciente */}
+              <div>
+                <label className="mb-2">Paciente</label>
+                <input
+                  name="paciente"
+                  className="p-2 w-full"
+                  type="text"
+                  placeholder="Digite o nome"
+                />
+              </div>
+              
+
+              {/* Horario */}
+              <div>
+                <span className="underline">Horário</span>
+                <div>
+                  <label className="mb-2">Data</label>
+                  <input
+                    name="data"
+                    className="p-2 w-full"
+                    type="text"
+                    placeholder="Digite a data da consulta"
+                  />
+                </div>
+                <div className="flex justify-between">
+                  <div>
+                    <label className="mb-2">Inicio</label>
+                    <input
+                      name="inicio"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o CPF"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-2">Fim</label>
+                    <input
+                      name="fim"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o RG"
+                    />
+                  </div>
+                </div>
+                
+              </div>
+
+              {/* financeiro */}
+              <div>
+                <span className="underline">Financeiro</span>
+                
+                <div className="flex justify-between">
+                  <div>
+                    <label className="mb-2">Valor</label>
+                    <input
+                      name="complemento"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o complemento"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-2">Vencimento</label>
+                    <input
+                      name="cep"
+                      className="p-2 w-full"
+                      type="text"
+                      placeholder="Digite o CEP"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* barra */}
+            <div>
+              <div className="border-preto-whitemode border-[3px] h-full"></div>
+            </div>
+
+            <div>
+              
+
+              {/* Anotações */}
+              <div>
+                <span className="underline">Anotações</span>
+                <Quill/>
+              </div>
+            </div>
+          </div>
+
+          {/* botao */}
+          <div className="mt-4">
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+              Agendar Consulta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export const Pagamento = () => {};
 

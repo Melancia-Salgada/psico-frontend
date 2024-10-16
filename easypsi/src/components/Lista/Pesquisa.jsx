@@ -9,8 +9,21 @@ const Pesquisa = ({ showButton = true, appName = ""}) => {
   const {tema} =useContext(TemaContexto)
 
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  
 
+  const closePopup = () => {
+    setpopupAberto(false); // Função para fechar o popup
+  };
+
+  const renderPopup = () => {
+    switch (appName) {
+      case "Paciente":
+        return <Paciente closePopup={closePopup} />;
+      case "Consulta":
+        return <Consulta closePopup={closePopup} />;
+      default:
+        return null;
+    }
+  };
   
 
   return (
@@ -54,8 +67,10 @@ const Pesquisa = ({ showButton = true, appName = ""}) => {
         )}
         {( popupAberto &&
           <div className='popup' onClick={() => setpopupAberto(false)}>
-            <Paciente onClick={() => setpopupAberto(true) }></Paciente>
+          <div onClick={(e) => e.stopPropagation()}> 
+            {renderPopup()}
           </div>
+        </div>
         )}
       </div>
 
