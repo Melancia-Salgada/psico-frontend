@@ -32,7 +32,7 @@ export const Paciente = ({ closePopup }) => {
                     name="cpf"
                     className="p-2 w-full"
                     type="text"
-                    placeholder="Digite o CPF"
+                    placeholder="Digite a data de nascimento"
                   />
                 </div>
                 <div>
@@ -41,7 +41,7 @@ export const Paciente = ({ closePopup }) => {
                     name="rg"
                     className="p-2 w-full"
                     type="text"
-                    placeholder="Digite o RG"
+                    placeholder="Digite o Telefone"
                   />
                 </div>
               </div>
@@ -181,7 +181,7 @@ export const Consulta = ({ closePopup }) => {
         <div className="flex justify-between font-bold">
           <div className="text-[80px] mb-[30px]">Nova Consulta</div>
           <div>
-            <div className="hover:text-red-500 transition-colors text-[30px] cursor-pointer p-2 " onClick={closePopup}>X</div>
+            <div className="hover:text-red-500 transition-colors text-[40px] cursor-pointer p-2 " onClick={closePopup}>X</div>
           </div>
         </div>
         
@@ -195,7 +195,7 @@ export const Consulta = ({ closePopup }) => {
                   name="paciente"
                   className="p-2 w-full"
                   type="text"
-                  placeholder="Digite o nome"
+                  placeholder="Digite o nome do Paciente"
                 />
               </div>
               
@@ -219,7 +219,7 @@ export const Consulta = ({ closePopup }) => {
                       name="inicio"
                       className="p-2 w-full"
                       type="text"
-                      placeholder="Digite o CPF"
+                      placeholder="Digite o horário do inicio da consulta"
                     />
                   </div>
                   <div>
@@ -228,7 +228,7 @@ export const Consulta = ({ closePopup }) => {
                       name="fim"
                       className="p-2 w-full"
                       type="text"
-                      placeholder="Digite o RG"
+                      placeholder="Digite o horário do final da consulta"
                     />
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export const Consulta = ({ closePopup }) => {
                       name="complemento"
                       className="p-2 w-full"
                       type="text"
-                      placeholder="Digite o complemento"
+                      placeholder="Digite o valor da consulta"
                     />
                   </div>
                   <div>
@@ -255,7 +255,7 @@ export const Consulta = ({ closePopup }) => {
                       name="cep"
                       className="p-2 w-full"
                       type="text"
-                      placeholder="Digite o CEP"
+                      placeholder="Digite o vencimento para o pagamento da consulta"
                     />
                   </div>
                 </div>

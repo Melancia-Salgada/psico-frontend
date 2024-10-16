@@ -5,7 +5,7 @@ const Sidebar = () => {
 
   const {tema} = useContext(TemaContexto)
 
-  const cor = tema ? '#121214' : '#FFFFFF';
+  const cor = "#FFFFFF";
   const background =  tema? 'bg-azul transition-colors duration-500' : 'bg-preto-darkmode transition-colors duration-500';
   const sombra = tema ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : '';
 
