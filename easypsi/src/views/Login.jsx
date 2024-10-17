@@ -3,6 +3,8 @@ import Logo from '../assets/Logo.png';
 import EyeClosed from '../assets/eye-closed.png';
 import WhiteMode, { TemaContexto } from '../components/WhiteMode';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,15 +20,15 @@ const Login = () => {
   const inputBorder = tema ? 'whitemode' : ''; 
 
   {/*Fofocando com back*/}
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [username, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/login', {
-        email,
+        username,
         password
       });
 
@@ -49,7 +51,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error/*error.response && error.response.data && error.response.data.message*/) {
-        console.log("deu erro")
+        console.log("deu erro", error)
       } 
     }
   };
@@ -64,12 +66,12 @@ const Login = () => {
           <label className="place-self-start">
             <span className="font-bold">EMAIL</span><br />
             <input
-              type="email"
+              type="text"
               className={`caixa-texto ${inputBorder}`}
               placeholder="Digite seu email"
               id='email'
-              name='email'
-              value={email}
+              name='username'
+              value={username}
               onChange={(e)=>setEmail(e.target.value)}
             />
           </label>
@@ -81,10 +83,10 @@ const Login = () => {
               type={showPassword ? 'text' : 'password'}
               className={`caixa-texto ${inputBorder}`}
               placeholder="Digite sua senha"
-              id='senha'
-              name='senha'
-              value={senha}
-              onChange={(e)=>setSenha(e.target.value)}
+              id='password'
+              name='password'
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <img
               src={showPassword ? EyeOpen : EyeClosed}
