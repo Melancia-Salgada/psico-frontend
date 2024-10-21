@@ -3,17 +3,17 @@ import { Quill } from "../TextEditor/Quill";
 
 export const Paciente = ({ closePopup }) => {
   return (
-    <div className="h-[50rem] w-[95rem] bg-roxo rounded-[50px] relative">
-      <div className="pt-10 pl-16 pr-16">
+    <div className="  bg-roxo rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
+      <div className="pt-14 pl-16 pr-16 pb-20">
         <div className="flex justify-between font-bold">
-          <div className="text-[80px] mb-[30px]">Novo Paciente</div>
+          <div className="lg:text-[80px] mb-[30px] md:text-[60px]">Novo Paciente</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-[30px] cursor-pointer p-2 " onClick={closePopup}>X</div>
           </div>
         </div>
         
         <form>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-10">
             <div>
               {/* Personal Information */}
               <div>

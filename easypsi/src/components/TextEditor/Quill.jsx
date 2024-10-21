@@ -8,7 +8,7 @@ export function Quill() {
   const [value, setValue] = useState('');
 
   return (
-    <div className="bg-white rounded-lg shadow-md max-w-[36rem] max-h-[300px] overflow-auto">
+    <div className="bg-white rounded-lg shadow-md overflow-auto">
       <EditorToolbar />
       <ReactQuill
         theme="snow"
@@ -17,7 +17,7 @@ export function Quill() {
         placeholder="Escreva aqui..."
         modules={modules}
         formats={formats}
-        className="h-[200px] w-[36rem]" // Define a altura do editor com Tailwind
+        className="h-[200px]" // Define a altura do editor com Tailwind
       />
     </div>
   );

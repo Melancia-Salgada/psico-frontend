@@ -52,6 +52,9 @@ export default {
         'inputH': '3.313rem',
         'btnH':'58.7px'
       },
+      screens: {
+        'moveis': {'max': '850px'}
+      }
     
     },
 
