@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <Sidebar />
       <div className='container-dash'>
-        <Titulo showButton={false}>Olá, Nome</Titulo>
+        <Titulo showButton={false}>Olá, <span className='text-roxo'>Nome</span></Titulo>
       </div>
       <WhiteMode />
     </div>
