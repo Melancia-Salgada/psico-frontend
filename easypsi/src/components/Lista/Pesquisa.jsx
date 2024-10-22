@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
 import { TemaContexto } from '../WhiteMode';
 
-const Pesquisa = ({ showButton = true, appName = ""}) => {
+const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
   
   const [popupAberto, setpopupAberto] = useState(false)
   
   const {tema} =useContext(TemaContexto)
+
+  const mt = margin? 'mt-5' : 'mt-0'
 
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
 
@@ -27,7 +29,7 @@ const Pesquisa = ({ showButton = true, appName = ""}) => {
   
 
   return (
-    <div className='mt-[5rem]'>
+    <div className={`${mt}`}>
       <div className='flex justify-between items-end gap-4 flex-1'>
         {/* Pesquisa */}
         <div className='flex justify-between gap-4'>
