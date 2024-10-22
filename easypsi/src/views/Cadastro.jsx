@@ -21,61 +21,56 @@ function Cadastro() {
   };
 
   return (
-    <div className="flex flex-col place-items-center mt-pat transition-none">
+    <div className="flex flex-col items-center px-4 sm:px-6 lg:px-8 mt-8 transition-none">
       <div className="mb-5 mt-0">
-        <img src={Logo} alt="Logo EasyPSI" />
+        <img src={Logo} alt="Logo EasyPSI" className="max-w-full h-auto" />
       </div>
-      <div className="w-[1150px] px-12 flex flex-row gap-24 mb-16">
-        <div className="flex flex-col gap-4">
-          <label className="place-self-start">
-            <span className="font-bold ">EMAIL</span>
-            <br />
+      <div className="w-full max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 mb-8">
+        <div className="flex flex-col gap-4 w-full lg:w-1/2">
+          <label className="w-full">
+            <span className="font-bold">EMAIL</span>
             <input
               type="email"
-              className={`caixa-texto-cad ${inputBorder}`}
+              className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU EMAIL"
             />
           </label>
 
-          <label className="place-self-start">
-            <span className="font-bold ">NOME</span>
-            <br />
+          <label className="w-full">
+            <span className="font-bold">NOME</span>
             <input
               type="text"
-              className={`caixa-texto-cad ${inputBorder}`}
+              className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU NOME"
             />
           </label>
 
-          <label className="place-self-start">
-            <span className="font-bold ">CRP</span>
-            <br />
+          <label className="w-full">
+            <span className="font-bold">CRP</span>
             <input
               type="text"
-              className={`caixa-texto-cad ${inputBorder}`}
+              className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU CRP"
             />
           </label>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <label className="place-self-start">
-            <span className="font-bold ">CNPJ</span>
-            <br />
+        <div className="flex flex-col gap-4 w-full lg:w-1/2">
+          <label className="w-full">
+            <span className="font-bold">CNPJ</span>
             <input
               type="text"
-              className={`caixa-texto-cad ${inputBorder}`}
+              className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU CNPJ"
             />
           </label>
 
-          <label className="place-self-start relative">
+          <label className="w-full relative">
             <span className="font-bold">SENHA</span>
-            <br />
-            <div className="relative">
+            <div className="relative mt-1">
               <input
                 type={showPassword ? 'text' : 'password'}
-                className={`caixa-texto-cad ${inputBorder}`}
+                className={`caixa-texto-cad ${inputBorder} w-full`}
                 placeholder="DIGITE SUA SENHA"
               />
               <img
@@ -87,13 +82,12 @@ function Cadastro() {
             </div>
           </label>
 
-          <label className="place-self-start relative">
-            <span className="font-bold ">DIGITE SUA SENHA NOVAMENTE</span>
-            <br />
-            <div className="relative">
+          <label className="w-full relative">
+            <span className="font-bold">DIGITE SUA SENHA NOVAMENTE</span>
+            <div className="relative mt-1">
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
-                className={`caixa-texto-cad ${inputBorder}`}
+                className={`caixa-texto-cad ${inputBorder} w-full`}
                 placeholder="DIGITE SUA SENHA NOVAMENTE"
               />
               <img
@@ -107,21 +101,21 @@ function Cadastro() {
         </div>
       </div>
 
-      <a href="/home">
-        <button className="btn-entrar" type="button">
-          CADASTRAR
-        </button>
-      </a>
-      
-
-      <div className='mt-10'>
-       <a href="/login" className='hover:text-roxo'>Já tenho uma conta</a>
+      <div className="w-full max-w-4xl flex justify-center">
+        <a href="/home" className="w-full sm:w-auto">
+          <button className="btn-entrar w-full px-8 py-3 text-lg font-bold" type="button">
+            CADASTRAR
+          </button>
+        </a>
       </div>
 
-      <WhiteMode></WhiteMode>
+      <div className='mt-6'>
+        <a href="/login" className='hover:text-roxo'>Já tenho uma conta</a>
+      </div>
 
-
-
+      <div className="mt-8">
+        <WhiteMode />
+      </div>
     </div>
   );
 }
