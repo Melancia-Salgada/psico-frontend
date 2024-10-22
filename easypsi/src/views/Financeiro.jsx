@@ -14,7 +14,7 @@ const Financeiro = () => {
   const [data, setData] = useState([]);
 
   const { tema } = useContext(TemaContexto); // Corrigido o uso do useContext
-  const estilos = tema ? "text-red-500 bg-cinza rounded-3xl" : "";
+  const estilos = tema ? " rounded-3xl" : "";
   
 
   useEffect(() => {
@@ -64,6 +64,7 @@ const Financeiro = () => {
               </div>
             </div>
             <div className={`h-auto w-auto ${estilos}`}>
+              <span className='text-2xl font-bold'>Gráfico</span>
               <Grafico />
             </div>
           </div>

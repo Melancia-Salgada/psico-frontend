@@ -8,31 +8,23 @@ const FinanceiroGrafico = () => {
 
     // Define a opção de gráfico
     var option = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      legend: {
+        data: ['Pago', 'Não Pago']
       },
-      yAxis: {
-        type: 'value'
+      tooltip: {},
+      dataset: {
+        source: [
+          ['mes', 'Pago', 'Não Pago'],
+          ['Janeiro', 83.1, 73.4],
+          ['Fevereiro', 65.2, 86.4],
+          ['Março', 72.4, 53.9]
+        ]
       },
+      xAxis: { type: 'category' },
+      yAxis: {},
       series: [
-        {
-          data: [
-            120,
-            {
-              value: 200,
-              itemStyle: {
-                color: '#a90000'
-              }
-            },
-            150,
-            80,
-            70,
-            110,
-            130
-          ],
-          type: 'bar'
-        }
+        { type: 'bar', name: 'Pago', color: '#4CAF50' },  // Cor verde para "Pago"
+        { type: 'bar', name: 'Não Pago', color: '#FF5722' } // Cor laranja para "Não Pago"
       ]
     };
 
@@ -47,7 +39,7 @@ const FinanceiroGrafico = () => {
 
   return (
     <div>
-      <div id="grafico" className='h-[350px] w-[500px]'></div>
+      <div id="grafico" className='h-[300px] w-[500px]'></div>
     </div>
   );
 };
