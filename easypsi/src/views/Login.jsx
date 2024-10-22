@@ -58,7 +58,7 @@ const Login = () => {
 
 
   return (
-    <div className="flex flex-col place-items-center mt-pat transition-none">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
       <div className="mb-20 mt-0">
         <img src={Logo} alt="Logo EasyPSI" />
       </div>
@@ -92,27 +92,23 @@ const Login = () => {
             <img
               src={showPassword ? EyeOpen : EyeClosed}
               alt="Mostrar senha"
-              className="absolute right-4 top-14 transform -translate-y-1/2 cursor-pointer w-9 " // Usando classes de largura e altura personalizadas
+              className="absolute right-4 top-10 transform -translate-y-1/2 cursor-pointer w-6 h-6"
               onClick={togglePasswordVisibility}
             />
-            
-
           </label>
-
         </div>
-        <button className='btn-entrar' type="submit">ENTRAR</button>
-        
-
-      </form>
-      
-      
-      
-
-      <div className='mt-10'>
-       <a href="/cadastro" className='hover:text-roxo'>Ainda não tenho uma conta</a>
+        <div className="w-full max-w-4xl flex justify-center">
+        <a href="/home" className="w-full sm:w-auto">
+          <button className="btn-entrar w-full px-8 py-3 text-lg font-bold" type="button">
+            ENTRAR
+          </button>
+        </a>
       </div>
-
-      <WhiteMode></WhiteMode>
+      </form>
+      <div className='mt-6'>
+        <a href="/cadastro" className='hover:text-roxo'>Ainda não tenho uma conta</a>
+      </div>
+      <WhiteMode />
     </div>
   );
 };
