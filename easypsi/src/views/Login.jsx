@@ -23,38 +23,6 @@ const Login = () => {
   const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/login', {
-        username,
-        password
-      });
-
-      // Check if the response was successful
-      if (response.status === 200) {
-          
-          // Store token in localStorage
-          //localStorage.setItem('token', response.data); por enquanto vamos armazenar o token no indexedDB
-          const token = response.data;
-          console.log(token)
-          localStorage.setItem('token', token)
-          //await setToken(token);
-          
-          //console.log(response.data)
-          // Successful authentication, redirect to /dashboard page
-          navigate('/home');
-      } else {
-          // Authentication failed, display an error message
-          console.error('Error authenticating user');
-      }
-    } catch (error) {
-      if (error/*error.response && error.response.data && error.response.data.message*/) {
-        console.log("deu erro", error)
-      } 
-    }
-  };
 
   return (
     <div className="flex flex-col place-items-center mt-pat transition-none">

@@ -1,7 +1,27 @@
 import React, { useState } from "react";
 import { Quill } from "../TextEditor/Quill";
 
+
+
 export const Paciente = ({ closePopup }) => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8001/login', {
+        username,
+        password
+      });
+
+      console.log("salvo com sucesso")
+    } catch (error) {
+      if (error/*error.response && error.response.data && error.response.data.message*/) {
+        console.log("deu erro", error)
+      } 
+    }
+  };
+
   return (
     <div className="  bg-roxo rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
       <div className="pt-14 pl-16 pr-16 pb-20">
@@ -12,7 +32,7 @@ export const Paciente = ({ closePopup }) => {
           </div>
         </div>
         
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex justify-between gap-10">
             <div>
               {/* Personal Information */}
