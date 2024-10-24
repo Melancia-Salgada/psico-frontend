@@ -17,7 +17,8 @@ const FinanceiroGrafico = () => {
           ['mes', 'Pago', 'Não Pago'],
           ['Janeiro', 83.1, 73.4],
           ['Fevereiro', 65.2, 86.4],
-          ['Março', 72.4, 53.9]
+          ['Março', 72.4, 53.9],
+          ['Abriel', 72.4, 53.9]
         ]
       },
       xAxis: { type: 'category' },

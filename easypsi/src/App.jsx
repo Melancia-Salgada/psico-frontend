@@ -9,6 +9,9 @@ import Financeiro from './views/Financeiro';
 import Cadastro from './views/Cadastro';
 import LandingPage from './views/LandingPage';
 import { TemaProvider } from './components/WhiteMode'; // Ajuste para TemaProvider
+import AdminHome from "./views/adm/AdminHome";
+import Gerenciamento from "./views/adm/Gerenciamento";
+import AdminPerfil from "./views/adm/AdminPerfil";
 
 function App() {
   return (
@@ -24,7 +27,11 @@ function App() {
           <Route path="/consultas" element={<Consultas />} /> 
           <Route path="/login" element={<Login />} />    
           <Route path="/" element={<LandingPage />} />     
-          <Route path="/cadastro" element={<Cadastro />} />     
+          <Route path="/cadastro" element={<Cadastro />} /> 
+
+          <Route path="/home-adm" element={<AdminHome />} /> 
+          <Route path="/gerenciamento-adm" element={<Gerenciamento />} /> 
+          <Route path="/perfil-adm" element={<AdminPerfil />} /> 
           
         </Routes>
       </div>
