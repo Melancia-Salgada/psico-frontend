@@ -11,7 +11,7 @@ const Titulo = ({ showButton = true, buttonLink = '#', buttonText = '', buttonIc
         {showButton && (
           <div>
             <a href={buttonLink}>
-              <button className='bg-roxo gap-2 text-branco-whitemode text-[20px] rounded-full flex items-center w-48 h-[69px] justify-between  pl-5 pr-5 font-semibold'>
+              <button className='bg-roxo gap-4 text-branco-whitemode text-[20px] rounded-full flex items-center  h-[69px] justify-between  pl-5 pr-5 font-semibold'>
                 {buttonIcon && <span className=''>{buttonIcon}</span>}
                 {buttonText}
               </button>
