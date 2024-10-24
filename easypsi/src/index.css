@@ -2,7 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.fc .fc-button-primary {
+  @apply bg-azul
+}
+
+
+
 @layer base {
+
+  :root {
+    --fc-today-bg-color: rgba(1,138,190, 0.3)
+  }
+
   html {
     @apply text-branco-darkmode bg-preto-darkmode transition-colors duration-500 font-sans;
   }
@@ -72,5 +84,8 @@
   .caixa-texto-cad.whitemode {
     @apply border-preto-whitemode focus:outline-roxo  focus:border-borderw focus:border-roxo text-preto-whitemode placeholder-preto-whitemode  transition-colors placeholder-opacity-50
   }
+
+  
+
 }
 

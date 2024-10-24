@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Titulo from '../components/Titulo';
 import WhiteMode from '../components/WhiteMode';
+import Calendario from '../components/Calendario';
 
 const Agenda = () => {
 
@@ -16,6 +17,10 @@ const Agenda = () => {
         <Sidebar/>
         <div className='container-dash'>
             <Titulo showButton={true} buttonLink='consultas' buttonText='Consultas' buttonIcon={consultasSVG}>Agenda</Titulo>
+            <div  className='flex justify-center mt-4'>
+              <Calendario></Calendario>
+            </div>
+            
         </div>
         <WhiteMode />
     </div>
