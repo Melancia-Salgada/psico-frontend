@@ -55,34 +55,48 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
             </select>
           </div>
         )
-        case "Consulta":
-      return (
-        <div>
-          <label className='text-2xl font-bold mb-2'>Filtros</label>
-          <div className='flex'>
-            <select
-              className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
-              onChange={handleFiltroChange}
-            >
-              <option value="" className={`py-2 ${drop}`}>Todos</option>
-              <option value="Realizado" className={`py-2 ${drop}`}>Realizado</option>
-              <option value="Não Realizado" className={`py-2 ${drop}`}>Não realizado</option>
-            </select>
-            <select
-              className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
-              onChange={handleTipoChange} // Alterado para chamar handleTipoChange
-            >
-              <option value="" className={`py-2 ${drop}`}>Todos</option>
-              <option value="Inicial" className={`py-2 ${drop}`}>Inicial</option>
-              <option value="Acompanhamento" className={`py-2 ${drop}`}>Acompanhamento</option>
-              <option value="Retorno" className={`py-2 ${drop}`}>Retorno</option>
-              <option value="Cancelada" className={`py-2 ${drop}`}>Cancelada</option>
-            </select>
+      case "Consulta":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtros</label>
+            <div className='flex'>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleFiltroChange}
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Realizado" className={`py-2 ${drop}`}>Realizado</option>
+                <option value="Não Realizado" className={`py-2 ${drop}`}>Não realizado</option>
+              </select>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleTipoChange} // Alterado para chamar handleTipoChange
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Inicial" className={`py-2 ${drop}`}>Inicial</option>
+                <option value="Acompanhamento" className={`py-2 ${drop}`}>Acompanhamento</option>
+                <option value="Retorno" className={`py-2 ${drop}`}>Retorno</option>
+                <option value="Cancelada" className={`py-2 ${drop}`}>Cancelada</option>
+              </select>
+            </div>
           </div>
-        </div>
-      )
-            
-          
+        )
+      case "Financeiro":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtro</label>
+            <div className='flex'>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleFiltroChange}
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Devendo" className={`py-2 ${drop}`}>Devendo</option>
+                <option value="Pago" className={`py-2 ${drop}`}>Pago</option>
+              </select>
+            </div>
+          </div>
+        )
     }
   }
 

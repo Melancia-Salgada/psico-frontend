@@ -10,8 +10,21 @@ import { TemaContexto } from '../components/WhiteMode';
 
 
 const Financeiro = () => {
-  const headers = ['Paciente', 'Valor', 'Vencimento', 'Status'];
-  const [data, setData] = useState([]);
+  const headers = ['Paciente', 'Valor', 'Vencimento', 'Status', 'Ações'];
+  const [data, setData] = useState([
+    ['João Silva', 'R$ 150,00', '15/11/2024', 'Pago'],
+    ['Maria Oliveira', 'R$ 200,00', '18/11/2024', 'Devendo']
+  ]);
+
+  const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro
+  const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
+
+  const filteredData = data.filter((paciente) => {
+    const isStatusMatch = filtroStatus === '' || paciente[3] === filtroStatus; // Verifica o status
+    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase()); // Verifica o termo de pesquisa
+    return isStatusMatch && isSearchMatch; // Retorna true se ambos os filtros forem correspondentes
+  });
+  
 
   const { tema } = useContext(TemaContexto); // Corrigido o uso do useContext
   const estilos = tema ? " rounded-3xl" : "";
@@ -69,8 +82,12 @@ const Financeiro = () => {
             </div>
           </div>
           <div>
-            <Pesquisa showButton={false} margin={false} />
-            <List headers={headers} data={data} />
+            <Pesquisa showButton={false} 
+            onFiltroChange={setFiltroStatus} 
+            onSearchChange={setSearchTerm} 
+            margin={true} 
+            appName='Financeiro'/>
+            <List headers={headers} data={filteredData} />
           </div>
         </div>
       </div>

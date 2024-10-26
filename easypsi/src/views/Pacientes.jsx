@@ -8,7 +8,7 @@ import List from '../components/Lista/List';
 const Pacientes = () => {
   const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade', 'Ações'];
 
-  // Dados fictícios
+  // Dados fictícios para simuolar o conteúd
   const [data] = useState([
     ['João Silva', '08:00', '15/11/2024', 'Ativo'],
     ['Maria Oliveira', '09:30', '18/11/2024', 'Ativo'],

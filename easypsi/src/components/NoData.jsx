@@ -8,7 +8,7 @@ const estilos = tema ? "text-red-500 w-full rounded-2xl" : "text-red-400";
 
   return (
     
-    <div className={`text-[18px] p-10 ${estilos} transition-colors transition-all`}>
+    <div className={`text-[18px] p-10 ${estilos} transition-all`}>
         <span className='justify-center flex mb-4'>
             Não há nenhum dado cadastrado.
         </span>
