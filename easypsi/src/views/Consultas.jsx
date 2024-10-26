@@ -20,12 +20,12 @@ const Consultas = () => {
   const [filtroTipo, setFiltroTipo] = useState(''); // Armazena filtro de tipo
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
 
-  // Função para filtrar dados com base no status, tipo e termo de pesquisa
+  // função para filtro
   const filteredData = data.filter((paciente) => {
     const isStatusMatch = filtroStatus === '' || paciente[3] === filtroStatus; // Verifica o status
     const isTipoMatch = filtroTipo === '' || paciente[4].toLowerCase() === filtroTipo.toLowerCase(); // Verifica o tipo
-    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase()); // Verifica o termo de pesquisa
-    return isStatusMatch && isTipoMatch && isSearchMatch; // Retorna true se todos os filtros forem correspondentes
+    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase()); // Verifica  pesquisa
+    return isStatusMatch && isTipoMatch && isSearchMatch;
   });
 
   const svg = (
@@ -57,8 +57,8 @@ const Consultas = () => {
         <Pesquisa
           showButton={true}
           appName='Consulta'
-          onFiltroChange={setFiltroStatus} // Passa a função para mudar o filtro de status
-          onSearchChange={setSearchTerm} // Passa a função para mudar o termo de pesquisa
+          onFiltroChange={setFiltroStatus} 
+          onSearchChange={setSearchTerm} 
           onTipoChange={setFiltroTipo}
         />
         <List headers={headers} data={filteredData} /> {/* Usa filteredData */}

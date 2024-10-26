@@ -15,16 +15,14 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
     onFiltroChange(statusSelecionado);
   };
 
-  // Atualiza o filtro de tipo ao mudar a seleção no dropdown
   const handleTipoChange = (e) => {
     const tipoSelecionado = e.target.value;
-    onTipoChange(tipoSelecionado); // Alterar para a função correta
+    onTipoChange(tipoSelecionado); 
   };
 
-  // Atualiza a pesquisa ao digitar no campo
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value;
-    onSearchChange(searchTerm); // Chama a função de mudança de pesquisa
+    onSearchChange(searchTerm); 
   };
 
 
@@ -98,7 +96,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
               className={`p-2 w-full ${inputBorder}`} 
               type='text' 
               placeholder='Pesquisar' 
-              onChange={handleSearchChange} // Adiciona onChange
+              onChange={handleSearchChange} 
             />
           </div>
 
