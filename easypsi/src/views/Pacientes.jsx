@@ -6,7 +6,7 @@ import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
 
 const Pacientes = () => {
-  const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade'];
+  const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade', 'Ações'];
 
   // Dados fictícios para simular o conteúdo
   const [data] = useState([
@@ -26,6 +26,13 @@ const Pacientes = () => {
     return isStatusMatch && isSearchMatch; // Retorna true se ambos os filtros forem correspondentes
   });
 
+  // Função para lidar com o clique do botão "Ver mais"
+  const handleViewMore = (row) => {
+    // Aqui você pode implementar a lógica para mostrar mais detalhes
+    // Por exemplo, pode usar um modal, um alerta ou redirecionar para outra página
+    alert(`Detalhes de ${row[0]}: Horário: ${row[1]}, Próxima consulta: ${row[2]}, Atividade: ${row[3]}`);
+  };
+
   return (
     <div>
       <Sidebar />
@@ -36,8 +43,9 @@ const Pacientes = () => {
           appName='Paciente'
           onFiltroChange={setFiltroStatus} // Passa a função de alteração do filtro
           onSearchChange={setSearchTerm} // Passa a função de alteração da pesquisa
+          margin={true}
         />
-        <List headers={headers} data={filteredData} />
+        <List headers={headers} data={filteredData} onViewMore={handleViewMore} /> {/* Passa a função */}
       </div>
       <WhiteMode />
     </div>

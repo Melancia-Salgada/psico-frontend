@@ -23,6 +23,40 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
     }
   };
 
+  const renderDrop = () => {
+    switch (appName){
+      case "Paciente":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtrar</label>
+            <select
+              className={`p-2 flex flex-row w-40 ${inputBorder}`}
+              onChange={handleFiltroChange}
+            >
+              <option value="" className={`py-2 ${drop}`}>Todos</option>
+              <option value="Ativo" className={`py-2 ${drop}`}>Ativos</option>
+              <option value="Inativo" className={`py-2 ${drop}`}>Inativos</option>
+            </select>
+          </div>
+        )
+        case "Consulta":
+          return (
+            <div>
+              <label className='text-2xl font-bold mb-2'>Filtrar</label>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder}`}
+                onChange={handleFiltroChange}
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Ativo" className={`py-2 ${drop}`}>Agendado</option>
+                <option value="Adiado   " className={`py-2 ${drop}`}>Adiado</option>
+                <option value="Inativo" className={`py-2 ${drop}`}>Cancelado</option>
+              </select>
+            </div>
+          )
+    }
+  }
+
   // Atualiza o filtro ao mudar a seleção no dropdown
   const handleFiltroChange = (e) => {
     const statusSelecionado = e.target.value;
@@ -50,17 +84,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           </div>
 
           {/* Dropdown para Filtro de Status */}
-          <div>
-            <label className='text-2xl font-bold mb-2'>Filtrar</label>
-            <select
-              className={`p-2 flex flex-row w-40 ${inputBorder}`}
-              onChange={handleFiltroChange}
-            >
-              <option value="" className={`py-2 ${drop}`}>Todos</option>
-              <option value="Ativo" className={`py-2 ${drop}`}>Ativos</option>
-              <option value="Inativo" className={`py-2 ${drop}`}>Inativos</option>
-            </select>
-          </div>
+          {renderDrop()}
         </div>
 
         {/* Botão Novo */}
