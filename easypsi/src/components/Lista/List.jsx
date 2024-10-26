@@ -7,7 +7,7 @@ const List = ({ headers, data }) => {
   const {tema} = useContext(TemaContexto)
 
   const estilos = tema? "text-red-500  bg-cinza w-full rounded-2xl" : "text-red-400"
-
+  const bar = tema? "border-preto-whitemode":"border-branco-darkmode"
   // Verifica se data está vazia ou se é um erro
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
 
@@ -31,7 +31,7 @@ const List = ({ headers, data }) => {
 
               {/* Dados */}
               {data.map((row, index) => (
-                <div className='flex justify-between border-b-[1px] border-branco-darkmode' key={index}>
+                <div className={`flex justify-between border-b-[1px] ${bar}`} key={index}>
                   {row.map((item, itemIndex) => (
                     <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
                       {item}

@@ -1,20 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
+import { Paciente, Consulta } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 
-const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
-  
-  const [popupAberto, setpopupAberto] = useState(false)
-  
-  const {tema} =useContext(TemaContexto)
+const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange }) => { // Adiciona onSearchChange
 
-  const mt = margin? 'mt-5' : 'mt-0'
-
+  const [popupAberto, setpopupAberto] = useState(false);
+  const { tema } = useContext(TemaContexto);
+  const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
 
-  const closePopup = () => {
-    setpopupAberto(false); // Função para fechar o popup
-  };
+  const closePopup = () => setpopupAberto(false);
 
   const renderPopup = () => {
     switch (appName) {
@@ -26,23 +21,46 @@ const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
         return null;
     }
   };
-  
+
+  // Atualiza o filtro ao mudar a seleção no dropdown
+  const handleFiltroChange = (e) => {
+    const statusSelecionado = e.target.value;
+    onFiltroChange(statusSelecionado);
+  };
+
+  // Atualiza a pesquisa ao digitar no campo
+  const handleSearchChange = (e) => {
+    const searchTerm = e.target.value;
+    onSearchChange(searchTerm); // Chama a função de mudança de pesquisa
+  };
 
   return (
     <div className={`${mt}`}>
       <div className='flex justify-between items-end gap-4 flex-1'>
-        {/* Pesquisa */}
         <div className='flex justify-between gap-4'>
           <div>
             <label className='text-2xl font-bold mb-2'>Pesquisar</label>
-            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Pesquisar'></input>
+            <input 
+              className={`p-2 w-full ${inputBorder}`} 
+              type='text' 
+              placeholder='Pesquisar' 
+              onChange={handleSearchChange} // Adiciona onChange
+            />
           </div>
+
+          {/* Dropdown para Filtro de Status */}
           <div>
             <label className='text-2xl font-bold mb-2'>Filtrar</label>
-            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Filtrar'></input>
+            <select
+              className={`p-2 w-full ${inputBorder}`}
+              onChange={handleFiltroChange}
+            >
+              <option value="">Todos</option>
+              <option value="Ativo">Ativos</option>
+              <option value="Inativo">Inativos</option>
+            </select>
           </div>
         </div>
-
 
         {/* Botão Novo */}
         {showButton && (
@@ -67,15 +85,14 @@ const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
             </a>
           </div>
         )}
-        {( popupAberto &&
+        {popupAberto && (
           <div className='popup' onClick={() => setpopupAberto(false)}>
-          <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'> 
-            {renderPopup()}
+            <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
+              {renderPopup()}
+            </div>
           </div>
-        </div>
         )}
       </div>
-
     </div>
   );
 };
