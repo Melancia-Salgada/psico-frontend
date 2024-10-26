@@ -52,7 +52,7 @@ const List = ({ headers, data, onViewMore }) => { // Inclua onViewMore aqui
 
               {/* Dados */}
               {data.map((row, index) => (
-                <div className={`flex justify-between border-b-[1px] ${bar}`} key={index}>
+                <div className={`flex justify-between border-b-[1px] p-2 ${bar}`} key={index}>
                   {row.map((item, itemIndex) => (
                     <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
                       {item}

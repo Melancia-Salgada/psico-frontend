@@ -8,13 +8,13 @@ import List from '../components/Lista/List';
 const Pacientes = () => {
   const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade', 'Ações'];
 
-  // Dados fictícios para simular o conteúdo
+  // Dados fictícios
   const [data] = useState([
     ['João Silva', '08:00', '15/11/2024', 'Ativo'],
     ['Maria Oliveira', '09:30', '18/11/2024', 'Ativo'],
     ['Carlos Santos', '11:00', 'Não definido', 'Ativo'],
     ['Ana Paula', '14:00', '25/11/2024', 'Inativo'],
-  ]);
+  ]); //Mudar para setdata quando integrar o back
 
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
