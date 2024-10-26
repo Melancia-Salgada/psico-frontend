@@ -48,7 +48,7 @@
   }
 
   .pesquisar {
-    @apply border-borderw focus:border-borderw bg-transparent mr-[200px] rounded-full  border-inputColor focus:border-inputColor h-inputH text-white placeholder-white placeholder-opacity-35 focus:bg-opacity-20 transition-colors duration-300;
+    @apply border-borderw focus:border-borderw bg-transparent mr-[200px] rounded-full  border-inputColor focus:border-inputColor h-inputH focus:bg-opacity-20 ;
   }
 
   .pesquisar.whitemode {

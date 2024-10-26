@@ -8,6 +8,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
   const { tema } = useContext(TemaContexto);
   const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-gray-800 text-white'
 
   const closePopup = () => setpopupAberto(false);
 
@@ -52,12 +53,12 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           <div>
             <label className='text-2xl font-bold mb-2'>Filtrar</label>
             <select
-              className={`p-2 w-full ${inputBorder}`}
+              className={`p-2 flex flex-row w-40 ${inputBorder}`}
               onChange={handleFiltroChange}
             >
-              <option value="">Todos</option>
-              <option value="Ativo">Ativos</option>
-              <option value="Inativo">Inativos</option>
+              <option value="" className={`py-2 ${drop}`}>Todos</option>
+              <option value="Ativo" className={`py-2 ${drop}`}>Ativos</option>
+              <option value="Inativo" className={`py-2 ${drop}`}>Inativos</option>
             </select>
           </div>
         </div>

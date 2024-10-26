@@ -5,7 +5,7 @@ const Titulo = ({ showButton = true, buttonLink = '#', buttonText = '', buttonIc
     <div>
       <div className='flex justify-between mt-20'>
         <div>
-          <span className='text-5xl font-bold'>{children}</span>
+          <span className='text-5xl font-medium'>{children}</span>
         </div>
 
         {showButton && (
