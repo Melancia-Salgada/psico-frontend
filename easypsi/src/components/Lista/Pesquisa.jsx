@@ -91,7 +91,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
         {showButton && (
           <div>
             <a className='flex items-center' onClick={() => setpopupAberto(true)}>
-              <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold'>
+              <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
                 <span className=''>
                   <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_359_1773)">
