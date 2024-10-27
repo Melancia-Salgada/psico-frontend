@@ -45,7 +45,7 @@ function WhiteMode() {
         <div className="flex">
             <button
                 className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg fixed bottom-5 right-5 ${
-                    whiteMode ? 'bg-azul' : 'bg-preto-whitemode'
+                    whiteMode ? 'bg-azul hover:bg-blue-400  transition-all' : 'bg-preto-whitemode hover:bg-zinc-500  transition-all'
                 }`}
                 onClick={toggleWhiteMode}
             >

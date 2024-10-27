@@ -1,20 +1,32 @@
 import React, { useContext, useState } from 'react';
-import { Paciente, Consulta, Pagamento, Adm } from '../Cards/Novo'; // Renomeie os componentes para começar com letra maiúscula
+import { Paciente, Consulta } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 
-const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
-  
-  const [popupAberto, setpopupAberto] = useState(false)
-  
-  const {tema} =useContext(TemaContexto)
+const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange }) => { // Adiciona onSearchChange
 
-  const mt = margin? 'mt-5' : 'mt-0'
-
+  const [popupAberto, setpopupAberto] = useState(false);
+  const { tema } = useContext(TemaContexto);
+  const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-gray-800 text-white'
 
-  const closePopup = () => {
-    setpopupAberto(false); // Função para fechar o popup
+  const handleFiltroChange = (e) => {
+    const statusSelecionado = e.target.value;
+    onFiltroChange(statusSelecionado);
   };
+
+  const handleTipoChange = (e) => {
+    const tipoSelecionado = e.target.value;
+    onTipoChange(tipoSelecionado); 
+  };
+
+  const handleSearchChange = (e) => {
+    const searchTerm = e.target.value;
+    onSearchChange(searchTerm); 
+  };
+
+
+  const closePopup = () => setpopupAberto(false);
 
   const renderPopup = () => {
     switch (appName) {
@@ -26,29 +38,91 @@ const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
         return null;
     }
   };
-  
+
+  const renderDrop = () => {
+    switch (appName){
+      case "Paciente":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtro</label>
+            <select
+              className={`p-2 flex flex-row w-40 cursor-pointer ${inputBorder}`}
+              onChange={handleFiltroChange}
+            >
+              <option value="" className={`py-2 ${drop}`}>Todos</option>
+              <option value="Ativo" className={`py-2 ${drop}`}>Ativos</option>
+              <option value="Inativo" className={`py-2 ${drop}`}>Inativos</option>
+            </select>
+          </div>
+        )
+      case "Consulta":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtros</label>
+            <div className='flex'>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleFiltroChange}
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Realizado" className={`py-2 ${drop}`}>Realizado</option>
+                <option value="Não Realizado" className={`py-2 ${drop}`}>Não realizado</option>
+              </select>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleTipoChange} // Alterado para chamar handleTipoChange
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Inicial" className={`py-2 ${drop}`}>Inicial</option>
+                <option value="Acompanhamento" className={`py-2 ${drop}`}>Acompanhamento</option>
+                <option value="Retorno" className={`py-2 ${drop}`}>Retorno</option>
+                <option value="Cancelada" className={`py-2 ${drop}`}>Cancelada</option>
+              </select>
+            </div>
+          </div>
+        )
+      case "Financeiro":
+        return (
+          <div>
+            <label className='text-2xl font-bold mb-2'>Filtro</label>
+            <div className='flex'>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleFiltroChange}
+              >
+                <option value="" className={`py-2 ${drop}`}>Todos</option>
+                <option value="Devendo" className={`py-2 ${drop}`}>Devendo</option>
+                <option value="Pago" className={`py-2 ${drop}`}>Pago</option>
+              </select>
+            </div>
+          </div>
+        )
+    }
+  }
 
   return (
     <div className={`${mt}`}>
       <div className='flex justify-between items-end gap-4 flex-1'>
-        {/* Pesquisa */}
         <div className='flex justify-between gap-4'>
           <div>
             <label className='text-2xl font-bold mb-2'>Pesquisar</label>
-            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Pesquisar'></input>
+            <input 
+              className={`p-2 w-full ${inputBorder}`} 
+              type='text' 
+              placeholder='Pesquisar' 
+              onChange={handleSearchChange} 
+            />
           </div>
-          <div>
-            <label className='text-2xl font-bold mb-2'>Filtrar</label>
-            <input className={`p-2 w-full ${inputBorder}`} type='text' placeholder='Filtrar'></input>
-          </div>
-        </div>
 
+          {/* Dropdown para Filtro de Status */}
+          {renderDrop()}
+        </div>
 
         {/* Botão Novo */}
         {showButton && (
           <div>
             <a className='flex items-center' onClick={() => setpopupAberto(true)}>
-              <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold'>
+              <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center w-44 h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
                 <span className=''>
                   <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_359_1773)">
@@ -67,15 +141,14 @@ const Pesquisa = ({ showButton = true, appName = "", margin= true}) => {
             </a>
           </div>
         )}
-        {( popupAberto &&
+        {popupAberto && (
           <div className='popup' onClick={() => setpopupAberto(false)}>
-          <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'> 
-            {renderPopup()}
+            <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
+              {renderPopup()}
+            </div>
           </div>
-        </div>
         )}
       </div>
-
     </div>
   );
 };

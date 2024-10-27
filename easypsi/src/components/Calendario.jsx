@@ -38,7 +38,7 @@ const Calendario = () => {
   }, []);
 
   return (
-    <div className={`h-[36rem] w-[80%] transition-all p-5 rounded-md ${tema ? 'bg-white text-black' : 'bg-gray-800 text-white'}`}>
+    <div className={`h-[75vh] w-[80%] transition-all p-5 rounded-md ${tema ? 'bg-white text-black' : 'bg-gray-800 text-white'}`}>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
