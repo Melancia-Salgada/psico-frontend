@@ -62,7 +62,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="telefone"
-                      className="p-1 w-3/4 caixa-texto-cad"
+                      className="p-1 w-full caixa-texto-cad"
                       type="text"
                       placeholder="Digite o Telefone"
                     />
