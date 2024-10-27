@@ -82,7 +82,7 @@ const Financeiro = () => {
             </div>
           </div>
           <div>
-            <Pesquisa showButton={false} 
+            <Pesquisa showButton={true} 
             onFiltroChange={setFiltroStatus} 
             onSearchChange={setSearchTerm} 
             margin={true} 
