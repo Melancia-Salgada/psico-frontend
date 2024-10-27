@@ -9,12 +9,17 @@ const Consultas = () => {
   const headers = ['Paciente', 'Data', 'Horário', 'Status', 'Tipo', 'Ações'];
   const [data] = useState([
     ['João Silva', '15/11/2024', '08:00', 'Realizado', 'Inicial'],
+    ['João Silva', '15/11/2024', '08:00', 'Realizado', 'Inicial'],
     ['Maria Oliveira', '18/11/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
     ['Carlos Santos', '25/11/2024', '11:00', 'Realizado', 'Retorno'],
     ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
     ['Luiz Fernando', '28/11/2024', '10:00', 'Não Realizado', 'Inicial'],
     ['Fernanda Lima', '30/11/2024', '15:00', 'Não Realizado', 'Acompanhamento'],
   ]);
+
+  
+
+  
 
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro de status
   const [filtroTipo, setFiltroTipo] = useState(''); // Armazena filtro de tipo

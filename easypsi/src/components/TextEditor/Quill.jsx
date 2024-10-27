@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import EditorToolbar, { modules, formats } from './Toolbar';
+import { TemaContexto } from '../WhiteMode';
 
 export function Quill() {
   const [value, setValue] = useState('');
 
+  const { tema } = useContext(TemaContexto);
+  const bg = tema ? 'bg-white' : 'bg-neutral-900';
+
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-auto">
+    <div className="rounded-lg shadow-md overflow-auto border">
       <EditorToolbar />
       <ReactQuill
         theme="snow"
