@@ -21,9 +21,9 @@ export const Paciente = ({ closePopup }) => {
       } 
     }
   };
-
+    
   return (
-    <div className="bg-roxo rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
+    <div className="bg-preto-darkmode rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
       <div className="pt-14 pl-16 pr-16 pb-20">
         <div className="flex justify-between font-bold">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-[30px]">Novo Paciente</div>
@@ -195,7 +195,7 @@ export const Paciente = ({ closePopup }) => {
 
 export const Consulta = ({ closePopup }) => {
   return (
-    <div className="bg-roxo rounded-[50px] relative w-full h-auto lg:w-[60rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none">
+    <div className="bg-preto-darkmode rounded-[50px] relative w-full h-auto lg:w-[60rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none">
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Nova Consulta</div>
