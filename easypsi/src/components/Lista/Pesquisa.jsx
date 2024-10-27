@@ -66,7 +66,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
                 <div>
                   <input
                     name="data"
-                    className="p-2 w-full caixa-texto-cad"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="date"
                   />
                 </div>
@@ -74,7 +74,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
                 <div>
                   <input
                     name="data"
-                    className="p-2 w-full caixa-texto-cad"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="date"
                   />
                 </div>
