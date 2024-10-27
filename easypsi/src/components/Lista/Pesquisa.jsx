@@ -8,7 +8,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
   const { tema } = useContext(TemaContexto);
   const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  const drop = tema ? '' : 'bg-gray-800 text-white'
+  const drop = tema ? '' : 'bg-neutral-900 text-white'
 
   const handleFiltroChange = (e) => {
     const statusSelecionado = e.target.value;
@@ -56,10 +56,38 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           </div>
         )
       case "Consulta":
+        const [personalizado, setPersonalizado] = useState('');
+
+        const renderPersonalizado = () => {
+          if (personalizado == "personalizado") {
+            return (
+              <>
+                <span>De:</span>
+                <div>
+                  <input
+                    name="data"
+                    className="p-2 w-full caixa-texto-cad"
+                    type="date"
+                  />
+                </div>
+                <span>Até:</span>
+                <div>
+                  <input
+                    name="data"
+                    className="p-2 w-full caixa-texto-cad"
+                    type="date"
+                  />
+                </div>
+              </>
+            );
+          }
+          return null;
+        };
+
         return (
           <div>
             <label className='text-2xl font-bold mb-2'>Filtros</label>
-            <div className='flex'>
+            <div className='flex gap-3'>
               <select
                 className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
                 onChange={handleFiltroChange}
@@ -78,6 +106,17 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
                 <option value="Retorno" className={`py-2 ${drop}`}>Retorno</option>
                 <option value="Cancelada" className={`py-2 ${drop}`}>Cancelada</option>
               </select>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={(e) => setPersonalizado(e.target.value)}
+              >
+                <option value="Essa semana" className={`py-2 ${drop}`}>Essa semana</option>
+                <option value="Esse mês" className={`py-2 ${drop}`}>Esse mês</option>
+                <option value="Esse ano" className={`py-2 ${drop}`}>Esse ano</option>
+                <option value="Todos" className={`py-2 ${drop}`}>Todos</option>
+                <option value="personalizado" className={`py-2 ${drop}`}>Personalizado</option>
+              </select>
+              {renderPersonalizado()}
             </div>
           </div>
         )
