@@ -19,13 +19,19 @@ const Gerenciamento = () => {
     ['c@c.com', '101', '123']
   ]); //Mudar para setdata quando integrar o back
 
+  const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
+  const filteredData = data.filter((paciente) => {
+    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase()); // Verifica o termo de pesquisa
+    return isSearchMatch; // Retorna true se ambos os filtros forem correspondentes
+  });
+
   return (
     <div>
         <AdminSidebar></AdminSidebar>
         <div className='container-dash'>
             <Titulo showButton={false}>Gerenciamento de admins</Titulo>
-            <Pesquisa></Pesquisa>
-            <List headers={headers} data={data}></List>
+            <Pesquisa onSearchChange={setSearchTerm}></Pesquisa>
+            <List headers={headers} data={filteredData}></List>
         </div>
         <WhiteMode />
     </div>
