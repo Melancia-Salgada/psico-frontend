@@ -38,7 +38,7 @@ export const Paciente = ({ closePopup }) => {
               {/* Informações Pessoais */}
               <div>
                 <div className="flex flex-col">
-                  <label className="text-md sm:text-lg font-bold mb-1">Nome</label>
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
                   <input
                     name="nome"
                     className="p-1 w-3/4 caixa-texto-cad"
@@ -50,7 +50,7 @@ export const Paciente = ({ closePopup }) => {
 
                 <div className="flex flex-col sm:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">Nascimento</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
                     <input
                       name="nascimento"
                       className="p-1 w-3/4 flex-1 caixa-texto-cad"
@@ -59,7 +59,7 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">Telefone</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="telefone"
                       className="p-1 w-3/4 caixa-texto-cad"
@@ -73,7 +73,7 @@ export const Paciente = ({ closePopup }) => {
               <div>
                 <span className="underline">Dados Adicionais</span>
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1">Email</label>
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
                   <input
                     name="email"
                     className="p-1 w-full caixa-texto-cad"
@@ -83,7 +83,7 @@ export const Paciente = ({ closePopup }) => {
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">CPF</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
                     <input
                       name="cpf"
                       className="p-1 w-full caixa-texto-cad"
@@ -92,7 +92,7 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">RG</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
                     <input
                       name="rg"
                       className="p-1 w-full caixa-texto-cad"
@@ -107,7 +107,7 @@ export const Paciente = ({ closePopup }) => {
               <div>
                 <span className="underline">Local</span>
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1">Endereço</label>
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
                   <input
                     name="endereco"
                     className="p-1 w-full caixa-texto-cad"
@@ -117,7 +117,7 @@ export const Paciente = ({ closePopup }) => {
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">Complemento</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
                     <input
                       name="complemento"
                       className="p-1 w-full caixa-texto-cad"
@@ -126,7 +126,7 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">CEP</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
                     <input
                       name="cep"
                       className="p-1 w-full caixa-texto-cad"
@@ -147,7 +147,7 @@ export const Paciente = ({ closePopup }) => {
             <div className="w-full lg:w-1/2 space-y-3">
               <span className="underline">Menor de Idade</span>
               <div>
-                <label className="text-md sm:text-lg font-bold mb-1">Nome do Responsável</label>
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
                 <input
                   name="responsavelNome"
                   className="p-1 w-full caixa-texto-cad"
@@ -156,7 +156,7 @@ export const Paciente = ({ closePopup }) => {
                 />
                 <div className="flex flex-col sm:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">Telefone</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="responsavelTelefone"
                       className="p-1 w-full caixa-texto-cad"
@@ -165,7 +165,7 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1">CPF</label>
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
                     <input
                       name="responsavelCpf"
                       className="p-1 w-full caixa-texto-cad"
@@ -239,7 +239,7 @@ export const Consulta = ({ closePopup }) => {
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Paciente */}
               <div>
-                <label className="text-lg sm:text-xl font-bold mb-1 block">Nome do paciente</label>
+                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome do paciente</label>
                 <input
                   name="paciente"
                   className={`p-2 w-3/4 ${inputBorder}`}
@@ -254,7 +254,7 @@ export const Consulta = ({ closePopup }) => {
                 <div>
                   <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4">
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block">Data</label>
+                      <label className="text-sm font-bold mb-1 block p-2">Data</label>
                       <input
                         name="data"
                         className={`p-2 w-3/4 ${inputBorder}`}
@@ -263,7 +263,7 @@ export const Consulta = ({ closePopup }) => {
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block">Início</label>
+                      <label className="text-sm font-bold mb-1 block p-2">Início</label>
                       <input
                         name="inicio"
                         className={`p-2 w-full ${inputBorder}`}
@@ -271,7 +271,7 @@ export const Consulta = ({ closePopup }) => {
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block">Fim</label>
+                      <label className="text-sm font-bold mb-1 block p-2">Fim</label>
                       <input
                         name="fim"
                         className={`p-2 w-full ${inputBorder}`}
