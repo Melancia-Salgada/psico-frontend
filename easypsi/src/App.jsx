@@ -12,6 +12,7 @@ import { TemaProvider } from './components/WhiteMode'; // Ajuste para TemaProvid
 import AdminHome from "./views/adm/AdminHome";
 import Gerenciamento from "./views/adm/Gerenciamento";
 import AdminPerfil from "./views/adm/AdminPerfil";
+import AdminPsicologo from "./views/adm/AdminPsicologo";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home-adm" element={<AdminHome />} /> 
           <Route path="/gerenciamento-adm" element={<Gerenciamento />} /> 
           <Route path="/perfil-adm" element={<AdminPerfil />} /> 
+          <Route path="/psicologo-amd" element={<AdminPsicologo/>}/>
           
         </Routes>
       </div>
