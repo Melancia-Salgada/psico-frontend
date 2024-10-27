@@ -329,122 +329,53 @@ export const Pagamento = () => {
 };
 
 export const Adm = ({ closePopup }) => {
-
   const { tema } = useContext(TemaContexto);
-  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  const drop = tema ? '' : 'bg-neutral-900 text-white';
-  const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
-
-  const [repete, setRepete] = useState('no');
-
-  // Função para renderizar o campo "Até"
-  const renderAte = () => {
-    if (repete !== "no") {
-      return (
-        <>
-          <span>Até</span>
-          <div>
-            <input
-              name="data"
-              className="p-2 w-3/4 ${inputBorder}"
-              type="date"
-            />
-          </div>
-        </>
-      );
-    }
-    return null;
-  };
-
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[48rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[25rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Nova Consulta</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Administrador</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
         </div>
         
-        <form className="space-y-4 sm:space-y-6">
-          <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-10">
-            <div className="w-full lg:w-1/2 space-y-4">
-              {/* Paciente */}
-              <div>
-                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome do paciente</label>
-                <input
-                  name="paciente"
-                  className={`p-2 w-3/4 ${inputBorder}`}
-                  type="text"
-                  placeholder="Digite o nome do Paciente"
-                />
-              </div>
-              
-              {/* Horário */}
-              <div>
-                <span className="text-base sm:text-lg font-semibold block mb-2">Horário</span>
-                <div>
-                  <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4">
-                    <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Data</label>
-                      <input
-                        name="data"
-                        className={`p-2 w-3/4 ${inputBorder}`}
-                        type="date"
-                        
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Início</label>
-                      <input
-                        name="inicio"
-                        className={`p-2 w-full ${inputBorder}`}
-                        type="time"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Fim</label>
-                      <input
-                        name="fim"
-                        className={`p-2 w-full ${inputBorder}`}
-                        type="time"
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-3 flex justify-between">
-                  <div className="">
-                    <select
-                      className={`p-2 flex flex-row ${inputBorder} cursor-pointer`}
-                      onChange={(e) => setRepete(e.target.value)}
-                    >
-                      <option value="no" className={`py-2 ${drop}`}>Não se repete</option>
-                      <option value="Semanalmente" className={`py-2 ${drop}`}>Semanalmente</option>
-                      <option value="Mensalmente" className={`py-2 ${drop}`}>Mensalmente</option>
-                    </select>
-                  </div>
-                  {renderAte()}
-                </div>
-              </div>
+        <form className="space-y-6">
+          <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Username</label>
+              <input
+                name="username"
+                className="p-2 w-full caixa-texto-cad"
+                type="text"
+                placeholder="Digite o username"
+              />
             </div>
-
-            {/* barra */}
-            <div className="hidden lg:block border-preto-whitemode border-[3px] h-auto"></div>
-
-            <div className="w-full lg:w-1/2 space-y-4">
-              {/* Anotações */}
-              <div>
-                <span className="text-base sm:text-lg font-semibold block mb-2">Anotações</span>
-                <Quill/>
-              </div>
+            
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
+              <input
+                name="email"
+                className="p-2 w-full caixa-texto-cad"
+                type="email"
+                placeholder="Digite o email"
+              />
             </div>
           </div>
 
-          {/* Botão */}
-          <div className="mt-12 flex justify-center">
-            <button type="submit" className="sm:w-auto bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors">
-              Agendar Consulta
+          {/* Botões */}
+          <div className="mt-12 flex justify-between">
+            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
+              GRAVAR
+            </button>
+            <button 
+              type="button" 
+              onClick={closePopup}
+              className="btn-entrar bg-transparent border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 text-lg font-bold"
+            >
+              CANCELAR
             </button>
           </div>
         </form>
@@ -452,3 +383,8 @@ export const Adm = ({ closePopup }) => {
     </div>
   );
 };
+
+
+
+
+
