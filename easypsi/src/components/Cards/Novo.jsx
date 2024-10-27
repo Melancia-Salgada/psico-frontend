@@ -344,7 +344,7 @@ export const Adm = ({ closePopup }) => {
   };
   
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Administrador</div>
@@ -444,17 +444,11 @@ export const Adm = ({ closePopup }) => {
           </div>
 
           {/* Botões */}
-          <div className="mt-12 flex justify-between">
+          <div className="mt-12 flex justify-center">
             <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
               GRAVAR
             </button>
-            <button 
-              type="button" 
-              onClick={closePopup}
-              className="btn-entrar bg-transparent border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 text-lg font-bold"
-            >
-              CANCELAR
-            </button>
+            
           </div>
         </form>
       </div>
