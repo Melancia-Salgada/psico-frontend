@@ -23,21 +23,21 @@ export const Paciente = ({ closePopup }) => {
   };
 
   return (
-    <div className="  bg-roxo rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
+    <div className="bg-roxo rounded-[50px] relative w-full h-full lg:min-w-[60rem] lg:min-h-[50rem] moveis:w-screen moveis:h-screen moveis:rounded-none">
       <div className="pt-14 pl-16 pr-16 pb-20">
         <div className="flex justify-between font-bold">
-          <div className="lg:text-[80px] mb-[30px] md:text-[60px]">Novo Paciente</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-[30px]">Novo Paciente</div>
           <div>
-            <div className="hover:text-red-500 transition-colors text-[30px] cursor-pointer p-2 " onClick={closePopup}>X</div>
+            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer p-2" onClick={closePopup}>X</div>
           </div>
         </div>
         
-        <form onSubmit={handleSubmit}>
-          <div className="flex justify-between gap-10">
-            <div>
-              {/* Personal Information */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="flex flex-col lg:flex-row justify-between gap-10">
+            <div className="w-full lg:w-1/2 space-y-4">
+              {/* Informações Pessoais */}
               <div>
-                <label className="text-2xl font-bold mb-2">Nome</label>
+                <label className="text-lg sm:text-xl font-bold mb-2">Nome</label>
                 <input
                   name="nome"
                   className="p-2 w-full caixa-texto-cad"
@@ -45,20 +45,20 @@ export const Paciente = ({ closePopup }) => {
                   placeholder="Digite o nome"
                 />
               </div>
-              <div className="flex justify-between">
-                <div>
-                  <label className="text-2xl font-bold mb-2">Nascimento</label>
+              <div className="flex flex-col sm:flex-row justify-between gap-4">
+                <div className="flex-1">
+                  <label className="text-lg sm:text-xl font-bold mb-2">Nascimento</label>
                   <input
-                    name="cpf"
+                    name="nascimento"
                     className="p-2 w-full caixa-texto-cad"
-                    type="text"
+                    type="date"
                     placeholder="Digite a data de nascimento"
                   />
                 </div>
-                <div>
-                  <label className="text-2xl font-bold mb-2">Telefone</label>
+                <div className="flex-1">
+                  <label className="text-lg sm:text-xl font-bold mb-2">Telefone</label>
                   <input
-                    name="rg"
+                    name="telefone"
                     className="p-2 w-full caixa-texto-cad"
                     type="text"
                     placeholder="Digite o Telefone"
@@ -70,7 +70,7 @@ export const Paciente = ({ closePopup }) => {
               <div>
                 <span className="underline">Dados Adicionais</span>
                 <div>
-                  <label className="text-2xl font-bold mb-2">Email</label>
+                  <label className="text-lg sm:text-xl font-bold mb-2">Email</label>
                   <input
                     name="email"
                     className="p-2 w-full caixa-texto-cad"
@@ -78,9 +78,9 @@ export const Paciente = ({ closePopup }) => {
                     placeholder="Digite o email"
                   />
                 </div>
-                <div className="flex justify-between">
-                  <div>
-                    <label className="text-2xl font-bold mb-2">CPF</label>
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">CPF</label>
                     <input
                       name="cpf"
                       className="p-2 w-full caixa-texto-cad"
@@ -88,8 +88,8 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o CPF"
                     />
                   </div>
-                  <div>
-                    <label className="text-2xl font-bold mb-2">RG</label>
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">RG</label>
                     <input
                       name="rg"
                       className="p-2 w-full caixa-texto-cad"
@@ -98,14 +98,13 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                 </div>
-                
               </div>
 
-              {/* endereço */}
+              {/* Endereço */}
               <div>
                 <span className="underline">Local</span>
                 <div>
-                  <label className="text-2xl font-bold mb-2">Endereço</label>
+                  <label className="text-lg sm:text-xl font-bold mb-2">Endereço</label>
                   <input
                     name="endereco"
                     className="p-2 w-full caixa-texto-cad"
@@ -113,9 +112,9 @@ export const Paciente = ({ closePopup }) => {
                     placeholder="Digite o endereço"
                   />
                 </div>
-                <div className="flex justify-between">
-                  <div>
-                    <label className="text-2xl font-bold mb-2">Complemento</label>
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">Complemento</label>
                     <input
                       name="complemento"
                       className="p-2 w-full caixa-texto-cad"
@@ -123,8 +122,8 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o complemento"
                     />
                   </div>
-                  <div>
-                    <label className="text-2xl font-bold mb-2">CEP</label>
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">CEP</label>
                     <input
                       name="cep"
                       className="p-2 w-full caixa-texto-cad"
@@ -137,24 +136,24 @@ export const Paciente = ({ closePopup }) => {
             </div>
 
             {/* barra */}
-            <div>
-              <div className="border-preto-whitemode border-[3px] h-full"></div>
+            <div className="hidden lg:block">
+              <div className="border-preto-whitemode border-[3px] h-auto"></div>
             </div>
 
-            {/* informação respondavel */}
-            <div>
+            {/* Informação Responsável */}
+            <div className="w-full lg:w-1/2 space-y-4">
               <span className="underline">Menor de Idade</span>
               <div>
-                <label className="text-2xl font-bold mb-2">Nome do Responsável</label>
+                <label className="text-lg sm:text-xl font-bold mb-2">Nome do Responsável</label>
                 <input
                   name="responsavelNome"
                   className="p-2 w-full caixa-texto-cad"
                   type="text"
                   placeholder="Digite o nome do responsável"
                 />
-                <div className="flex justify-between">
-                  <div>
-                    <label className="text-2xl font-bold mb-2">Telefone</label>
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">Telefone</label>
                     <input
                       name="responsavelTelefone"
                       className="p-2 w-full caixa-texto-cad"
@@ -162,8 +161,8 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o telefone"
                     />
                   </div>
-                  <div>
-                    <label className="text-2xl font-bold mb-2">CPF</label>
+                  <div className="flex-1">
+                    <label className="text-lg sm:text-xl font-bold mb-2">CPF</label>
                     <input
                       name="responsavelCpf"
                       className="p-2 w-full caixa-texto-cad"
@@ -182,9 +181,9 @@ export const Paciente = ({ closePopup }) => {
             </div>
           </div>
 
-          {/* botao */}
+          {/* Botão */}
           <div className="mt-4">
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full sm:w-auto">
               Salvar Paciente
             </button>
           </div>
@@ -300,6 +299,12 @@ export const Consulta = ({ closePopup }) => {
   );
 };
 
-export const Pagamento = () => {};
+export const Pagamento = () => {
+
+
+
+  
+};
 
 export const Adm = () => {};
+
