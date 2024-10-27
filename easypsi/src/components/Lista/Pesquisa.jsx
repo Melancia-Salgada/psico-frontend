@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Paciente, Consulta } from '../Cards/Novo';
+import { Paciente, Consulta, Adm } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 
 const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange }) => { // Adiciona onSearchChange
@@ -34,6 +34,8 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
         return <Paciente closePopup={closePopup} />;
       case "Consulta":
         return <Consulta closePopup={closePopup} />;
+      case "Adm":
+        return <Adm closePopup={closePopup}></Adm>
       default:
         return null;
     }
@@ -136,6 +138,8 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
             </div>
           </div>
         )
+      default:
+        return null
     }
   }
 

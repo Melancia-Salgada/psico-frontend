@@ -30,7 +30,7 @@ const Gerenciamento = () => {
         <AdminSidebar></AdminSidebar>
         <div className='container-dash'>
             <Titulo showButton={false}>Gerenciamento de admins</Titulo>
-            <Pesquisa onSearchChange={setSearchTerm}></Pesquisa>
+            <Pesquisa onSearchChange={setSearchTerm} showButton={true} appName='Adm'></Pesquisa>
             <List headers={headers} data={filteredData}></List>
         </div>
         <WhiteMode />
