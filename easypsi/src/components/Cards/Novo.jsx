@@ -242,7 +242,7 @@ export const Consulta = ({ closePopup }) => {
                 <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome do paciente</label>
                 <input
                   name="paciente"
-                  className={`p-2 w-3/4 ${inputBorder}`}
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o nome do Paciente"
                 />
@@ -257,7 +257,7 @@ export const Consulta = ({ closePopup }) => {
                       <label className="text-sm font-bold mb-1 block p-2">Data</label>
                       <input
                         name="data"
-                        className={`p-2 w-3/4 ${inputBorder}`}
+                        className={`p-2 full ${inputBorder}`}
                         type="date"
                         
                       />
