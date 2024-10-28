@@ -33,7 +33,7 @@ function App() {
           <Route path="/home-adm" element={<AdminHome />} /> 
           <Route path="/gerenciamento-adm" element={<Gerenciamento />} /> 
           <Route path="/perfil-adm" element={<AdminPerfil />} /> 
-          <Route path="/psicologo-amd" element={<AdminPsicologo/>}/>
+          <Route path="/psicologo-adm" element={<AdminPsicologo/>}/>
           
         </Routes>
       </div>
