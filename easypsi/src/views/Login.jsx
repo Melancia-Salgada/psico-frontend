@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import Logo from '../assets/Logo.png';
-import EyeClosed from '../assets/eye-closed.png';
 import WhiteMode, { TemaContexto } from '../components/WhiteMode';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';

@@ -8,13 +8,13 @@ import List from '../components/Lista/List';
 const Consultas = () => {
   const headers = ['Paciente', 'Data', 'Horário', 'Status', 'Tipo', 'Ações'];
   const [data] = useState([
-    ['João Silva', '15/11/2024', '08:00', 'Realizado', 'Inicial'],
-    ['João Silva', '15/11/2024', '08:00', 'Realizado', 'Inicial'],
-    ['Maria Oliveira', '18/11/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
-    ['Carlos Santos', '25/11/2024', '11:00', 'Realizado', 'Retorno'],
+    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
+    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
     ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
-    ['Luiz Fernando', '28/11/2024', '10:00', 'Não Realizado', 'Inicial'],
-    ['Fernanda Lima', '30/11/2024', '15:00', 'Não Realizado', 'Acompanhamento'],
+    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
+    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
   ]);
 
   
@@ -24,14 +24,27 @@ const Consultas = () => {
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro de status
   const [filtroTipo, setFiltroTipo] = useState(''); // Armazena filtro de tipo
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
+  const [dateRange, setDateRange] = useState({ inicio: '', fim: '' });
 
   // função para filtro
   const filteredData = data.filter((paciente) => {
-    const isStatusMatch = filtroStatus === '' || paciente[3] === filtroStatus; // Verifica o status
-    const isTipoMatch = filtroTipo === '' || paciente[4].toLowerCase() === filtroTipo.toLowerCase(); // Verifica o tipo
-    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase()); // Verifica  pesquisa
-    return isStatusMatch && isTipoMatch && isSearchMatch;
+    const isStatusMatch = filtroStatus === '' || paciente[3] === filtroStatus;
+    const isTipoMatch = filtroTipo === '' || paciente[4].toLowerCase() === filtroTipo.toLowerCase();
+    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase());
+  
+    const consultaData = new Date(paciente[1].split('/').reverse().join('-'));
+    const inicio = dateRange.inicio ? new Date(dateRange.inicio) : null;
+    const fim = dateRange.fim ? new Date(dateRange.fim) : null;
+    const isDateMatch = (!inicio || consultaData >= inicio) && (!fim || consultaData <= fim);
+  
+    return isStatusMatch && isTipoMatch && isSearchMatch && isDateMatch;
   });
+
+  const handleDateRangeChange = (inicio, fim) => {
+    setDateRange({ inicio, fim });
+  };
+  
+
 
   const svg = (
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -62,10 +75,13 @@ const Consultas = () => {
         <Pesquisa
           showButton={true}
           appName='Consulta'
-          onFiltroChange={setFiltroStatus} 
-          onSearchChange={setSearchTerm} 
+          onFiltroChange={setFiltroStatus}
+          onSearchChange={setSearchTerm}
           onTipoChange={setFiltroTipo}
+          onDateRangeChange={handleDateRangeChange}
         />
+
+
         <List headers={headers} data={filteredData} /> {/* Usa filteredData */}
       </div>
       <WhiteMode />

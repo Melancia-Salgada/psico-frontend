@@ -1,19 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Paciente, Consulta, Adm } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 import { atualizarIntervaloData } from './DatePesquisa';
 
-const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange }) => { // Adiciona onSearchChange
+const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange, onDateRangeChange }) => { 
 
-  const [personalizado, setPersonalizado] = useState('');
+  const [date, setDate] = useState('');
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
+
   
   const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white'
+
+  useEffect(() => {
+    // Atualizar o intervalo de datas para "Essa semana" ao carregar o componente
+    const { inicio, fim } = atualizarIntervaloData('Essa semana');
+    setDataInicio(inicio);
+    setDataFim(fim);
+    onDateRangeChange(inicio, fim);
+  }, []);
 
   const handleFiltroChange = (e) => {
     const statusSelecionado = e.target.value;
@@ -30,14 +39,31 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
     onSearchChange(searchTerm); 
   };
 
-  const handlePersonalizadoChange = (e) => {
+  const handleDateChange = (e) => {
     const filtro = e.target.value;
-    setPersonalizado(filtro);
+    setDate(filtro);
 
-    const { inicio, fim } = atualizarIntervaloData(filtro);
+    if (filtro === 'personalizado') {
+      setDataInicio('');
+      setDataFim('');
+    } else {
+      const { inicio, fim } = atualizarIntervaloData(filtro);
+      setDataInicio(inicio);
+      setDataFim(fim);
+      onDateRangeChange(inicio, fim);
+    }
+  };
+
+  const handleDataInicioChange = (e) => {
+    const inicio = e.target.value;
     setDataInicio(inicio);
+    onDateRangeChange(inicio, dataFim);
+  };
+
+  const handleDataFimChange = (e) => {
+    const fim = e.target.value;
     setDataFim(fim);
-    onDateRangeChange(inicio, fim);
+    onDateRangeChange(dataInicio, fim);
   };
 
 
@@ -73,26 +99,28 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           </div>
         )
       case "Consulta":
-        const [personalizado, setPersonalizado] = useState('');
+        
 
         const renderPersonalizado = () => {
-          if (personalizado == "personalizado") {
+          if (date == "personalizado") {
             return (
               <>
                 <span>De:</span>
                 <div>
                   <input
-                    name="data"
+                    name="dataInicio"
                     className={`p-2 w-full ${inputBorder}`}
                     type="date"
+                    onChange={handleDataInicioChange}
                   />
                 </div>
                 <span>Até:</span>
                 <div>
                   <input
-                    name="data"
-                    className={`p-2 w-full ${inputBorder}`}
+                    name="dataFim"
+                    className={`p-2 w-full ${inputBorder} `}
                     type="date"
+                    value={dataFim} onChange={handleDataFimChange}
                   />
                 </div>
               </>
@@ -125,7 +153,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
               </select>
               <select
                 className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
-                onChange={handlePersonalizadoChange}
+                onChange={handleDateChange}
               >
                 <option value="Essa semana" className={`py-2 ${drop}`}>Essa semana</option>
                 <option value="Esse mês" className={`py-2 ${drop}`}>Esse mês</option>
