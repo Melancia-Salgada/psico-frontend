@@ -185,8 +185,8 @@ export const Paciente = ({ closePopup }) => {
           </div>
 
           {/* Botão */}
-          <div className="mt-12 flex items-center justify-center w-full">
-            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold whitespace-nowrap overflow-hidden mx-auto text-center flex items-center justify-center">
+          <div className="mt-12 flex justify-center">
+            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
               SALVAR PACIENTE
             </button>
           </div>
@@ -443,19 +443,17 @@ export const Adm = ({ closePopup }) => {
           </div>
 
           {/* Botões */}
-          <div className="mt-12 flex items-center justify-center w-full">
-            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold whitespace-nowrap overflow-hidden mx-auto text-center flex items-center justify-center">
+          <div className="mt-12 flex justify-center">
+            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
               GRAVAR
             </button>
+            
           </div>
         </form>
       </div>
     </div>
   );
 };
-
-
-
 
 
 
