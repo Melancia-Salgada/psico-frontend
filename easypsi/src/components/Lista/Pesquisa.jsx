@@ -1,11 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { Paciente, Consulta, Adm } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
+import { atualizarIntervaloData } from './DatePesquisa';
 
 const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange }) => { // Adiciona onSearchChange
 
+  const [personalizado, setPersonalizado] = useState('');
+  const [dataInicio, setDataInicio] = useState('');
+  const [dataFim, setDataFim] = useState('');
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
+  
   const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white'
@@ -23,6 +28,16 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value;
     onSearchChange(searchTerm); 
+  };
+
+  const handlePersonalizadoChange = (e) => {
+    const filtro = e.target.value;
+    setPersonalizado(filtro);
+
+    const { inicio, fim } = atualizarIntervaloData(filtro);
+    setDataInicio(inicio);
+    setDataFim(fim);
+    onDateRangeChange(inicio, fim);
   };
 
 
@@ -110,7 +125,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
               </select>
               <select
                 className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
-                onChange={(e) => setPersonalizado(e.target.value)}
+                onChange={handlePersonalizadoChange}
               >
                 <option value="Essa semana" className={`py-2 ${drop}`}>Essa semana</option>
                 <option value="Esse mês" className={`py-2 ${drop}`}>Esse mês</option>

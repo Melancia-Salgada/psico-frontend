@@ -197,7 +197,6 @@ export const Paciente = ({ closePopup }) => {
 };
 
 export const Consulta = ({ closePopup }) => {
-
   const { tema } = useContext(TemaContexto);
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
