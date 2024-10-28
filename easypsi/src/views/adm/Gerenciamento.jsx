@@ -31,7 +31,7 @@ const Gerenciamento = () => {
         <div className='container-dash'>
             <Titulo showButton={false}>Gerenciamento de admins</Titulo>
             <Pesquisa onSearchChange={setSearchTerm} showButton={true} appName='Adm'></Pesquisa>
-            <List headers={headers} data={filteredData} appName='Paciente'></List>
+            <List headers={headers} data={filteredData} appName='Admin'></List>
         </div>
         <WhiteMode />
     </div>
