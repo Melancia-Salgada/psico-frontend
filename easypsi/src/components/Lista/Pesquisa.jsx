@@ -3,9 +3,9 @@ import { Paciente, Consulta, Adm } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 import { atualizarIntervaloData } from './DatePesquisa';
 
-const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange, onDateRangeChange }) => { 
+const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange, onDateRangeChange = "" }) => { 
 
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState('Essa semana'); 
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
   const [popupAberto, setpopupAberto] = useState(false);
@@ -17,12 +17,14 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
   const drop = tema ? '' : 'bg-neutral-900 text-white'
 
   useEffect(() => {
-    // Atualizar o intervalo de datas para "Essa semana" ao carregar o componente
-    const { inicio, fim } = atualizarIntervaloData('Essa semana');
-    setDataInicio(inicio);
-    setDataFim(fim);
-    onDateRangeChange(inicio, fim);
-  }, []);
+    if (appName === "Consulta") {
+      const { inicio, fim } = atualizarIntervaloData(date);
+      setDataInicio(inicio);
+      setDataFim(fim);
+      onDateRangeChange(inicio, fim);
+    }
+  }, [appName]); // Executa apenas uma vez ao montar o componente
+  
 
   const handleFiltroChange = (e) => {
     const statusSelecionado = e.target.value;
@@ -154,6 +156,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
               <select
                 className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
                 onChange={handleDateChange}
+                value={date}
               >
                 <option value="Essa semana" className={`py-2 ${drop}`}>Essa semana</option>
                 <option value="Esse mês" className={`py-2 ${drop}`}>Esse mês</option>
