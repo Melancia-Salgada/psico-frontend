@@ -241,3 +241,199 @@ export const SobreAdmin = ({ closePopup }) => {
     </div>
   );
 };
+export const EditarPerfil = ({ closePopup }) => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8001/login', {
+        username,
+        password
+      });
+
+      console.log("salvo com sucesso")
+    } catch (error) {
+      if (error/*error.response && error.response.data && error.response.data.message*/) {
+        console.log("deu erro", error)
+      } 
+    }
+  };
+    
+  return (
+    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
+      <div className="p-2 sm:p-4 md:p-6 lg:p-8">
+        <div className="flex justify-between font-bold mb-4 sm:mb-6">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="flex flex-col lg:flex-row justify-between gap-6">
+            <div className="w-full lg:w-1/2 space-y-3">
+              {/* Informações Pessoais */}
+              <div>
+                <div className="flex flex-col">
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
+                  <input
+                    name="nome"
+                    className="p-1 w-full caixa-texto-cad"
+                    type="text"
+                    placeholder="Digite o nome"
+                  />
+                </div>
+              </div>
+
+                <div className="flex flex-col sm:flex-row justify-between gap-3">
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
+                    <input
+                      name="nascimento"
+                      className="p-1 w-3/4 flex-1 caixa-texto-cad"
+                      type="date"
+                      placeholder="Digite a data de nascimento"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
+                    <input
+                      name="telefone"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o Telefone"
+                    />
+                  </div>
+                </div>
+
+              {/* Dados */}
+              <div>
+                <span className="underline">Dados Adicionais</span>
+                <div>
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
+                  <input
+                    name="email"
+                    className="p-1 w-full caixa-texto-cad"
+                    type="text"
+                    placeholder="Digite o email"
+                  />
+                </div>
+                <div className="flex flex-col sm:flex-row justify-between gap-3">
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
+                    <input
+                      name="cpf"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o CPF"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
+                    <input
+                      name="rg"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o RG"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Endereço */}
+              <div>
+                <span className="underline">Local</span>
+                <div>
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
+                  <input
+                    name="endereco"
+                    className="p-1 w-full caixa-texto-cad"
+                    type="text"
+                    placeholder="Digite o endereço"
+                  />
+                </div>
+                <div className="flex flex-col sm:flex-row justify-between gap-3">
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
+                    <input
+                      name="complemento"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o complemento"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
+                    <input
+                      name="cep"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o CEP"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* barra */}
+            <div className="hidden lg:block">
+              <div className="border-preto-whitemode border-[3px] h-full"></div>
+            </div>
+
+            {/* Informação Responsável */}
+            <div className="w-full lg:w-1/2 space-y-3">
+              <span className="underline">Menor de Idade</span>
+              <div>
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
+                <input
+                  name="responsavelNome"
+                  className="p-1 w-full caixa-texto-cad"
+                  type="text"
+                  placeholder="Digite o nome do responsável"
+                />
+                <div className="flex flex-col sm:flex-row justify-between gap-3">
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
+                    <input
+                      name="responsavelTelefone"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o telefone"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
+                    <input
+                      name="responsavelCpf"
+                      className="p-1 w-full caixa-texto-cad"
+                      type="text"
+                      placeholder="Digite o CPF"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Anotações */}
+              <div>
+                <span className="underline">Anotações</span>
+                <Quill/>
+              </div>
+            </div>
+          </div>
+
+          {/* Botão */}
+          <div className="mt-12 flex justify-center">
+            <div className='justify-center flex items-center '>
+              
+                <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+                  <span>Agendar consulta</span>
+                </button>
+              
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
