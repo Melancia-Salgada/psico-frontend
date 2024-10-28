@@ -3,8 +3,18 @@ import Sidebar from '../components/Sidebar'
 import Titulo from '../components/Titulo'
 import WhiteMode from '../components/WhiteMode'
 import Perfil1 from '../assets/perfil.jpg';
+import {EditarPerfil} from '../components/Cards/Sobre'
 
 const Perfil = () => {
+
+  const closePopup = () => setpopupAberto(false);
+
+  const [popupAberto, setpopupAberto] = useState(false);
+
+  const renderPopup = () => {
+    <EditarPerfil closePopup={closePopup}></EditarPerfil>
+
+  };
 
   return (
     <div>
@@ -41,7 +51,14 @@ const Perfil = () => {
             <p className="text-gray-800 text-lg">ajuda@gmail.com</p>
           </div>
         </div>
-        <a href='/agenda'className='flex justify-center mt-auto'><button className="mt-6 bg-roxo text-white px-8 py-4 rounded hover:bg-purple-400">Editar</button></a>
+      <button onClick={() => setpopupAberto(true)} className="mt-6 bg-roxo text-white px-8 py-4 rounded hover:bg-purple-400">Editar</button>
+      {popupAberto && (
+          <div className='popup' onClick={() => setpopupAberto(false)}>
+            <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
+              {renderPopup()}
+            </div>
+          </div>
+        )}
       </div>
     </div>
         <WhiteMode />
