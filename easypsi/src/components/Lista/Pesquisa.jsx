@@ -23,7 +23,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
       setDataFim(fim);
       onDateRangeChange(inicio, fim);
     }
-  }, [appName]); // Executa apenas uma vez ao montar o componente
+  }, [appName]); 
   
 
   const handleFiltroChange = (e) => {

@@ -82,7 +82,7 @@ const Consultas = () => {
         />
 
 
-        <List headers={headers} data={filteredData} /> {/* Usa filteredData */}
+        <List headers={headers} data={filteredData} appName='Consulta'/> {/* Usa filteredData */}
       </div>
       <WhiteMode />
     </div>

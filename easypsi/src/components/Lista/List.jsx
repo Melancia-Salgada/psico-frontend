@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { TemaContexto } from '../WhiteMode';
 import NoData from '../NoData';
-import { SobrePaciente } from '../Cards/Sobre';
+import { SobreAdmin, SobreConsulta, SobreFinanceiro, SobrePaciente } from '../Cards/Sobre';
 
 const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore aqui
   const [popupAberto, setpopupAberto] = useState(false);
@@ -17,6 +17,12 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
     switch (appName) {
       case "Paciente":
         return <SobrePaciente closePopup={closePopup}></SobrePaciente>;
+      case "Consulta":
+        return <SobreConsulta closePopup={closePopup}></SobreConsulta>
+      case "Financeiro":
+        return <SobreFinanceiro closePopup={closePopup}></SobreFinanceiro>
+      case "Admin":
+        return <SobreAdmin closePopup={closePopup}></SobreAdmin>
     }
   };
   
