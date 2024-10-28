@@ -1,178 +1,141 @@
-
 import React, { useContext, useState } from 'react';
 import { TemaContexto } from '../WhiteMode';
 
-
 export const SobrePaciente = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar';
     
   return (
-    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[60rem] lg:h-[48rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[48rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Dados do Paciente</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
         </div>
-        
-        <form className="space-y-3">
-          <div className="flex flex-col lg:flex-row justify-between gap-6">
-            <div className="w-full lg:w-1/2 space-y-3">
-              {/* Informações Pessoais */}
-              <div>
-                <div className="flex flex-col">
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
-                  <input
-                    name="nome"
-                    className="p-1 w-full caixa-texto-cad"
-                    type="text"
-                    placeholder="Digite o nome"
-                  />
-                </div>
-              </div>
 
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
-                    <input
-                      name="nascimento"
-                      className="p-1 w-3/4 flex-1 caixa-texto-cad"
-                      type="date"
-                      placeholder="Digite a data de nascimento"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
-                    <input
-                      name="telefone"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o Telefone"
-                    />
-                  </div>
-                </div>
-
-              {/* Dados */}
-              <div>
-                <span className="underline">Dados Adicionais</span>
-                <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
-                  <input
-                    name="email"
-                    className="p-1 w-full caixa-texto-cad"
-                    type="text"
-                    placeholder="Digite o email"
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
-                    <input
-                      name="cpf"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o CPF"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
-                    <input
-                      name="rg"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o RG"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Endereço */}
-              <div>
-                <span className="underline">Local</span>
-                <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
-                  <input
-                    name="endereco"
-                    className="p-1 w-full caixa-texto-cad"
-                    type="text"
-                    placeholder="Digite o endereço"
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
-                    <input
-                      name="complemento"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o complemento"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
-                    <input
-                      name="cep"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o CEP"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* barra */}
-            <div className="hidden lg:block">
-              <div className="border-preto-whitemode border-[3px] h-auto"></div>
-            </div>
-
-            {/* Informação Responsável */}
-            <div className="w-full lg:w-1/2 space-y-3">
-              <span className="underline">Menor de Idade</span>
-              <div>
-                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
+        <div className="flex flex-col lg:flex-row justify-between gap-6">
+          <div className="w-full lg:w-1/2 space-y-3">
+            {/* Informações Pessoais */}
+            <div>
+              <div className="flex flex-col">
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
                 <input
-                  name="responsavelNome"
-                  className="p-1 w-full caixa-texto-cad"
+                  className={`p-1 w-full ${inputBorder}`}
                   type="text"
-                  placeholder="Digite o nome do responsável"
+                  placeholder="Nome do paciente"
                 />
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
-                    <input
-                      name="responsavelTelefone"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o telefone"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
-                    <input
-                      name="responsavelCpf"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o CPF"
-                    />
-                  </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-between gap-3">
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
+                <input
+                  className={`p-1 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="email@exemplo.com"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
+                <input
+                  className={`p-1 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
+            </div>
+
+            {/* Dados */}
+            <div>
+              <span className="underline">Dados Adicionais</span>
+              <div className="flex flex-col sm:flex-row justify-between gap-3">
+                <div className="flex-1">
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
+                  <input
+                    className={`p-1 w-full ${inputBorder}`}
+                    type="text"
+                    placeholder="000.000.000-00"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
+                  <input
+                    className={`p-1 w-full ${inputBorder}`}
+                    type="text"
+                    placeholder="00.000.000-0"
+                  />
                 </div>
               </div>
+            </div>
 
-              {/* Anotações */}
+            {/* Endereço */}
+            <div>
+              <span className="underline">Local</span>
               <div>
-                <span className="underline">Anotações</span>
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
+                <input
+                  className={`p-1 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="Rua Exemplo, 123"
+                />
+              </div>
+              <div>
+                <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
+                <input
+                  className={`p-1 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="Apto 123"
+                />
               </div>
             </div>
           </div>
 
-          {/* Botão */}
-          <div className="mt-12 flex justify-center">
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded w-auto">
-              Salvar Paciente
-            </button>
+          {/* barra */}
+          <div className="hidden lg:block">
+            <div className="border-preto-whitemode border-[3px] h-auto"></div>
           </div>
-        </form>
+
+          <div className="w-full lg:w-1/2 space-y-3">
+            {/* Consultas */}
+            <div>
+              <span className="text-lg font-bold ">Consultas</span>
+              <div className="flex items-center justify-between mb-4">
+                <input 
+                  type="text" 
+                  placeholder="PESQUISA" 
+                  className={`p-1 w-1/3 ${inputBorder}`}
+                />
+                <input 
+                  type="text" 
+                  placeholder="FILTRO" 
+                  className={`p-1 w-1/3 ${inputBorder}`}
+                />
+                <button className="bg-blue-500 p-2 rounded-full"></button>
+              </div>
+
+              <div className="flex justify-between text-sm mb-4 font-bold">
+                <span>DIA</span>
+                <span>HORA</span>
+                <span>VALOR</span>
+                <span>FINANCEIRO</span>
+                <span>ESTADO</span>
+              </div>
+
+              <div className="space-y-2">
+                <div className="p-2">Consulta 1</div>
+                <hr />  
+                <div className="p-2">Consulta 2</div>
+                <hr />
+                <div className="p-2">Consulta 3</div>
+                <hr />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
