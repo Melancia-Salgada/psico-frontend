@@ -1,14 +1,30 @@
-import React, { useContext, useState } from 'react';
-import { Paciente, Consulta } from '../Cards/Novo';
+import React, { useContext, useEffect, useState } from 'react';
+import { Paciente, Consulta, Adm } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
+import { atualizarIntervaloData } from './DatePesquisa';
 
-const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange }) => { // Adiciona onSearchChange
+const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange, onDateRangeChange = "" }) => { 
 
+  const [date, setDate] = useState('Essa semana'); 
+  const [dataInicio, setDataInicio] = useState('');
+  const [dataFim, setDataFim] = useState('');
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
+
+  
   const mt = margin ? 'mt-5' : 'mt-0';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  const drop = tema ? '' : 'bg-gray-800 text-white'
+  const drop = tema ? '' : 'bg-neutral-900 text-white'
+
+  useEffect(() => {
+    if (appName === "Consulta") {
+      const { inicio, fim } = atualizarIntervaloData(date);
+      setDataInicio(inicio);
+      setDataFim(fim);
+      onDateRangeChange(inicio, fim);
+    }
+  }, [appName]); 
+  
 
   const handleFiltroChange = (e) => {
     const statusSelecionado = e.target.value;
@@ -25,6 +41,33 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
     onSearchChange(searchTerm); 
   };
 
+  const handleDateChange = (e) => {
+    const filtro = e.target.value;
+    setDate(filtro);
+
+    if (filtro === 'personalizado') {
+      setDataInicio('');
+      setDataFim('');
+    } else {
+      const { inicio, fim } = atualizarIntervaloData(filtro);
+      setDataInicio(inicio);
+      setDataFim(fim);
+      onDateRangeChange(inicio, fim);
+    }
+  };
+
+  const handleDataInicioChange = (e) => {
+    const inicio = e.target.value;
+    setDataInicio(inicio);
+    onDateRangeChange(inicio, dataFim);
+  };
+
+  const handleDataFimChange = (e) => {
+    const fim = e.target.value;
+    setDataFim(fim);
+    onDateRangeChange(dataInicio, fim);
+  };
+
 
   const closePopup = () => setpopupAberto(false);
 
@@ -34,6 +77,8 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
         return <Paciente closePopup={closePopup} />;
       case "Consulta":
         return <Consulta closePopup={closePopup} />;
+      case "Adm":
+        return <Adm closePopup={closePopup}></Adm>
       default:
         return null;
     }
@@ -56,10 +101,40 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           </div>
         )
       case "Consulta":
+        
+
+        const renderPersonalizado = () => {
+          if (date == "personalizado") {
+            return (
+              <>
+                <span>De:</span>
+                <div>
+                  <input
+                    name="dataInicio"
+                    className={`p-2 w-full ${inputBorder}`}
+                    type="date"
+                    onChange={handleDataInicioChange}
+                  />
+                </div>
+                <span>Até:</span>
+                <div>
+                  <input
+                    name="dataFim"
+                    className={`p-2 w-full ${inputBorder} `}
+                    type="date"
+                    value={dataFim} onChange={handleDataFimChange}
+                  />
+                </div>
+              </>
+            );
+          }
+          return null;
+        };
+
         return (
           <div>
             <label className='text-2xl font-bold mb-2'>Filtros</label>
-            <div className='flex'>
+            <div className='flex gap-3'>
               <select
                 className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
                 onChange={handleFiltroChange}
@@ -78,6 +153,18 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
                 <option value="Retorno" className={`py-2 ${drop}`}>Retorno</option>
                 <option value="Cancelada" className={`py-2 ${drop}`}>Cancelada</option>
               </select>
+              <select
+                className={`p-2 flex flex-row w-40 ${inputBorder} cursor-pointer`}
+                onChange={handleDateChange}
+                value={date}
+              >
+                <option value="Essa semana" className={`py-2 ${drop}`}>Essa semana</option>
+                <option value="Esse mês" className={`py-2 ${drop}`}>Esse mês</option>
+                <option value="Esse ano" className={`py-2 ${drop}`}>Esse ano</option>
+                <option value="Todos" className={`py-2 ${drop}`}>Todos</option>
+                <option value="personalizado" className={`py-2 ${drop}`}>Personalizado</option>
+              </select>
+              {renderPersonalizado()}
             </div>
           </div>
         )
@@ -97,6 +184,8 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
             </div>
           </div>
         )
+      default:
+        return null
     }
   }
 

@@ -82,12 +82,12 @@ const Financeiro = () => {
             </div>
           </div>
           <div>
-            <Pesquisa showButton={false} 
+            <Pesquisa showButton={true} 
             onFiltroChange={setFiltroStatus} 
             onSearchChange={setSearchTerm} 
             margin={true} 
             appName='Financeiro'/>
-            <List headers={headers} data={filteredData} />
+            <List headers={headers} data={filteredData} appName='Financeiro'/>
           </div>
         </div>
       </div>
