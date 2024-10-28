@@ -3,7 +3,7 @@ import { TemaContexto } from '../WhiteMode';
 import NoData from '../NoData';
 import { SobreAdmin, SobreConsulta, SobreFinanceiro, SobrePaciente } from '../Cards/Sobre';
 
-const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore aqui
+const List = ({ headers, data, onViewMore, appName, margin=true, limit=false }) => { // Inclua onViewMore aqui
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
 
@@ -11,6 +11,9 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
   const bar = tema ? "border-preto-whitemode" : "border-branco-darkmode";
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
 
+  const ma = margin? "mt-[5.3rem] ml-[6.3rem] mr-[6.3rem]": ""
+  const limite = limit? " h-56 overflow-y-auto ":""
+  
   const closePopup = () => setpopupAberto(false);
 
   const renderPopup = () => {
@@ -58,7 +61,7 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
   }
 
   return (
-    <div className='mt-[5.3rem] ml-[6.3rem] mr-[6.3rem]'>
+    <div className={`${ma}`}>
       <div>
         {/* Listagem */}
         <div>
@@ -67,7 +70,7 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
           ) : (
             <>
               {/* Header */}
-              <div className="flex justify-between">
+              <div className="flex justify-between ">
                 {headers.map((header, index) => (
                   <div key={index} className='flex-1 text-center'>
                     <span className='text-[20px] font-extrabold'>{header}</span>
@@ -76,7 +79,8 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
               </div>
 
               {/* Dados */}
-              {data.map((row, index) => (
+              <div className={`${limite}`}>
+                {data.map((row, index) => (
                 <div className={`flex justify-between border-b-[1px] p-2 ${bar}`} key={index}>
                   {row.map((item, itemIndex) => (
                     <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
@@ -88,6 +92,8 @@ const List = ({ headers, data, onViewMore, appName }) => { // Inclua onViewMore 
                   
                 </div>
               ))}
+              </div>
+              
             </>
           )}
         </div>

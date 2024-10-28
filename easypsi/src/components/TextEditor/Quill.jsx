@@ -9,7 +9,7 @@ export function Quill() {
   const [value, setValue] = useState('');
 
   const { tema } = useContext(TemaContexto);
-  const bg = tema ? 'bg-white' : 'bg-neutral-900';
+  const bg = tema ? 'bg-white' : 'bg-neutral-900 text-branco-whitemode';
 
   return (
     <div className="rounded-lg shadow-md overflow-auto border">
@@ -21,7 +21,7 @@ export function Quill() {
         placeholder="Escreva aqui..."
         modules={modules}
         formats={formats}
-        className="h-[200px]" // Define a altura do editor com Tailwind
+        className="h-[200px] " // Define a altura do editor com Tailwind
       />
     </div>
   );

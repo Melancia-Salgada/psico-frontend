@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Quill } from 'react-quill';
+import { TemaContexto } from '../WhiteMode';
 
 const CustomUndo = () => (
   <svg viewBox="0 0 18 18">
@@ -18,6 +19,7 @@ function undoChange() {
 const Size = Quill.import('formats/size');
 Size.whitelist = ['extra-small', 'small', 'medium', 'large'];
 Quill.register(Size, true);
+
 
 export const modules = {
   toolbar: {

@@ -7,6 +7,14 @@
   @apply bg-azul
 }
 
+::-webkit-scrollbar {
+  @apply bg-slate-700 rounded-lg
+}
+
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-500 rounded-md
+}
 
 
 @layer base {
