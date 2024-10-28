@@ -23,7 +23,7 @@ export const Paciente = ({ closePopup }) => {
   };
     
   return (
-    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[60rem] lg:h-[48rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
+    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
       <div className="p-2 sm:p-4 md:p-6 lg:p-8">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
@@ -186,9 +186,13 @@ export const Paciente = ({ closePopup }) => {
 
           {/* Botão */}
           <div className="mt-12 flex justify-center">
-            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
-              SALVAR PACIENTE
-            </button>
+            <div className='justify-center flex items-center '>
+              
+                <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+                  <span>Agendar consulta</span>
+                </button>
+              
+            </div>
           </div>
         </form>
       </div>
@@ -309,10 +313,12 @@ export const Consulta = ({ closePopup }) => {
           </div>
 
           {/* Botão */}
-          <div className="mt-12 flex items-center justify-center w-full">
-            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold whitespace-nowrap overflow-hidden mx-auto text-center flex items-center justify-center">
-              AGENDAR CONSULTA
-            </button>
+          <div className='justify-center flex items-center '>
+            
+              <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+                <span>Agendar consulta</span>
+              </button>
+            
           </div>
         </form>
       </div>
@@ -444,9 +450,13 @@ export const Adm = ({ closePopup }) => {
 
           {/* Botões */}
           <div className="mt-12 flex justify-center">
-            <button type="submit" className="btn-entrar px-8 py-3 text-lg font-bold">
-              GRAVAR
-            </button>
+            <div className='justify-center flex items-center '>
+              
+                <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+                  <span>Agendar consulta</span>
+                </button>
+              
+            </div>
             
           </div>
         </form>
