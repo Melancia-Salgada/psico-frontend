@@ -11,9 +11,8 @@ const Perfil = () => {
 
   const [popupAberto, setpopupAberto] = useState(false);
 
-  const renderPopup = () => {
-    <EditarPerfil closePopup={closePopup}></EditarPerfil>
-
+  const renderPopup = () => { 
+    return <EditarPerfil closePopup={closePopup}></EditarPerfil>
   };
 
   return (
@@ -58,7 +57,7 @@ const Perfil = () => {
               {renderPopup()}
             </div>
           </div>
-        )}
+          )}
       </div>
     </div>
         <WhiteMode />
