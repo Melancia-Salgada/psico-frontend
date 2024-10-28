@@ -3,7 +3,7 @@ import { TemaContexto } from '../WhiteMode';
 import NoData from '../NoData';
 import { SobreAdmin, SobreConsulta, SobreFinanceiro, SobrePaciente } from '../Cards/Sobre';
 
-const List = ({ headers, data, onViewMore, appName, margin=true, limit=false }) => { // Inclua onViewMore aqui
+const List = ({ headers, data, onViewMore, appName, margin=true, limite }) => { // Inclua onViewMore aqui
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
 
@@ -12,7 +12,6 @@ const List = ({ headers, data, onViewMore, appName, margin=true, limit=false }) 
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
 
   const ma = margin? "mt-[5.3rem] ml-[6.3rem] mr-[6.3rem]": ""
-  const limite = limit? " h-56 overflow-y-auto ":""
   
   const closePopup = () => setpopupAberto(false);
 
@@ -70,16 +69,14 @@ const List = ({ headers, data, onViewMore, appName, margin=true, limit=false }) 
           ) : (
             <>
               {/* Header */}
-              <div className="flex justify-between ">
+              <div className="flex justify-between mr-4">
                 {headers.map((header, index) => (
                   <div key={index} className='flex-1 text-center'>
                     <span className='text-[20px] font-extrabold'>{header}</span>
                   </div>
                 ))}
               </div>
-
-              {/* Dados */}
-              <div className={`${limite}`}>
+              <div className={`${limite} overflow-y-auto`}>
                 {data.map((row, index) => (
                 <div className={`flex justify-between border-b-[1px] p-2 ${bar}`} key={index}>
                   {row.map((item, itemIndex) => (

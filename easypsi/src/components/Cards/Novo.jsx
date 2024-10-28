@@ -213,7 +213,7 @@ export const Consulta = ({ closePopup }) => {
           <div>
             <input
               name="data"
-              className={`p-2 w-3/4 ${inputBorder}`}
+              className={`p-2 w-full ${inputBorder}`}
               type="date"
             />
           </div>

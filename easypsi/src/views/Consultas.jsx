@@ -15,6 +15,20 @@ const Consultas = () => {
     ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
     ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
     ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
+    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
+    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
+    ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
+    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
+    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
+    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
+    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
+    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
+    ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
+    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
+    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
   ]);
 
   
@@ -82,7 +96,7 @@ const Consultas = () => {
         />
 
 
-        <List headers={headers} data={filteredData} appName='Consulta'/> {/* Usa filteredData */}
+        <List headers={headers} data={filteredData} appName='Consulta' limite="h-[30rem]"/> {/* Usa filteredData */}
       </div>
       <WhiteMode />
     </div>
