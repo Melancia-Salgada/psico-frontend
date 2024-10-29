@@ -26,12 +26,6 @@ const Pacientes = () => {
     return isStatusMatch && isSearchMatch; // Retorna true se ambos os filtros forem correspondentes
   });
 
-  // Função para lidar com o clique do botão "Ver mais"
-  const handleViewMore = (row) => {
-    // Aqui você pode implementar a lógica para mostrar mais detalhes
-    // Por exemplo, pode usar um modal, um alerta ou redirecionar para outra página
-    alert(`Detalhes de ${row[0]}: Horário: ${row[1]}, Próxima consulta: ${row[2]}, Atividade: ${row[3]}`);
-  };
 
   return (
     <div>
@@ -45,7 +39,7 @@ const Pacientes = () => {
           onSearchChange={setSearchTerm} // Passa a função de alteração da pesquisa
           margin={true}
         />
-        <List headers={headers} data={filteredData} onViewMore={handleViewMore} appName='Paciente'/> {/* Passa a função */}
+        <List headers={headers} data={filteredData}  appName='Paciente'/> {/* Passa a função */}
       </div>
       <WhiteMode />
     </div>

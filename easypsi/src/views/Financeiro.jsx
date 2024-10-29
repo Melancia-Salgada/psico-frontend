@@ -44,12 +44,12 @@ const Financeiro = () => {
     fetchData();
   }, []);
 
-  const isEmpty = data.length === 0; // Verifica se os dados estão vazios
+  const isEmpty = data.length === 0;
   
 
   return (
     <div>
-      <Sidebar />
+      <Sidebar/>
       <div className='container-dash'>
         <Titulo showButton={false}>Financeiro</Titulo>
         <div className='mr-10'>

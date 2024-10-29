@@ -7,10 +7,8 @@ import {EditarPerfil} from '../components/Cards/Sobre'
 
 const Perfil = () => {
 
-  const closePopup = () => setpopupAberto(false);
-
   const [popupAberto, setpopupAberto] = useState(false);
-
+  const closePopup = () => setpopupAberto(false);
   const renderPopup = () => { 
     return <EditarPerfil closePopup={closePopup}></EditarPerfil>
   };
@@ -58,7 +56,6 @@ const Perfil = () => {
         </div>  
         <div className='flex justify-center'>
       <button onClick={() => setpopupAberto(true)} className="mt-6 bg-roxo text-white px-8 py-4 rounded hover:bg-purple-400">Editar</button>
-      </div>
       {popupAberto && (
           <div className='popup' onClick={() => setpopupAberto(false)}>
             <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
@@ -69,8 +66,6 @@ const Perfil = () => {
             </div>
           </div>
           )}
-      </div>
-    </div>
         <WhiteMode />
       </div>
     </div>

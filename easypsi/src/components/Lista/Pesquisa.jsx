@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Paciente, Consulta, Adm } from '../Cards/Novo';
+import { Paciente, Consulta, Adm, Financeiro } from '../Cards/Novo';
 import { TemaContexto } from '../WhiteMode';
 import { atualizarIntervaloData } from './DatePesquisa';
+
 
 const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChange, onSearchChange, onTipoChange, onDateRangeChange = "" }) => { 
 
@@ -79,6 +80,8 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
         return <Consulta closePopup={closePopup} />;
       case "Adm":
         return <Adm closePopup={closePopup}></Adm>
+      case "Financeiro":
+        return <Financeiro closePopup={closePopup}></Financeiro>
       default:
         return null;
     }

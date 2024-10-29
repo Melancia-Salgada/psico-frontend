@@ -29,7 +29,7 @@ const AdminPsicologo = () => {
           <div className='container-dash'>
               <Titulo showButton={false}>Gerenciamento de psicólogos</Titulo>
               <Pesquisa onSearchChange={setSearchTerm} showButton={false} appName='Psicologo' margin={true}></Pesquisa>
-              <List headers={headers} data={filteredData}></List>
+              <List headers={headers} data={filteredData} appName='Psicologo'></List>
           </div>
           <WhiteMode />
       </div>

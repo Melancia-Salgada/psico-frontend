@@ -90,7 +90,7 @@ const AdminHome = () => {
             <div className='w-full'> 
               <span className='text-2xl font-bold'>Novas Requisições</span>
               <div className='mt-5 ml-10 mr-10'>
-                <List headers={headers} data={data} margin={false}  limite="h-[20rem]"></List>
+                <List headers={headers} data={data} margin={false}  limite="h-[32vh]"></List>
               </div>
             </div>
             

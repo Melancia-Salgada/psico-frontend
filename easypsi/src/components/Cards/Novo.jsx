@@ -465,6 +465,73 @@ export const Adm = ({ closePopup }) => {
   );
 };
 
+export const Financeiro = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  
+  
+  return (
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+      <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="flex justify-between font-bold mb-4 sm:mb-6">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"> Pagamento</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
+        </div>
+
+        <form className="space-y-6">
+          <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Sobre</label>
+              <input
+                name="sobre"
+                className="p-2 w-full caixa-texto-cad"
+                type="text"
+                placeholder="Digite a descrição"
+              />
+            </div>
+
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Valor</label>
+              <input
+                name="valor"
+                className="p-2 w-full caixa-texto-cad"
+                type="number"
+                placeholder="Digite o valor"
+              />
+            </div>
+
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Data de Vencimento</label>
+              <input
+                name="vencimento"
+                className="p-2 w-full caixa-texto-cad"
+                type="date"
+              />
+            </div>
+
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Estado</label>
+              <select className="p-2 w-full caixa-texto-cad cursor-pointer">
+                <option value="pendente">Pendente</option>
+                <option value="pago">Pago</option>
+                <option value="atrasado">Atrasado</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Botões */}
+          <div className="mt-12 flex justify-center">
+            <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between px-9 font-bold hover:bg-purple-950 transition-all'>
+              <span>Gravar</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 
 
