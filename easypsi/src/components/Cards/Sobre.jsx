@@ -4,7 +4,6 @@ import { TemaContexto } from '../WhiteMode';
 export const SobrePaciente = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
-
   return (
     <div className={`${bgTxt} relative w-full h-auto lg:w-[50rem] lg:h-[28rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4">
@@ -82,19 +81,19 @@ export const SobrePaciente = ({ closePopup }) => {
                   <span>14:00</span>
                   <span>Concluída</span>
                 </div>
-                <hr />
+                <hr/>
                 <div className="flex justify-between text-sm">
                   <span>22/03/24</span>
                   <span>15:00</span>
                   <span>Agendada</span>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-  );
+    </div>
+    );
 };
 
 export const SobreConsulta = ({ closePopup }) => {
@@ -106,7 +105,7 @@ export const SobreConsulta = ({ closePopup }) => {
     <div className={`${bgTxt} relative w-full h-auto lg:w-[50rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8">
         <div className="flex justify-between font-bold mb-4">
-          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DA CONSULTA</div>
+          <div className="text-xl sm:text-2xl md:text-3xl">Dados da Consulta</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -215,7 +214,7 @@ export const SobreAdmin = ({ closePopup }) => {
     <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[20rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4">
         <div className="flex justify-between font-bold mb-4">
-          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO ADMINISTRADOR</div>
+          <div className="text-2xl sm:text-2xl md:text-3xl">Dados do Administrador</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -240,43 +239,4 @@ export const SobreAdmin = ({ closePopup }) => {
       </div>
     </div>
   );
-};
-export const EditarPerfil = ({ closePopup }) => {
-  const { tema } = useContext(TemaContexto);
-  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
-
-  return (
-    <>
-      <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[20rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
-      <div className="p-4">
-        <div className="flex justify-between font-bold mb-4">
-          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO ADMINISTRADOR</div>
-          <div>
-            <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
-          </div>
-        </div>
-
-        <div className="flex flex-col space-y-4">
-          <div>
-            <label className="text-md sm:text-lg font-bold block">Email</label>
-            <span className="text-sm block p-1">admin@exemplo.com</span>
-          </div>
-
-          <div>
-            <label className="text-md sm:text-lg font-bold block">CPF</label>
-            <span className="text-sm block p-1">000.000.000-00</span>
-          </div>
-
-          <div>
-            <label className="text-md sm:text-lg font-bold block">Telefone</label>
-            <span className="text-sm block p-1">(00) 00000-0000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
-    
-  );
-        
-
 };
