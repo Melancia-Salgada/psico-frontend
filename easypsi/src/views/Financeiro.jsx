@@ -60,8 +60,8 @@ const Financeiro = () => {
                 {isEmpty ? (
                   <NoData></NoData>
                 ) : (
-                  <div>
-                    {/* Conteúdo quando há dados */}
+                  <div className="flex mt-16">
+                    <span className="font-bold text-8xl">R$500</span>
                   </div>
                 )}
               </div>
@@ -70,8 +70,8 @@ const Financeiro = () => {
                 {isEmpty ? (
                   <NoData></NoData>
                 ) : (
-                  <div>
-                    {/* Conteúdo quando há dados */}
+                  <div className="flex mt-16">
+                    <span className="font-bold text-8xl">R$200</span>
                   </div>
                 )}
               </div>
