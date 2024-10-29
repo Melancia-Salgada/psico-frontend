@@ -162,7 +162,7 @@ export const SobreConsulta = ({ closePopup }) => {
             <div>
               <label className="text-md sm:text-lg font-bold block">Anotações</label>
               <textarea
-                className={`p-2 w-full h-48 ${inputBorder}`}
+                className={`p-2 w-full h-48 rounded-lg ${inputBorder}`}
                 placeholder="Digite suas anotações aqui..."
               />
             </div>
@@ -245,53 +245,37 @@ export const SobrePsicologo = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
-      <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+   <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[28rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className="p-4">
         <div className="flex justify-between font-bold mb-4">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Dados do Psicólogo</div>
+          <div className="text-2xl sm:text-2xl md:text-3xl">Dados do psicólogo</div>
           <div>
-            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+            <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
         </div>
-        <div className="flex flex-col items-center space-y-6">
-          {/* Círculo da Imagem */}
-          <div className="w-48 h-48 rounded-full border-4 border-roxo overflow-hidden flex items-center justify-center">
-            {/* Se tiver imagem: */}
-            {/* <img src={imagemUrl} alt="Foto do Psicólogo" className="w-full h-full object-cover" /> */}
-            
-            {/* Se não tiver imagem, mostra um placeholder: */}
-            <div className="w-full h-full bg-roxo flex items-center justify-center text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-24 h-24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-              </svg>
-            </div>
+
+        <div className="flex flex-col space-y-4">
+        <div>
+            <label className="text-md sm:text-lg font-bold block">Nome</label>
+            <span className="text-sm block p-1">Placeholder</span>
           </div>
-          {/* Informações do Psicólogo */}
-          <div className="flex flex-col space-y-6 w-full">
-            <div className="flex justify-between gap-10">
-              {/* Coluna da esquerda */}
-              <div className="flex-1">
-                <div>
-                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome</label>
-                  <span className="text-base block p-1">{"{Nome}"}</span>
-                </div>
-                <div>
-                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Username</label>
-                  <span className="text-base block p-1">(CRM)</span>
-                </div>
-              </div>
-              {/* Coluna da direita */}
-              <div className="flex-1">
-                <div>
-                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Email</label>
-                  <span className="text-base block p-1">(Email)</span>
-                </div>
-                <div>
-                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Especialização</label>
-                  <span className="text-base block p-1">Psicologia Clínica</span>
-                </div>
-              </div>
-            </div>
+          <div>
+            <label className="text-md sm:text-lg font-bold block">Email</label>
+            <span className="text-sm block p-1">psicologo@exemplo.com</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">CPF</label>
+            <span className="text-sm block p-1">000.000.000-00</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">Telefone</label>
+            <span className="text-sm block p-1">(00) 00000-0000</span>
+          </div>
+          <div>
+            <label className="text-md sm:text-lg font-bold block">CRP</label>
+            <span className="text-sm block p-1">00000000</span>
           </div>
         </div>
       </div>
@@ -301,10 +285,12 @@ export const SobrePsicologo = ({ closePopup }) => {
 export const EditarPerfil = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+
 
   return (
     <>
-      <div className={`${bgTxt} relative w-full h-auto lg:w-[45rem] lg:h-[30rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4">
         <div className="flex justify-between font-bold mb-4">
           <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO PSICÓLOGO</div>
@@ -318,7 +304,7 @@ export const EditarPerfil = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
               <input
                 name="nome"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="nome"
                 placeholder="Digite seu nome"
               />
@@ -328,7 +314,7 @@ export const EditarPerfil = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
               <input
                 name="cpf"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="cpf"
                 placeholder="Digite seu CPF"
               />
@@ -338,24 +324,145 @@ export const EditarPerfil = ({ closePopup }) => {
             <label className="text-md sm:text-lg font-bold mb-2 p-2">CRP</label>
               <input
                 name="crp"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="crp"
                 placeholder="Digite seu CRP"
               />
             </div>
-
+            <div>
             <label className="text-md sm:text-lg font-bold mb-2 p-2">E-mail</label>
               <input
                 name="e-mail"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="e-mail"
                 placeholder="Digite seu e-mail"
               />
             </div>
-      </div>
+
+            </div>
+            
+            <div className="flex justify-center mt-4">
+                    <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>SALVAR</button>
+                  </div>
+          </div>
     </div>
     </>
     
+  );
+        
+
+};
+
+export const EditarPerfilAdmin = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+
+
+  return (
+    <>
+      <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[28rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className="p-4">
+        <div className="flex justify-between font-bold mb-4">
+          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO ADMINISTRADOR</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
+              <input
+                name="nome"
+                className={`p-2 w-full ${inputBorder}`}
+                type="nome"
+                placeholder="Digite seu nome"
+              />
+            </div>
+
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
+              <input
+                name="cpf"
+                className={`p-2 w-full ${inputBorder}`}
+                type="cpf"
+                placeholder="Digite seu CPF"
+              />
+            </div>
+
+            <div>
+            <label className="text-md sm:text-lg font-bold mb-2 p-2">Telefone</label>
+              <input
+                name="crp"
+                className={`p-2 w-full ${inputBorder}`}
+                type="crp"
+                placeholder="Digite seu CRP"
+              />
+            </div>
+            
+
+            </div>
+            
+            <div className="flex justify-center mt-4">
+                    <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>SALVAR</button>
+                  </div>
+          </div>
+    </div>
+    </>
+    
+  );
+        
+
+};
+
+export const SobreRequisicao = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  return (
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[30rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+    <div className="p-4">
+      <div className="flex justify-between font-bold mb-4">
+        <div className="text-2xl sm:text-2xl md:text-3xl">Dados do psicólogo</div>
+        <div>
+          <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
+        </div>
+      </div>
+
+      <div className="flex flex-col space-y-4">
+      <div>
+          <label className="text-md sm:text-lg font-bold block">Nome</label>
+          <span className="text-sm block p-1">Placeholder</span>
+        </div>
+        <div>
+          <label className="text-md sm:text-lg font-bold block">Email</label>
+          <span className="text-sm block p-1">psicologo@exemplo.com</span>
+        </div>
+
+        <div>
+          <label className="text-md sm:text-lg font-bold block">CPF</label>
+          <span className="text-sm block p-1">000.000.000-00</span>
+        </div>
+
+        <div>
+          <label className="text-md sm:text-lg font-bold block">Telefone</label>
+          <span className="text-sm block p-1">(00) 00000-0000</span>
+        </div>
+        <div>
+          <label className="text-md sm:text-lg font-bold block">CRP</label>
+          <span className="text-sm block p-1">00000000</span>
+        </div>
+      </div>
+      <div className='flex justify-between'>
+        <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+          <span>Aceitar</span>
+        </button>
+        <button type="submit" className='bg-red-600 text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+          <span>Negar</span>
+        </button>
+      </div>
+    </div>
+  </div>
   );
         
 

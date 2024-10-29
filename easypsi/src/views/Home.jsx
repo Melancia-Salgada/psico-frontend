@@ -4,7 +4,7 @@ import Titulo from '../components/Titulo';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
 import { TemaContexto } from '../components/WhiteMode';
-import { Paciente, Consulta} from '../components/Cards/Novo';
+import { Paciente, Consulta, Financeiro} from '../components/Cards/Novo';
 
 
 const Home = () => {
@@ -39,6 +39,8 @@ const Home = () => {
         return <Paciente closePopup={closePopup} />;
       case "Consulta":
         return <Consulta closePopup={closePopup} />;
+      case "Financeiro":
+        return <Financeiro closePopup={closePopup}></Financeiro>
       
       default:
         return null;

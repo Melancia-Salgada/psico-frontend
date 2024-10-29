@@ -16,14 +16,19 @@ export const Paciente = ({ closePopup }) => {
 
       console.log("salvo com sucesso")
     } catch (error) {
-      if (error/*error.response && error.response.data && error.response.data.message*/) {
+      if (error) {
         console.log("deu erro", error)
       } 
     }
   };
+
+  const { tema } = useContext(TemaContexto);
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-neutral-900 text-white';
+  const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
     
   return (
-    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-2 sm:p-4 md:p-6 lg:p-8">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
@@ -41,7 +46,7 @@ export const Paciente = ({ closePopup }) => {
                   <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
                   <input
                     name="nome"
-                    className="p-1 w-full caixa-texto-cad"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="text"
                     placeholder="Digite o nome"
                   />
@@ -53,7 +58,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
                     <input
                       name="nascimento"
-                      className="p-1 w-3/4 flex-1 caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="date"
                       placeholder="Digite a data de nascimento"
                     />
@@ -62,7 +67,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="telefone"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o Telefone"
                     />
@@ -71,12 +76,12 @@ export const Paciente = ({ closePopup }) => {
 
               {/* Dados */}
               <div>
-                <span className="underline">Dados Adicionais</span>
+                <span className="text-xl font-bold">Dados Adicionais</span>
                 <div>
                   <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
                   <input
                     name="email"
-                    className="p-1 w-full caixa-texto-cad"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="text"
                     placeholder="Digite o email"
                   />
@@ -86,7 +91,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
                     <input
                       name="cpf"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o CPF"
                     />
@@ -95,7 +100,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
                     <input
                       name="rg"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o RG"
                     />
@@ -105,12 +110,12 @@ export const Paciente = ({ closePopup }) => {
 
               {/* Endereço */}
               <div>
-                <span className="underline">Local</span>
+                <span className="text-xl font-bold">Local</span>
                 <div>
                   <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
                   <input
                     name="endereco"
-                    className="p-1 w-full caixa-texto-cad"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="text"
                     placeholder="Digite o endereço"
                   />
@@ -120,7 +125,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
                     <input
                       name="complemento"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o complemento"
                     />
@@ -129,7 +134,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
                     <input
                       name="cep"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o CEP"
                     />
@@ -145,12 +150,12 @@ export const Paciente = ({ closePopup }) => {
 
             {/* Informação Responsável */}
             <div className="w-full lg:w-1/2 space-y-3">
-              <span className="underline">Menor de Idade</span>
+              <span className="text-xl font-bold">Menor de Idade</span>
               <div>
                 <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
                 <input
                   name="responsavelNome"
-                  className="p-1 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o nome do responsável"
                 />
@@ -159,7 +164,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="responsavelTelefone"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o telefone"
                     />
@@ -168,7 +173,7 @@ export const Paciente = ({ closePopup }) => {
                     <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
                     <input
                       name="responsavelCpf"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o CPF"
                     />
@@ -178,7 +183,7 @@ export const Paciente = ({ closePopup }) => {
 
               {/* Anotações */}
               <div>
-                <span className="underline">Anotações</span>
+                <span className="text-xl font-bold">Anotações</span>
                 <Quill/>
               </div>
             </div>
@@ -336,6 +341,7 @@ export const Pagamento = () => {
 export const Adm = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -364,7 +370,7 @@ export const Adm = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
                 name="email"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="email"
                 placeholder="Digite o email"
               />
@@ -375,7 +381,7 @@ export const Adm = ({ closePopup }) => {
                 <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
                 <input
                   name="cpf"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o CPF"
                 />
@@ -384,7 +390,7 @@ export const Adm = ({ closePopup }) => {
                 <label className="text-md sm:text-lg font-bold mb-2 p-2">Telefone</label>
                 <input
                   name="telefone"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o telefone"
                 />
@@ -396,7 +402,7 @@ export const Adm = ({ closePopup }) => {
               <div className="relative">
                 <input
                   name="password"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type={showPassword ? "text" : "password"}
                   placeholder="Digite a senha"
                 />
@@ -424,7 +430,7 @@ export const Adm = ({ closePopup }) => {
               <div className="relative">
                 <input
                   name="confirmPassword"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirme a senha"
                 />
@@ -468,13 +474,15 @@ export const Adm = ({ closePopup }) => {
 export const Financeiro = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-neutral-900 text-white';
   
   
   return (
     <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"> Pagamento</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo financeiro</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -483,10 +491,10 @@ export const Financeiro = ({ closePopup }) => {
         <form className="space-y-6">
           <div className="space-y-6">
             <div>
-              <label className="text-md sm:text-lg font-bold mb-2 p-2">Sobre</label>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome do paciente</label>
               <input
                 name="sobre"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="text"
                 placeholder="Digite a descrição"
               />
@@ -496,7 +504,7 @@ export const Financeiro = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Valor</label>
               <input
                 name="valor"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="number"
                 placeholder="Digite o valor"
               />
@@ -506,17 +514,17 @@ export const Financeiro = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Data de Vencimento</label>
               <input
                 name="vencimento"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="date"
               />
             </div>
 
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Estado</label>
-              <select className="p-2 w-full caixa-texto-cad cursor-pointer">
-                <option value="pendente">Pendente</option>
-                <option value="pago">Pago</option>
-                <option value="atrasado">Atrasado</option>
+              <select className={`p-2 flex w-full flex-row ${inputBorder} cursor-pointer`}>
+                <option value="Pendente" className={`py-2 ${drop}`}>Pendente</option>
+                <option value="Pago" className={`py-2 ${drop}`}>Pago</option>
+                <option value="Atrasado" className={`py-2 ${drop}`}>Atrasado</option>
               </select>
             </div>
           </div>
