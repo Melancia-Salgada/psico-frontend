@@ -247,31 +247,54 @@ export const EditarPerfil = ({ closePopup }) => {
 
   return (
     <>
-      <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[20rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className={`${bgTxt} relative w-full h-auto lg:w-[45rem] lg:h-[30rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4">
         <div className="flex justify-between font-bold mb-4">
-          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO ADMINISTRADOR</div>
+          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO PSICÓLOGO</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
         </div>
 
-        <div className="flex flex-col space-y-4">
-          <div>
-            <label className="text-md sm:text-lg font-bold block">Email</label>
-            <span className="text-sm block p-1">admin@exemplo.com</span>
-          </div>
+        <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
+              <input
+                name="nome"
+                className="p-2 w-full caixa-texto-cad"
+                type="nome"
+                placeholder="Digite seu nome"
+              />
+            </div>
 
-          <div>
-            <label className="text-md sm:text-lg font-bold block">CPF</label>
-            <span className="text-sm block p-1">000.000.000-00</span>
-          </div>
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
+              <input
+                name="cpf"
+                className="p-2 w-full caixa-texto-cad"
+                type="cpf"
+                placeholder="Digite seu CPF"
+              />
+            </div>
 
-          <div>
-            <label className="text-md sm:text-lg font-bold block">Telefone</label>
-            <span className="text-sm block p-1">(00) 00000-0000</span>
-          </div>
-        </div>
+            <div>
+            <label className="text-md sm:text-lg font-bold mb-2 p-2">CRP</label>
+              <input
+                name="crp"
+                className="p-2 w-full caixa-texto-cad"
+                type="crp"
+                placeholder="Digite seu CRP"
+              />
+            </div>
+
+            <label className="text-md sm:text-lg font-bold mb-2 p-2">E-mail</label>
+              <input
+                name="e-mail"
+                className="p-2 w-full caixa-texto-cad"
+                type="e-mail"
+                placeholder="Digite seu e-mail"
+              />
+            </div>
       </div>
     </div>
     </>
