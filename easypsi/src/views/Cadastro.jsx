@@ -120,8 +120,8 @@ function Cadastro() {
       </div>
 
       <div className="w-full max-w-4xl flex justify-center">
-        <a href="/home" className="w-full sm:w-auto">
-          <button className="btn-entrar w-full px-8 py-3 text-lg font-bold" type="button">
+        <a href="/confirmacao" className="w-full sm:w-auto">
+          <button className="bg-roxo text-branco-whitemode text-xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all">
             CADASTRAR
           </button>
         </a>

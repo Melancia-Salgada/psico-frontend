@@ -5,10 +5,11 @@ import WhiteMode from '../components/WhiteMode';
 const Confirmacao = () => {
   const { tema } = useContext(TemaContexto);
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar';
+  const bg = tema? 'bg-cinza':'bg-neutral-900'
 
   return (
     <div className='flex justify-center items-center h-screen'>
-      <div className='bg-azul w-[40rem] p-6 rounded-lg shadow-lg'>
+      <div className={`${bg} w-[40rem] p-6 rounded-lg shadow-lg`}>
         <div className='flex flex-col items-center'>
           <div className='mb-4'>
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" className="bi bi-envelope-exclamation" viewBox="0 0 16 16">
@@ -27,6 +28,13 @@ const Confirmacao = () => {
               type="text"
               placeholder="Digite o código de verificação"
             />
+          </div>
+          <div className='mt-8'>
+            <a className=' mt-8' href='/home'>
+              <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+                <span>Confirmar</span>
+              </button>
+            </a>
           </div>
         </div>
       </div>
