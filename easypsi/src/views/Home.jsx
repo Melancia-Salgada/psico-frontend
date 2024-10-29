@@ -20,10 +20,12 @@ const Home = () => {
     ["a", "b", "c"],
   ]
   const dataFinanceiro = [
-    ["a", "b", "c"],
-    ["a", "b", "c"],
-    ["a", "b", "c"],
-    ["a", "b", "c"]
+    ["d", "f", "g"],
+    ["d", "f", "g"],
+    ["d", "f", "g"],
+    ["d", "f", "g"],
+    ["d", "f", "g"],
+    ["d", "f", "g"]
   ]
 
   const closePopup = () => setpopupAberto(false);
@@ -103,7 +105,7 @@ const Home = () => {
             <div className='w-full'> 
               <span className='text-2xl font-bold'>Próximas Consultas</span>
               <div className='mt-5 ml-10 mr-10'>
-                <List headers={headers} data={dataConsulta} margin={false}></List>
+                <List headers={headers} data={dataConsulta} margin={false} appName="Consulta"></List>
               </div>
               <div className='justify-center flex items-center '>
                 <a className=' mt-8' href='/consultas'>
@@ -116,7 +118,7 @@ const Home = () => {
             <div className='w-full'> 
               <span className='text-2xl font-bold'>Pagamentos Pendentes</span>
               <div className='mt-5 ml-10 mr-10'>
-                <List headers={headers} data={dataFinanceiro} margin={false} limite="h-56"></List>
+                <List headers={headers} data={dataFinanceiro} margin={false} limite="h-56" appName="Financeiro"></List>
               </div>
               <div className='justify-center flex items-center '>
                 <a className=' mt-5' href='/financeiro'>
