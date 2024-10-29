@@ -240,3 +240,100 @@ export const SobreAdmin = ({ closePopup }) => {
     </div>
   );
 };
+
+export const SobrePsicologo = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  return (
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+      <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="flex justify-between font-bold mb-4">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Dados do Psicólogo</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center space-y-6">
+          {/* Círculo da Imagem */}
+          <div className="w-48 h-48 rounded-full border-4 border-roxo overflow-hidden flex items-center justify-center">
+            {/* Se tiver imagem: */}
+            {/* <img src={imagemUrl} alt="Foto do Psicólogo" className="w-full h-full object-cover" /> */}
+            
+            {/* Se não tiver imagem, mostra um placeholder: */}
+            <div className="w-full h-full bg-roxo flex items-center justify-center text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-24 h-24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>
+            </div>
+          </div>
+          {/* Informações do Psicólogo */}
+          <div className="flex flex-col space-y-6 w-full">
+            <div className="flex justify-between gap-10">
+              {/* Coluna da esquerda */}
+              <div className="flex-1">
+                <div>
+                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome</label>
+                  <span className="text-base block p-1">{"{Nome}"}</span>
+                </div>
+                <div>
+                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Username</label>
+                  <span className="text-base block p-1">(CRM)</span>
+                </div>
+              </div>
+              {/* Coluna da direita */}
+              <div className="flex-1">
+                <div>
+                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Email</label>
+                  <span className="text-base block p-1">(Email)</span>
+                </div>
+                <div>
+                  <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Especialização</label>
+                  <span className="text-base block p-1">Psicologia Clínica</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export const EditarPerfil = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+
+  return (
+    <>
+      <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[20rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className="p-4">
+        <div className="flex justify-between font-bold mb-4">
+          <div className="text-xl sm:text-2xl md:text-3xl">DADOS DO ADMINISTRADOR</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
+        </div>
+
+        <div className="flex flex-col space-y-4">
+          <div>
+            <label className="text-md sm:text-lg font-bold block">Email</label>
+            <span className="text-sm block p-1">admin@exemplo.com</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">CPF</label>
+            <span className="text-sm block p-1">000.000.000-00</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">Telefone</label>
+            <span className="text-sm block p-1">(00) 00000-0000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
+    
+  );
+        
+
+};
