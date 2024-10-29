@@ -469,12 +469,11 @@ export const Financeiro = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   
-  
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[35rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"> Pagamento</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Pagamento</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -483,13 +482,7 @@ export const Financeiro = ({ closePopup }) => {
         <form className="space-y-6">
           <div className="space-y-6">
             <div>
-              <label className="text-md sm:text-lg font-bold mb-2 p-2">Sobre</label>
-              <input
-                name="sobre"
-                className="p-2 w-full caixa-texto-cad"
-                type="text"
-                placeholder="Digite a descrição"
-              />
+              <label className="text-md sm:text-lg font-bold mb-2 underline p-2">Sobre</label>
             </div>
 
             <div>
@@ -497,8 +490,12 @@ export const Financeiro = ({ closePopup }) => {
               <input
                 name="valor"
                 className="p-2 w-full caixa-texto-cad"
-                type="number"
+                type="text"
                 placeholder="Digite o valor"
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                  e.target.value = (value / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                }}
               />
             </div>
 
