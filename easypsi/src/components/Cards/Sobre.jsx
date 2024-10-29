@@ -92,6 +92,7 @@ export const SobrePaciente = ({ closePopup }) => {
         </div>
       </div>
     </div>
+    </div>
     );
 };
 
