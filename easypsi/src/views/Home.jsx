@@ -84,7 +84,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className={`p-4 rounded-2xl transition-all cursor-pointer ${estilo}`}>
+              <div className={`p-4 rounded-2xl transition-all cursor-pointer ${estilo}`} onClick={() => {setpopupAberto(true);setpopupName("Financeiro")}}>
                 <div className='w-[15rem] h-[15rem] flex items-center justify-center'> {/* Adicionei flex e items-center */}
                   <div className='flex flex-col items-center'> {/* Mudei para flex-col e adicionei items-center */}
                     <div className='flex justify-center'>
@@ -118,7 +118,7 @@ const Home = () => {
             <div className='w-full'> 
               <span className='text-2xl font-bold'>Pagamentos Pendentes</span>
               <div className='mt-5 ml-10 mr-10'>
-                <List headers={headers} data={dataFinanceiro} margin={false} limite="h-56" appName="Financeiro"></List>
+                <List headers={headers} data={dataFinanceiro} margin={false} limite="h-[25vh]" appName="Financeiro"></List>
               </div>
               <div className='justify-center flex items-center '>
                 <a className=' mt-5' href='/financeiro'>

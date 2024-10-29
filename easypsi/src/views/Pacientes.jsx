@@ -39,7 +39,7 @@ const Pacientes = () => {
           onSearchChange={setSearchTerm} // Passa a função de alteração da pesquisa
           margin={true}
         />
-        <List headers={headers} data={filteredData} onViewMore={handleViewMore} appName='Paciente'/> {/* Passa a função */}
+        <List headers={headers} data={filteredData}  appName='Paciente'/> {/* Passa a função */}
       </div>
       <WhiteMode />
     </div>
