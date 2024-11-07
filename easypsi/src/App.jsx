@@ -14,6 +14,7 @@ import Gerenciamento from "./views/adm/Gerenciamento";
 import AdminPerfil from "./views/adm/AdminPerfil";
 import AdminPsicologo from "./views/adm/AdminPsicologo";
 import Confirmacao from "./views/Confirmacao"
+import Accordion from "./components/Accordion";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/gerenciamento-adm" element={<Gerenciamento />} /> 
           <Route path="/perfil-adm" element={<AdminPerfil />} /> 
           <Route path="/psicologo-adm" element={<AdminPsicologo/>}/>
+          <Route path="/dropdown" element={<Accordion/>}/>
           
         </Routes>
       </div>
