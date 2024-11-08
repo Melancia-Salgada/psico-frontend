@@ -38,7 +38,7 @@ const Perfil = () => {
               <div className="flex flex-wrap justify-center gap-8">
                 <div>
                   <label className="text-roxo font-bold text-lg md:text-2xl">Nome</label>
-                  <p className=" text-xl">Natália Lee Tarifa Batista</p>
+                  <p className=" text-xl">Jerson da Fonsceca</p>
                 </div>
                 
                 <div>
