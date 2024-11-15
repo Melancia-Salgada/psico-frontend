@@ -26,36 +26,38 @@ export const Paciente = ({ closePopup }) => {
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
   const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
-    
-  return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
-      <div className="p-2 sm:p-4 md:p-6 lg:p-8">
-        <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
-          <div>
-            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
-          </div>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <div className="flex flex-col lg:flex-row justify-between gap-6">
-            <div className="w-full lg:w-1/2 space-y-3">
-              {/* Informações Pessoais */}
-              <div>
-                <div className="flex flex-col">
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
-                  <input
-                    name="nome"
-                    className={`p-2 w-full ${inputBorder}`}
-                    type="text"
-                    placeholder="Digite o nome"
-                  />
-                </div>
-              </div>
 
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
+  return (
+    
+    <div className="flex items-center justify-center min-h-screen">
+      <div className={`${bgTxt} relative w-full h-full xs:h-screen xs:overflow-y-auto lg:w-[90%] lg:h-[50rem] md:w-[90%] sm:rounded-none lg:rounded-2xl`}>
+        <div className="p-2 xs:p-4 md:p-6 lg:p-8">
+          <div className="flex justify-between font-bold mb-4 xs:mb-6">
+            <div className="text-2xl xs:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
+            <div>
+              <div className="hover:text-red-500 transition-colors text-2xl xs:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+            </div>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="flex flex-col lg:flex-row justify-between gap-6">
+              <div className="w-full lg:w-1/2 space-y-3">
+                {/* Informações Pessoais */}
+                <div>
+                  <div className="flex flex-col">
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Nome</label>
+                    <input
+                      name="nome"
+                      className={`p-2 w-full ${inputBorder}`}
+                      type="text"
+                      placeholder="Digite o nome"
+                    />
+                  </div>
+                </div>
+  
+                <div className="flex flex-col xs:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Nascimento</label>
                     <input
                       name="nascimento"
                       className={`p-2 w-full ${inputBorder}`}
@@ -64,7 +66,7 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="telefone"
                       className={`p-2 w-full ${inputBorder}`}
@@ -73,137 +75,138 @@ export const Paciente = ({ closePopup }) => {
                     />
                   </div>
                 </div>
-
-              {/* Dados */}
-              <div>
-                <span className="text-xl font-bold">Dados Adicionais</span>
+  
+                {/* Dados */}
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
+                  <span className="text-xl font-bold">Dados Adicionais</span>
+                  <div>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Email</label>
+                    <input
+                      name="email"
+                      className={`p-2 w-full ${inputBorder}`}
+                      type="text"
+                      placeholder="Digite o email"
+                    />
+                  </div>
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CPF</label>
+                      <input
+                        name="cpf"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CPF"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">RG</label>
+                      <input
+                        name="rg"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o RG"
+                      />
+                    </div>
+                  </div>
+                </div>
+  
+                {/* Endereço */}
+                <div>
+                  <span className="text-xl font-bold">Local</span>
+                  <div>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Endereço</label>
+                    <input
+                      name="endereco"
+                      className={`p-2 w-full ${inputBorder}`}
+                      type="text"
+                      placeholder="Digite o endereço"
+                    />
+                  </div>
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Complemento</label>
+                      <input
+                        name="complemento"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o complemento"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CEP</label>
+                      <input
+                        name="cep"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CEP"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              {/* barra */}
+              <div className="hidden lg:block">
+                <div className="border-preto-whitemode border-[3px] h-full"></div>
+              </div>
+  
+              {/* Informação Responsável */}
+              <div className="w-full lg:w-1/2 space-y-3">
+                <span className="text-xl font-bold">Menor de Idade</span>
+                <div>
+                  <label className="text-md xs:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
                   <input
-                    name="email"
+                    name="responsavelNome"
                     className={`p-2 w-full ${inputBorder}`}
                     type="text"
-                    placeholder="Digite o email"
+                    placeholder="Digite o nome do responsável"
                   />
-                </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
-                    <input
-                      name="cpf"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o CPF"
-                    />
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Telefone</label>
+                      <input
+                        name="responsavelTelefone"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o telefone"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CPF</label>
+                      <input
+                        name="responsavelCpf"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CPF"
+                      />
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
-                    <input
-                      name="rg"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o RG"
-                    />
-                  </div>
                 </div>
-              </div>
-
-              {/* Endereço */}
-              <div>
-                <span className="text-xl font-bold">Local</span>
+  
+                {/* Anotações */}
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
-                  <input
-                    name="endereco"
-                    className={`p-2 w-full ${inputBorder}`}
-                    type="text"
-                    placeholder="Digite o endereço"
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
-                    <input
-                      name="complemento"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o complemento"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
-                    <input
-                      name="cep"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o CEP"
-                    />
-                  </div>
+                  <span className="text-xl font-bold">Anotações</span>
+                  <Quill/>
                 </div>
               </div>
             </div>
-
-            {/* barra */}
-            <div className="hidden lg:block">
-              <div className="border-preto-whitemode border-[3px] h-full"></div>
-            </div>
-
-            {/* Informação Responsável */}
-            <div className="w-full lg:w-1/2 space-y-3">
-              <span className="text-xl font-bold">Menor de Idade</span>
-              <div>
-                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
-                <input
-                  name="responsavelNome"
-                  className={`p-2 w-full ${inputBorder}`}
-                  type="text"
-                  placeholder="Digite o nome do responsável"
-                />
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
-                    <input
-                      name="responsavelTelefone"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o telefone"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
-                    <input
-                      name="responsavelCpf"
-                      className={`p-2 w-full ${inputBorder}`}
-                      type="text"
-                      placeholder="Digite o CPF"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Anotações */}
-              <div>
-                <span className="text-xl font-bold">Anotações</span>
-                <Quill/>
-              </div>
-            </div>
-          </div>
-
-          {/* Botão */}
-          <div className="mt-12 flex justify-center">
-            <div className='justify-center flex items-center '>
-              
+  
+            {/* Botão */}
+            <div className="mt-12 flex justify-center">
+              <div className='justify-center flex items-center '>
                 <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                  <span>Agendar consulta</span>
+                  <span>Criar paciente</span>
                 </button>
-              
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
+  
 };
+
 
 export const Consulta = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
@@ -482,7 +485,7 @@ export const Financeiro = ({ closePopup }) => {
     <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo financeiro</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Financeiro</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -532,7 +535,7 @@ export const Financeiro = ({ closePopup }) => {
           {/* Botões */}
           <div className="mt-12 flex justify-center">
             <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between px-9 font-bold hover:bg-purple-950 transition-all'>
-              <span>Gravar</span>
+              <span>Salvar</span>
             </button>
           </div>
         </form>

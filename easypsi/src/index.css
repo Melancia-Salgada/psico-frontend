@@ -18,10 +18,14 @@
 
 
 @layer base {
+  
 
   :root {
     --fc-today-bg-color: rgba(1,138,190, 0.3)
+    
   }
+
+  
 
   html {
     @apply text-branco-darkmode bg-preto-darkmode transition-colors duration-500 font-sans;
@@ -72,9 +76,25 @@
     @apply bg-blue-500 text-white;
   }
 
-  .popup {
-    @apply top-0 left-0 w-[100%] h-[100vh] fixed bg-black bg-opacity-35 flex justify-center items-center z-10
-  }
+    .popup {
+      @apply top-0 left-0 w-[100%] h-[100vh] fixed flex justify-center items-center z-10
+    }
+
+    /* Defina uma classe comum para o background do popup */
+.popup-background {
+  @apply bg-black bg-opacity-50; /* Ajuste a opacidade aqui */
+}
+
+
+/* Classe CSS comum para popups */
+.popup-container {
+  @apply relative w-full xs:h-screen lg:w-[90%] lg:h-[50rem] rounded-2xl;
+}
+
+.popup-padding {
+  @apply p-2 xs:p-4 md:p-6 lg:p-8;
+}
+
 
 
   .caixa-texto {

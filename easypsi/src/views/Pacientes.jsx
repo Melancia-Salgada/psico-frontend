@@ -28,7 +28,7 @@ const Pacientes = () => {
 
 
   return (
-    <div>
+    <>
       <Sidebar />
       <div className='container-dash'>
         <Titulo showButton={false}>Pacientes</Titulo>
@@ -42,7 +42,7 @@ const Pacientes = () => {
         <List headers={headers} data={filteredData}  appName='Paciente'/> {/* Passa a função */}
       </div>
       <WhiteMode />
-    </div>
+    </>
   );
 };
 

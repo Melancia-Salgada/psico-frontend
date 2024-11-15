@@ -234,7 +234,7 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           </div>
         )}
         {popupAberto && (
-          <div className='popup' onClick={() => setpopupAberto(false)}>
+          <div className='popup popup-background' onClick={() => setpopupAberto(false)}>
             <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
               {renderPopup()}
             </div>
