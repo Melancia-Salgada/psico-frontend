@@ -7,7 +7,6 @@ const List = ({ headers, data, onViewMore, appName, margin=true, limite }) => { 
   const [popupAberto, setpopupAberto] = useState(false);
   const { tema } = useContext(TemaContexto);
 
-  const estilos = tema ? "text-red-500 bg-cinza w-full rounded-2xl" : "text-red-400";
   const bar = tema ? "border-preto-whitemode" : "border-branco-darkmode";
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
 

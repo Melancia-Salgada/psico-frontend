@@ -85,11 +85,17 @@
   @apply bg-black bg-opacity-50; /* Ajuste a opacidade aqui */
 }
 
+.popup-bug {
+ @apply bg-black bg-opacity-30;
+}
+
 
 /* Classe CSS comum para popups */
 .popup-container {
   @apply relative w-full xs:h-screen lg:w-[90%] lg:h-[50rem] rounded-2xl;
 }
+
+
 
 .popup-padding {
   @apply p-2 xs:p-4 md:p-6 lg:p-8;

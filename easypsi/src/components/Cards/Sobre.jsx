@@ -102,7 +102,7 @@ export const SobreConsulta = ({ closePopup }) => {
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar';
 
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[50rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[50rem] lg:h-[28rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8">
         <div className="flex justify-between font-bold mb-4">
           <div className="text-xl sm:text-2xl md:text-3xl">Dados da Consulta</div>
