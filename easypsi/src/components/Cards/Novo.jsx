@@ -1,6 +1,8 @@
 import { Quill } from "../TextEditor/Quill";
 import React, { useContext, useState } from 'react';
 import { TemaContexto } from '../WhiteMode';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 export const Paciente = ({ closePopup }) => {
@@ -11,17 +13,27 @@ export const Paciente = ({ closePopup }) => {
   const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
+  const [grupo, setGrupo] = useState(''); 
   const [cpf, setCpf] = useState('');
-  const [rg, setRg] = useState('');
   const [endereco, setEndereco] = useState('');
   const [complemento, setComplemento] = useState('');
   const [cep, setCep] = useState('');
   const [responsavelNome, setResponsavelNome] = useState('');
   const [responsavelTelefone, setResponsavelTelefone] = useState('');
   const [responsavelCpf, setResponsavelCpf] = useState('');
+  const [emailPsi, setEmailPsi] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const emailPsi = payload.email;
+      setEmailPsi(emailPsi);
+      console.log(emailPsi);
+    }
+
 
     try {
       const response = await axios.post('http://127.0.0.1:8002/novo-paciente', {
@@ -30,16 +42,23 @@ export const Paciente = ({ closePopup }) => {
         telefone,
         email,
         cpf,
-        rg,
+        grupo,
         endereco,
         complemento,
         cep,
-        responsavelNome,
-        responsavelTelefone,
-        responsavelCpf,
+        nomeCompletoResponsavel: responsavelNome,
+        telefoneResponsavel: responsavelTelefone,
+        cpfResponsavel: responsavelCpf,
+        emailPsi
       });
 
-      console.log("salvo com sucesso");
+      if (response.status === 200) {
+        console.log(response.data)
+        console.log("salvo com sucesso");
+      } else {
+          console.error('Error authenticating user');
+      }
+      
     } catch (error) {
       if (error) {
         console.log("deu erro", error);
@@ -68,7 +87,7 @@ export const Paciente = ({ closePopup }) => {
                 {/* Informações Pessoais */}
                 <div>
                   <div className="flex flex-col">
-                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Nome</label>
+                    <label className="text-md xs:text-lg font-bold pl-2">Nome</label>
                     <input
                       name="nome"
                       className={`p-2 w-full ${inputBorder}`}
@@ -131,17 +150,24 @@ export const Paciente = ({ closePopup }) => {
                         onChange={(e) => setCpf(e.target.value)}
                       />
                     </div>
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
                     <div className="flex-1">
-                      <label className="text-md xs:text-lg font-bold mb-1 p-2">RG</label>
-                      <input
-                        name="rg"
-                        className={`p-2 w-full ${inputBorder}`}
-                        type="text"
-                        placeholder="Digite o RG"
-                        value={rg}
-                        onChange={(e) => setRg(e.target.value)}
-                      />
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Grupo</label>
+                      <select
+                        className={`p-2 flex flex-row ${inputBorder} cursor-pointer`}
+                        value={grupo}
+                        onChange={(e) => setGrupo(e.target.value)}
+                      >
+                        <option value="no" className={`py-2 ${drop}`}>Grupo do paciente</option>
+                        <option value="Criança" className={`py-2 ${drop}`}>Criança</option>
+                        <option value="Adolescente" className={`py-2 ${drop}`}>Adolescente</option>
+                        <option value="Adulto" className={`py-2 ${drop}`}>Adulto</option>
+                        <option value="Idoso" className={`py-2 ${drop}`}>Idoso</option>
+                      </select>
                     </div>
+                    
+                  </div>
+                
                   </div>
                 </div>
   
@@ -400,26 +426,58 @@ export const Consulta = ({ closePopup }) => {
   );
 };
 
-export const Pagamento = () => {
-
-
-
-  
-};
-
 export const Adm = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  
+
+  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [username, setUsername] = useState("")
+
+  const navigate = useNavigate();
 
   const togglePassword = (field) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
     } else {
       setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
+
+  const checkPassword = () => {
+    return password === confirmPassword
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if(!checkPassword()) {
+      return console.log("senhas diferentes")
+    }
+  
+    try {
+      const response = await axios.post('http://127.0.0.1:8001/novo-usuario-admin', {
+        username,
+        email,
+        password,
+        phonenumber : telefone,
+        CPF: cpf        
+      });
+  
+      if (response.status === 200) {
+        console.log('Administrador salvo com sucesso:', response.data);
+        closePopup()
+      } else {
+        console.error('Erro ao salvar o administrador');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
     }
   };
   
@@ -433,8 +491,19 @@ export const Adm = ({ closePopup }) => {
           </div>
         </div>
         
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
+              <input
+                name="username"
+                className={`p-2 w-full ${inputBorder}`}
+                type="text"
+                placeholder="Digite o Nome"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
@@ -442,6 +511,8 @@ export const Adm = ({ closePopup }) => {
                 className={`p-2 w-full ${inputBorder}`}
                 type="email"
                 placeholder="Digite o email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -453,6 +524,8 @@ export const Adm = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o CPF"
+                  value={cpf}
+                  onChange={(e) => setCpf(e.target.value)}
                 />
               </div>
               <div className="flex-1">
@@ -462,6 +535,8 @@ export const Adm = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o telefone"
+                  value={telefone}
+                  onChange={(e) => setTelefone(e.target.value)}
                 />
               </div>
             </div>
@@ -474,6 +549,8 @@ export const Adm = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type={showPassword ? "text" : "password"}
                   placeholder="Digite a senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -502,6 +579,8 @@ export const Adm = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirme a senha"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <button
                   type="button"
