@@ -57,22 +57,20 @@ const Login = () => {
       // Check if the response was successful
       if (response.status === 200) {
           
-          // Store token in localStorage
-          //localStorage.setItem('token', response.data); por enquanto vamos armazenar o token no indexedDB
+          // Store token in localStorage //por enquanto vamos armazenar o token no indexedDB
           const token = response.data;
           console.log(token)
           localStorage.setItem('token', token)
-          //await setToken(token);
           
-          //console.log(response.data)
-          // Successful authentication, redirect to /dashboard page
+          console.log(response.data)
+          // Successful authentication, redirect to /home page
           navigate('/home');
       } else {
           // Authentication failed, display an error message
           console.error('Error authenticating user');
       }
     } catch (error) {
-      if (error/*error.response && error.response.data && error.response.data.message*/) {
+      if (error.response && error.response.data && error.response.data.message) {
         console.log("deu erro", error)
       } 
     }
@@ -119,11 +117,9 @@ const Login = () => {
           </label>
         </div>
         <div className="w-full max-w-4xl flex justify-center">
-        <a href="/home" className="w-full sm:w-auto">
-          <button className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all" type="button">
-            ENTRAR
-          </button>
-        </a>
+        <button className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all" type="submit">
+          ENTRAR
+        </button>
       </div>
       </form>
       <div className='mt-6'>
