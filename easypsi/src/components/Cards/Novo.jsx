@@ -440,7 +440,6 @@ export const Adm = ({ closePopup }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [username, setUsername] = useState("")
 
-  const navigate = useNavigate();
 
   const togglePassword = (field) => {
     if (field === 'password') {
@@ -463,7 +462,6 @@ export const Adm = ({ closePopup }) => {
   
     try {
       const response = await axios.post('http://127.0.0.1:8001/novo-usuario-admin', {
-        username,
         email,
         password,
         phonenumber : telefone,
@@ -493,17 +491,7 @@ export const Adm = ({ closePopup }) => {
         
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
-            <div>
-              <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
-              <input
-                name="username"
-                className={`p-2 w-full ${inputBorder}`}
-                type="text"
-                placeholder="Digite o Nome"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
+            
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
