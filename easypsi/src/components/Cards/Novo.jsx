@@ -258,11 +258,17 @@ export const Consulta = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
-  const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900 ';
 
+  // Estados para o formulário
+  const [paciente, setPaciente] = useState('');
+  const [data, setData] = useState('');
+  const [inicio, setInicio] = useState('');
+  const [fim, setFim] = useState('');
   const [repete, setRepete] = useState('no');
+  const [ate, setAte] = useState('');
 
-  // Função para renderizar o campo "Até"
+  // Função para renderizar o campo "Até" quando a consulta se repete
   const renderAte = () => {
     if (repete !== "no") {
       return (
@@ -270,15 +276,23 @@ export const Consulta = ({ closePopup }) => {
           <span>Até</span>
           <div>
             <input
-              name="data"
+              name="ate"
               className={`p-2 w-full ${inputBorder}`}
               type="date"
+              value={ate}
+              onChange={(e) => setAte(e.target.value)}
             />
           </div>
         </>
       );
     }
     return null;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário para o backend
+    console.log("Consulta agendada:", { paciente, data, inicio, fim, repete, ate });
   };
 
   return (
@@ -291,7 +305,7 @@ export const Consulta = ({ closePopup }) => {
           </div>
         </div>
         
-        <form className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-10">
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Paciente */}
@@ -302,6 +316,8 @@ export const Consulta = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o nome do Paciente"
+                  value={paciente}
+                  onChange={(e) => setPaciente(e.target.value)}
                 />
               </div>
               
@@ -314,9 +330,10 @@ export const Consulta = ({ closePopup }) => {
                       <label className="text-sm font-bold mb-1 block p-2">Data</label>
                       <input
                         name="data"
-                        className={`p-2 full ${inputBorder}`}
+                        className={`p-2 w-full ${inputBorder}`}
                         type="date"
-                        
+                        value={data}
+                        onChange={(e) => setData(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -325,6 +342,8 @@ export const Consulta = ({ closePopup }) => {
                         name="inicio"
                         className={`p-2 w-full ${inputBorder}`}
                         type="time"
+                        value={inicio}
+                        onChange={(e) => setInicio(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -333,6 +352,8 @@ export const Consulta = ({ closePopup }) => {
                         name="fim"
                         className={`p-2 w-full ${inputBorder}`}
                         type="time"
+                        value={fim}
+                        onChange={(e) => setFim(e.target.value)}
                       />
                     </div>
                   </div>
@@ -342,6 +363,7 @@ export const Consulta = ({ closePopup }) => {
                   <div className="">
                     <select
                       className={`p-2 flex flex-row ${inputBorder} cursor-pointer`}
+                      value={repete}
                       onChange={(e) => setRepete(e.target.value)}
                     >
                       <option value="no" className={`py-2 ${drop}`}>Não se repete</option>
@@ -354,25 +376,23 @@ export const Consulta = ({ closePopup }) => {
               </div>
             </div>
 
-            {/* barra */}
+            {/* Barra de separação */}
             <div className="hidden lg:block border-preto-whitemode border-[3px] h-auto"></div>
 
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Anotações */}
               <div>
                 <span className="text-base sm:text-lg font-semibold block mb-2">Anotações</span>
-                <Quill/>
+                <Quill />
               </div>
             </div>
           </div>
 
           {/* Botão */}
-          <div className='justify-center flex items-center '>
-            
-              <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                <span>Agendar consulta</span>
-              </button>
-            
+          <div className="justify-center flex items-center">
+            <button type="submit" className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all">
+              <span>Agendar consulta</span>
+            </button>
           </div>
         </form>
       </div>
