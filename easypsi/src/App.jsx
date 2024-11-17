@@ -15,11 +15,9 @@ import AdminPerfil from "./views/adm/AdminPerfil";
 import AdminPsicologo from "./views/adm/AdminPsicologo";
 import Confirmacao from "./views/Confirmacao"
 import Accordion from "./components/Accordion";
-import { UserProvider } from "./components/Context/UserContext";
 
 function App() {
   return (
-    <UserProvider>
     <TemaProvider>
       <BrowserRouter>
       <div className="App">
@@ -46,7 +44,6 @@ function App() {
       </div>
     </BrowserRouter>
     </TemaProvider>
-    </UserProvider>
     
   )
 }
