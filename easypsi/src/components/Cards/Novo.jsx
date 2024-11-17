@@ -4,31 +4,54 @@ import { TemaContexto } from '../WhiteMode';
 
 
 export const Paciente = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+
+  // States para cada input
+  const [nome, setNome] = useState('');
+  const [nascimento, setNascimento] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [rg, setRg] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [complemento, setComplemento] = useState('');
+  const [cep, setCep] = useState('');
+  const [responsavelNome, setResponsavelNome] = useState('');
+  const [responsavelTelefone, setResponsavelTelefone] = useState('');
+  const [responsavelCpf, setResponsavelCpf] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:8001/login', {
-        username,
-        password
+      const response = await axios.post('http://127.0.0.1:8002/novo-paciente', {
+        nomeCompleto: nome,
+        nascimento,
+        telefone,
+        email,
+        cpf,
+        rg,
+        endereco,
+        complemento,
+        cep,
+        responsavelNome,
+        responsavelTelefone,
+        responsavelCpf,
       });
 
-      console.log("salvo com sucesso")
+      console.log("salvo com sucesso");
     } catch (error) {
       if (error) {
-        console.log("deu erro", error)
-      } 
+        console.log("deu erro", error);
+      }
     }
   };
 
-  const { tema } = useContext(TemaContexto);
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
-  const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
+  const bgTxt= tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
 
   return (
-    
     <div className="flex items-center justify-center min-h-screen">
       <div className={`${bgTxt} relative w-full h-full xs:h-screen xs:overflow-y-auto lg:w-[90%] lg:h-[50rem] md:w-[90%] sm:rounded-none lg:rounded-2xl`}>
         <div className="p-2 xs:p-4 md:p-6 lg:p-8">
@@ -51,6 +74,8 @@ export const Paciente = ({ closePopup }) => {
                       className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o nome"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
                     />
                   </div>
                 </div>
@@ -63,6 +88,8 @@ export const Paciente = ({ closePopup }) => {
                       className={`p-2 w-full ${inputBorder}`}
                       type="date"
                       placeholder="Digite a data de nascimento"
+                      value={nascimento}
+                      onChange={(e) => setNascimento(e.target.value)}
                     />
                   </div>
                   <div className="flex-1">
@@ -72,6 +99,8 @@ export const Paciente = ({ closePopup }) => {
                       className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o Telefone"
+                      value={telefone}
+                      onChange={(e) => setTelefone(e.target.value)}
                     />
                   </div>
                 </div>
@@ -86,6 +115,8 @@ export const Paciente = ({ closePopup }) => {
                       className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="flex flex-col xs:flex-row justify-between gap-3">
@@ -96,6 +127,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o CPF"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -105,6 +138,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o RG"
+                        value={rg}
+                        onChange={(e) => setRg(e.target.value)}
                       />
                     </div>
                   </div>
@@ -120,6 +155,8 @@ export const Paciente = ({ closePopup }) => {
                       className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o endereço"
+                      value={endereco}
+                      onChange={(e) => setEndereco(e.target.value)}
                     />
                   </div>
                   <div className="flex flex-col xs:flex-row justify-between gap-3">
@@ -130,6 +167,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o complemento"
+                        value={complemento}
+                        onChange={(e) => setComplemento(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -139,6 +178,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o CEP"
+                        value={cep}
+                        onChange={(e) => setCep(e.target.value)}
                       />
                     </div>
                   </div>
@@ -160,6 +201,8 @@ export const Paciente = ({ closePopup }) => {
                     className={`p-2 w-full ${inputBorder}`}
                     type="text"
                     placeholder="Digite o nome do responsável"
+                    value={responsavelNome}
+                    onChange={(e) => setResponsavelNome(e.target.value)}
                   />
                   <div className="flex flex-col xs:flex-row justify-between gap-3">
                     <div className="flex-1">
@@ -169,6 +212,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o telefone"
+                        value={responsavelTelefone}
+                        onChange={(e) => setResponsavelTelefone(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -178,6 +223,8 @@ export const Paciente = ({ closePopup }) => {
                         className={`p-2 w-full ${inputBorder}`}
                         type="text"
                         placeholder="Digite o CPF"
+                        value={responsavelCpf}
+                        onChange={(e) => setResponsavelCpf(e.target.value)}
                       />
                     </div>
                   </div>
@@ -186,7 +233,7 @@ export const Paciente = ({ closePopup }) => {
                 {/* Anotações */}
                 <div>
                   <span className="text-xl font-bold">Anotações</span>
-                  <Quill/>
+                  <Quill />
                 </div>
               </div>
             </div>
@@ -204,7 +251,6 @@ export const Paciente = ({ closePopup }) => {
       </div>
     </div>
   );
-  
 };
 
 
