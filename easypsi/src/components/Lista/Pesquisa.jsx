@@ -94,14 +94,12 @@ const Pesquisa = ({ showButton = true, appName = "", margin = true, onFiltroChan
           <div>
             <label className='text-2xl font-bold mb-2'>Filtro</label>
             <select
-              className={`p-2 flex flex-row w-52 cursor-pointer ${inputBorder}`}
+              className={`p-2 flex flex-row w-40 cursor-pointer ${inputBorder}`}
               onChange={handleFiltroChange}
             >
-              <option value="" className={`py-2 ${drop}`}>Grupo do paciente</option>
-              <option value="Criança" className={`py-2 ${drop}`}>Criança</option>
-              <option value="Adolescente" className={`py-2 ${drop}`}>Adolescente</option>
-              <option value="Adulto" className={`py-2 ${drop}`}>Adulto</option>
-              <option value="Idoso" className={`py-2 ${drop}`}>Idoso</option>
+              <option value="" className={`py-2 ${drop}`}>Todos</option>
+              <option value="Ativo" className={`py-2 ${drop}`}>Ativos</option>
+              <option value="Inativo" className={`py-2 ${drop}`}>Inativos</option>
             </select>
           </div>
         )
