@@ -158,7 +158,7 @@ export const Paciente = ({ closePopup }) => {
                         value={grupo}
                         onChange={(e) => setGrupo(e.target.value)}
                       >
-                        <option value="no" className={`py-2 ${drop}`}>Grupo do paciente</option>
+                        <option value="" className={`py-2 ${drop}`}>Grupo do paciente</option>
                         <option value="Criança" className={`py-2 ${drop}`}>Criança</option>
                         <option value="Adolescente" className={`py-2 ${drop}`}>Adolescente</option>
                         <option value="Adulto" className={`py-2 ${drop}`}>Adulto</option>
