@@ -56,6 +56,7 @@ const Consultas = () => {
           }
         });
         
+
         
         console.log(response.data); // Verifique a estrutura dos dados da API
         const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
