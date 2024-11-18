@@ -1,12 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Titulo from '../components/Titulo';
 import Pesquisa from '../components/Lista/Pesquisa';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
-import axios from 'axios';
 
 const Pacientes = () => {
+
   const headers = ['Nome', 'Email', 'Telefone', 'Grupo', 'Ações'];
 
   const [data, setData] = useState([]); // State para armazenar os dados
@@ -41,6 +41,7 @@ const Pacientes = () => {
     fetchData(); // Chama a função para buscar os dados
   }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
   
+
 
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
