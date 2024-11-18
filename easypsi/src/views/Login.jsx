@@ -61,6 +61,7 @@ const Login = () => {
           const token = response.data;
           console.log(token)
           localStorage.setItem('token', token)
+          localStorage.setItem('user', token)
           
           console.log(response.data)
           // Successful authentication, redirect to /home page

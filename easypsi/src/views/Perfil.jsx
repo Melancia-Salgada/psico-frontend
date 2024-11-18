@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Titulo from '../components/Titulo';
 import WhiteMode from '../components/WhiteMode';
@@ -6,12 +6,45 @@ import Perfil1 from '../assets/perfil.jpg';
 import { EditarPerfil } from '../components/Cards/Sobre';
 import { TemaContexto } from '../components/WhiteMode';
 import Accordion from '../components/Accordion';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Perfil = () => {
+  const navigate = useNavigate();
   const [popupAberto, setPopupAberto] = useState(false);
+  const [dados, setDados] = useState(null);
+  const togglePopup = () => {
+    setPopupAberto((prev) => !prev);
+  }
 
-  const togglePopup = () => setPopupAberto((prev) => !prev);
+  const username = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+    }
+  };
+
+  useEffect(() => {
+    const buscarUsuario = async () => {
+      try {
+        const usernameData = await username(); // Obtém o username
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`); // Chama a API para obter os dados do usuário
+        console.log(response.data);
+        setDados(response.data); // Atualiza o estado com os dados
+      } catch (error) {
+        console.error("Erro ao buscar os dados:", error);
+      }
+    };
+    
+    buscarUsuario(); // Chama a função para buscar os dados
+  }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
+
+  console.log(dados)
 
   const { tema } = useContext(TemaContexto);
   const bgTxt= tema? 'bg-cinza':'bg-neutral-800 '
@@ -38,23 +71,25 @@ const Perfil = () => {
               <div className="flex flex-wrap justify-center gap-8">
                 <div>
                   <label className="text-roxo font-bold text-lg md:text-2xl">Nome</label>
-                  <p className=" text-xl">Jerson da Fonsceca</p>
-                </div>
-                
-                <div>
-                  <label className="text-roxo font-bold text-lg md:text-2xl">CPF/CNPJ</label>
-                  <p className=" text-xl">47340752845</p>
-                </div>
-
-                <div>
-                  <label className="text-roxo font-bold text-lg md:text-2xl">CRP</label>
-                  <p className=" text-xl">47340752845</p>
+                  <p className=" text-xl">{dados ? dados[0].username : 'Carregando...'}</p>
                 </div>
 
                 <div>
                   <label className="text-roxo font-bold text-lg md:text-2xl">Email</label>
-                  <p className=" text-xl">ajuda@gmail.com</p>
+                  <p className=" text-xl">{dados ? dados[0].email : 'Carregando...'}</p>
                 </div>
+                
+                <div>
+                  <label className="text-roxo font-bold text-lg md:text-2xl">CPF/CNPJ</label>
+                  <p className=" text-xl">{dados ? dados[0].CPF : 'Carregando...'}</p>
+                </div>
+
+                <div>
+                  <label className="text-roxo font-bold text-lg md:text-2xl">CRP</label>
+                  <p className=" text-xl">{dados ? dados[0].CRP : 'Carregando...'}</p>
+                </div>
+
+                
               </div>  
 
               <div className="flex justify-center mt-6">
@@ -64,7 +99,7 @@ const Perfil = () => {
               </div>
 
               {popupAberto && (
-                <div className='popup' onClick={togglePopup}>
+                <div className='popup popup-background' onClick={togglePopup}>
                   <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
                     <EditarPerfil closePopup={togglePopup} />
                   </div>
