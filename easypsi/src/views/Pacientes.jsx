@@ -1,20 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Titulo from '../components/Titulo';
 import Pesquisa from '../components/Lista/Pesquisa';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
+import axios from 'axios';
 
 const Pacientes = () => {
-  const headers = ['Paciente', 'Horário', 'Próxima consulta', 'Atividade', 'Ações'];
 
-  // Dados fictícios para simuolar o conteúd
-  const [data] = useState([
-    ['João Silva', '08:00', '15/11/2024', 'Ativo'],
-    ['Maria Oliveira', '09:30', '18/11/2024', 'Ativo'],
-    ['Carlos Santos', '11:00', 'Não definido', 'Ativo'],
-    ['Ana Paula', '14:00', '25/11/2024', 'Inativo'],
-  ]); //Mudar para setdata quando integrar o back
+  const headers = ['Nome', 'Email', 'Telefone', 'Grupo', 'Ações'];
+
+  const [data, setData] = useState([]); // State para armazenar os dados
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Obtém o token, por exemplo, de localStorage, sessão ou de outro lugar
+        const token = localStorage.getItem('token'); // ou o método adequado que você utiliza para armazenar o token
+  
+        const response = await axios.get(`http://127.0.0.1:8002/todos-pacientes`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
+          }
+        });
+  
+        console.log(response.data); // Verifique a estrutura dos dados da API
+        const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
+        const formattedData = pacientes.map(paciente => [
+          paciente.nomeCompleto,
+          paciente.email,
+          paciente.telefone, // Use 'telefone' aqui, e não 'phonenumber'
+          paciente.grupo // Use 'grupo' aqui
+        ]); 
+        setData(formattedData); // Atualiza o estado com os dados formatados
+      } catch (error) {
+        console.error('Erro ao buscar os dados:', error);
+      }
+    };
+  
+    fetchData(); // Chama a função para buscar os dados
+  }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
+  
+
 
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
