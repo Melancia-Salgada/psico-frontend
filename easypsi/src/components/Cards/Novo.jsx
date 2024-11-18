@@ -294,6 +294,8 @@ export const Consulta = ({ closePopup }) => {
   const [repete, setRepete] = useState('no');
   const [ate, setAte] = useState('');
 
+  
+
   // Função para renderizar o campo "Até" quando a consulta se repete
   const renderAte = () => {
     if (repete !== "no") {
@@ -440,6 +442,8 @@ export const Adm = ({ closePopup }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [username, setUsername] = useState("")
 
+  const navigate = useNavigate()
+
 
   const togglePassword = (field) => {
     if (field === 'password') {
@@ -471,6 +475,7 @@ export const Adm = ({ closePopup }) => {
       if (response.status === 200) {
         console.log('Administrador salvo com sucesso:', response.data);
         closePopup()
+        navigate(0)
       } else {
         console.error('Erro ao salvar o administrador');
       }

@@ -40,7 +40,7 @@ const Login = () => {
   const logo = tema? LogoDark : Logo
 
   {/*Fofocando com back*/}
-  const [username, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   
@@ -50,7 +50,7 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/login', {
-        username,
+        email,
         password
       });
 
@@ -91,8 +91,8 @@ const Login = () => {
               className={`caixa-texto ${inputBorder}`}
               placeholder="Digite seu email"
               id='email'
-              name='username'
-              value={username}
+              name='email'
+              value={email}
               onChange={(e)=>setEmail(e.target.value)}
             />
           </label>

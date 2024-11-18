@@ -148,6 +148,7 @@ function Cadastro() {
               onChange={(e)=>setCRP(e.target.value)}
             />
           </label>
+          
         </div>
 
         <div className="flex flex-col gap-4 w-full lg:w-1/2">

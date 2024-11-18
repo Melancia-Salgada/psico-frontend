@@ -1,5 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { TemaContexto } from '../WhiteMode';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 export const SobrePaciente = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
@@ -206,7 +209,7 @@ export const SobreFinanceiro = ({ closePopup }) => {
   );
 };
 
-export const SobreAdmin = ({ closePopup }) => {
+export const SobreAdmin = ({dadosPopup ,closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
 
@@ -223,17 +226,17 @@ export const SobreAdmin = ({ closePopup }) => {
         <div className="flex flex-col space-y-4">
           <div>
             <label className="text-md sm:text-lg font-bold block">Email</label>
-            <span className="text-sm block p-1">admin@exemplo.com</span>
+            <span className="text-sm block p-1">{dadosPopup[0].email}</span>
           </div>
 
           <div>
             <label className="text-md sm:text-lg font-bold block">CPF</label>
-            <span className="text-sm block p-1">000.000.000-00</span>
+            <span className="text-sm block p-1">{dadosPopup[0].CPF}</span>
           </div>
 
           <div>
             <label className="text-md sm:text-lg font-bold block">Telefone</label>
-            <span className="text-sm block p-1">(00) 00000-0000</span>
+            <span className="text-sm block p-1">{dadosPopup[0].phonenumber}</span>
           </div>
         </div>
       </div>
@@ -241,7 +244,7 @@ export const SobreAdmin = ({ closePopup }) => {
   );
 };
 
-export const SobrePsicologo = ({ closePopup }) => {
+export const SobrePsicologo = ({dadosPopup ,closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   return (
@@ -257,25 +260,21 @@ export const SobrePsicologo = ({ closePopup }) => {
         <div className="flex flex-col space-y-4">
         <div>
             <label className="text-md sm:text-lg font-bold block">Nome</label>
-            <span className="text-sm block p-1">Placeholder</span>
+            <span className="text-sm block p-1">{dadosPopup[0].username}</span>
           </div>
           <div>
             <label className="text-md sm:text-lg font-bold block">Email</label>
-            <span className="text-sm block p-1">psicologo@exemplo.com</span>
+            <span className="text-sm block p-1">{dadosPopup[0].email}</span>
           </div>
 
           <div>
             <label className="text-md sm:text-lg font-bold block">CPF</label>
-            <span className="text-sm block p-1">000.000.000-00</span>
+            <span className="text-sm block p-1">{dadosPopup[0].CPF}</span>
           </div>
 
           <div>
-            <label className="text-md sm:text-lg font-bold block">Telefone</label>
-            <span className="text-sm block p-1">(00) 00000-0000</span>
-          </div>
-          <div>
             <label className="text-md sm:text-lg font-bold block">CRP</label>
-            <span className="text-sm block p-1">00000000</span>
+            <span className="text-sm block p-1">{dadosPopup[0].CRP}</span>
           </div>
         </div>
       </div>
@@ -416,54 +415,86 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
 
 };
 
-export const SobreRequisicao = ({ closePopup }) => {
+export const SobreRequisicao = ({ dadosPopup, closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const navigate = useNavigate()
+  
+
+  const [cpf, setCpf] = useState("");
+
+  // Use useEffect para definir o CPF apenas quando `psicologo` mudar
+  useEffect(() => {
+    if (dadosPopup && dadosPopup.length > 0 && dadosPopup[0].CPF !== cpf) {
+      setCpf(dadosPopup[0].CPF);
+    }
+  }, [dadosPopup, cpf]);
+
+  const handleAceitar = async () => {
+    try {
+      const response = await axios.patch(`http://127.0.0.1:8001/aprovar-psicologo/${cpf}`);
+      if (response.status === 200) {
+        console.log("aprovado");
+        navigate(0)
+      } else {
+        console.log("erro na aprovação");
+      }
+    } catch (error) {
+      console.error("Erro ao aprovar:", error);
+    }
+  };
+
+  const handleNegar = async () => {
+    try {
+      const response = await axios.patch(`http://127.0.0.1:8001/desaprovar-psicologo/${cpf}`);
+      if (response.status === 200) {
+        
+        console.log("negado");
+        navigate(0)
+      } else {
+        console.log("erro ao negar");
+      }
+    } catch (error) {
+      console.error("Erro ao negar:", error);
+    }
+  };
+
   return (
     <div className={`${bgTxt} relative w-full h-auto lg:w-[30rem] lg:h-[30rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
-    <div className="p-4">
-      <div className="flex justify-between font-bold mb-4">
-        <div className="text-2xl sm:text-2xl md:text-3xl">Dados do psicólogo</div>
-        <div>
-          <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
-        </div>
-      </div>
-
-      <div className="flex flex-col space-y-4">
-      <div>
-          <label className="text-md sm:text-lg font-bold block">Nome</label>
-          <span className="text-sm block p-1">Placeholder</span>
-        </div>
-        <div>
-          <label className="text-md sm:text-lg font-bold block">Email</label>
-          <span className="text-sm block p-1">psicologo@exemplo.com</span>
+      <form className="p-4">
+        <div className="flex justify-between font-bold mb-4">
+          <div className="text-2xl sm:text-2xl md:text-3xl">Dados do psicólogo</div>
+          <div>
+            <div className="hover:text-red-500 transition-colors text-xl cursor-pointer" onClick={closePopup}>X</div>
+          </div>
         </div>
 
-        <div>
-          <label className="text-md sm:text-lg font-bold block">CPF</label>
-          <span className="text-sm block p-1">000.000.000-00</span>
+        <div className="flex flex-col space-y-4">
+          <div>
+            <label className="text-md sm:text-lg font-bold block">Email</label>
+            <span className="text-sm block p-1">{dadosPopup[0].email}</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">CPF</label>
+            <span className="text-sm block p-1">{dadosPopup[0].CPF}</span>
+          </div>
+
+          <div>
+            <label className="text-md sm:text-lg font-bold block">CRP</label>
+            <span className="text-sm block p-1">{dadosPopup[0].CRP}</span>
+          </div>
         </div>
 
-        <div>
-          <label className="text-md sm:text-lg font-bold block">Telefone</label>
-          <span className="text-sm block p-1">(00) 00000-0000</span>
+        <div className='flex justify-between'>
+          <button type="button" onClick={handleAceitar} className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+            <span>Aceitar</span>
+          </button>
+          <button type="button" onClick={handleNegar} className='bg-red-600 text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+            <span>Negar</span>
+          </button>
         </div>
-        <div>
-          <label className="text-md sm:text-lg font-bold block">CRP</label>
-          <span className="text-sm block p-1">00000000</span>
-        </div>
-      </div>
-      <div className='flex justify-between'>
-        <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-          <span>Aceitar</span>
-        </button>
-        <button type="submit" className='bg-red-600 text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-          <span>Negar</span>
-        </button>
-      </div>
+      </form>
     </div>
-  </div>
   );
-        
-
 };
