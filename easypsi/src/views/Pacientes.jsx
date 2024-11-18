@@ -11,22 +11,19 @@ const Pacientes = () => {
 
   const [data, setData] = useState([]); // State para armazenar os dados
   
-  const username = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao buscar os dados:", error);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usernameData = await username(); // Obtém o username
-        const response = await axios.get(`http://127.0.0.1:8002/todos-pacientes/${usernameData}`); // Chama a API para obter os dados
+        // Obtém o token, por exemplo, de localStorage, sessão ou de outro lugar
+        const token = localStorage.getItem('token'); // ou o método adequado que você utiliza para armazenar o token
+  
+        const response = await axios.get(`http://127.0.0.1:8002/todos-pacientes`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
+          }
+        });
+  
         console.log(response.data); // Verifique a estrutura dos dados da API
         const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
         const formattedData = pacientes.map(paciente => [
@@ -40,10 +37,10 @@ const Pacientes = () => {
         console.error('Erro ao buscar os dados:', error);
       }
     };
-    
-    
+  
     fetchData(); // Chama a função para buscar os dados
   }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
+  
 
   const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca

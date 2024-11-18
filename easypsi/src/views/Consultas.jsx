@@ -4,32 +4,11 @@ import Titulo from '../components/Titulo';
 import Pesquisa from '../components/Lista/Pesquisa';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
+import axios from 'axios';
 
 const Consultas = () => {
   const headers = ['Paciente', 'Data', 'Horário', 'Status', 'Tipo', 'Ações'];
-  const [data] = useState([
-    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
-    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
-    ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
-    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
-    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
-    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
-    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
-    ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
-    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
-    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
-    ['João Silva', '28/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['João Silva', '15/10/2024', '08:00', 'Realizado', 'Inicial'],
-    ['Maria Oliveira', '31/10/2024', '09:30', 'Não Realizado', 'Acompanhamento'],
-    ['Carlos Santos', '1/11/2024', '11:00', 'Realizado', 'Retorno'],
-    ['Ana Paula', 'Não definido', '14:00', 'Não Realizado', 'Cancelada'],
-    ['Luiz Fernando', '28/12/2024', '10:00', 'Não Realizado', 'Inicial'],
-    ['Fernanda Lima', '30/1/2024', '15:00', 'Realizado', 'Acompanhamento'],
-  ]);
+  const [data, setData] = useState([]); // State para armazenar os dados
 
   
 
@@ -69,12 +48,25 @@ const Consultas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('URL_BACKEND'); 
-        const jsonData = await response.json();
+        const token = localStorage.getItem('token'); // ou o método adequado que você utiliza para armazenar o token
+  
+        const response = await axios.get(`http://127.0.0.1:8003/listar-agendamentos`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
+          }
+        });
         
-        // setData(jsonData.consultas); 
+        console.log(response.data); // Verifique a estrutura dos dados da API
+        const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
+        const formattedData = pacientes.map(paciente => [
+          paciente.nomeCompleto,
+          paciente.email,
+          paciente.telefone, // Use 'telefone' aqui, e não 'phonenumber'
+          paciente.grupo // Use 'grupo' aqui
+        ]); 
+        setData(formattedData); // Atualiza o estado com os dados formatados
       } catch (error) {
-        console.error('Erro ao buscar dados:', error);
+        console.error('Erro ao buscar os dados:', error);
       }
     };
 
