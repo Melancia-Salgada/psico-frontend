@@ -1,214 +1,317 @@
 import { Quill } from "../TextEditor/Quill";
 import React, { useContext, useState } from 'react';
 import { TemaContexto } from '../WhiteMode';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 export const Paciente = ({ closePopup }) => {
+  const { tema } = useContext(TemaContexto);
+  const navigate =useNavigate()
+
+  // States para cada input
+  const [nome, setNome] = useState('');
+  const [nascimento, setNascimento] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [grupo, setGrupo] = useState(''); 
+  const [cpf, setCpf] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [complemento, setComplemento] = useState('');
+  const [cep, setCep] = useState('');
+  const [responsavelNome, setResponsavelNome] = useState('');
+  const [responsavelTelefone, setResponsavelTelefone] = useState('');
+  const [responsavelCpf, setResponsavelCpf] = useState('');
+  const [emailPsi, setEmailPsi] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const emailPsi = payload.email;
+      setEmailPsi(emailPsi);
+      console.log(emailPsi);
+    }
+
+
     try {
-      const response = await axios.post('http://127.0.0.1:8001/login', {
-        username,
-        password
+      const token = localStorage.getItem('token');
+      console.log(token)
+      const response = await axios.post('http://127.0.0.1:8002/novo-paciente', {
+        nomeCompleto: nome,
+        nascimento,
+        telefone,
+        email,
+        cpf,
+        grupo,
+        endereco,
+        complemento,
+        cep,
+        nomeCompletoResponsavel: responsavelNome,
+        telefoneResponsavel: responsavelTelefone,
+        cpfResponsavel: responsavelCpf,
+        emailPsi,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
 
-      console.log("salvo com sucesso")
+      if (response.status === 200) {
+        console.log(response.data)
+        console.log("salvo com sucesso");
+        
+        navigate(0)
+        closePopup()
+      } else {
+          console.error('Error authenticating user');
+      }
+      
     } catch (error) {
-      if (error/*error.response && error.response.data && error.response.data.message*/) {
-        console.log("deu erro", error)
-      } 
+      if (error) {
+        console.log("deu erro", error);
+      }
     }
   };
-    
-  return (
-    <div className="bg-preto-darkmode relative w-full h-auto lg:w-[70rem] lg:h-[50rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl">
-      <div className="p-2 sm:p-4 md:p-6 lg:p-8">
-        <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
-          <div>
-            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
-          </div>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <div className="flex flex-col lg:flex-row justify-between gap-6">
-            <div className="w-full lg:w-1/2 space-y-3">
-              {/* Informações Pessoais */}
-              <div>
-                <div className="flex flex-col">
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome</label>
-                  <input
-                    name="nome"
-                    className="p-1 w-full caixa-texto-cad"
-                    type="text"
-                    placeholder="Digite o nome"
-                  />
-                </div>
-              </div>
 
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-neutral-900 text-white';
+  const bgTxt= tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className={`${bgTxt} relative w-full h-full xs:h-screen xs:overflow-y-auto lg:w-[90%] lg:h-[50rem] md:w-[90%] sm:rounded-none lg:rounded-2xl`}>
+        <div className="p-2 xs:p-4 md:p-6 lg:p-8">
+          <div className="flex justify-between font-bold mb-4 xs:mb-6">
+            <div className="text-2xl xs:text-3xl md:text-4xl lg:text-5xl">Novo Paciente</div>
+            <div>
+              <div className="hover:text-red-500 transition-colors text-2xl xs:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+            </div>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="flex flex-col lg:flex-row justify-between gap-6">
+              <div className="w-full lg:w-1/2 space-y-3">
+                {/* Informações Pessoais */}
+                <div>
+                  <div className="flex flex-col">
+                    <label className="text-md xs:text-lg font-bold pl-2">Nome</label>
+                    <input
+                      name="nome"
+                      className={`p-2 w-full ${inputBorder}`}
+                      type="text"
+                      placeholder="Digite o nome"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+  
+                <div className="flex flex-col xs:flex-row justify-between gap-3">
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Nascimento</label>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Nascimento</label>
                     <input
                       name="nascimento"
-                      className="p-1 w-3/4 flex-1 caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="date"
                       placeholder="Digite a data de nascimento"
+                      value={nascimento}
+                      onChange={(e) => setNascimento(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Telefone</label>
                     <input
                       name="telefone"
-                      className="p-1 w-full caixa-texto-cad"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
                       placeholder="Digite o Telefone"
+                      value={telefone}
+                      onChange={(e) => setTelefone(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
-
-              {/* Dados */}
-              <div>
-                <span className="underline">Dados Adicionais</span>
+  
+                {/* Dados */}
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Email</label>
-                  <input
-                    name="email"
-                    className="p-1 w-full caixa-texto-cad"
-                    type="text"
-                    placeholder="Digite o email"
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
+                  <span className="text-xl font-bold">Dados Adicionais</span>
+                  <div>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Email</label>
                     <input
-                      name="cpf"
-                      className="p-1 w-full caixa-texto-cad"
+                      name="email"
+                      className={`p-2 w-full ${inputBorder}`}
                       type="text"
-                      placeholder="Digite o CPF"
+                      placeholder="Digite o email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">RG</label>
-                    <input
-                      name="rg"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o RG"
-                    />
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CPF</label>
+                      <input
+                        name="cpf"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CPF"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        required
+                      />
+                    </div>
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Grupo</label>
+                      <select
+                        className={`p-2 flex flex-row ${inputBorder} cursor-pointer`}
+                        value={grupo}
+                        onChange={(e) => setGrupo(e.target.value)}
+                      >
+                        <option value="" className={`py-2 ${drop}`}>Grupo do paciente</option>
+                        <option value="Criança" className={`py-2 ${drop}`}>Criança</option>
+                        <option value="Adolescente" className={`py-2 ${drop}`}>Adolescente</option>
+                        <option value="Adulto" className={`py-2 ${drop}`}>Adulto</option>
+                        <option value="Idoso" className={`py-2 ${drop}`}>Idoso</option>
+                      </select>
+                    </div>
+                    
+                  </div>
+                
                   </div>
                 </div>
-              </div>
-
-              {/* Endereço */}
-              <div>
-                <span className="underline">Local</span>
+  
+                {/* Endereço */}
                 <div>
-                  <label className="text-md sm:text-lg font-bold mb-1 p-2">Endereço</label>
+                  <span className="text-xl font-bold">Local</span>
+                  <div>
+                    <label className="text-md xs:text-lg font-bold mb-1 p-2">Endereço</label>
+                    <input
+                      name="endereco"
+                      className={`p-2 w-full ${inputBorder}`}
+                      type="text"
+                      placeholder="Digite o endereço"
+                      value={endereco}
+                      onChange={(e) => setEndereco(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Complemento</label>
+                      <input
+                        name="complemento"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o complemento"
+                        value={complemento}
+                        onChange={(e) => setComplemento(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CEP</label>
+                      <input
+                        name="cep"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CEP"
+                        value={cep}
+                        onChange={(e) => setCep(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              {/* barra */}
+              <div className="hidden lg:block">
+                <div className="border-preto-whitemode border-[3px] h-full"></div>
+              </div>
+  
+              {/* Informação Responsável */}
+              <div className="w-full lg:w-1/2 space-y-3">
+                <span className="text-xl font-bold">Menor de Idade</span>
+                <div>
+                  <label className="text-md xs:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
                   <input
-                    name="endereco"
-                    className="p-1 w-full caixa-texto-cad"
+                    name="responsavelNome"
+                    className={`p-2 w-full ${inputBorder}`}
                     type="text"
-                    placeholder="Digite o endereço"
+                    placeholder="Digite o nome do responsável"
+                    value={responsavelNome}
+                    onChange={(e) => setResponsavelNome(e.target.value)}
                   />
+                  <div className="flex flex-col xs:flex-row justify-between gap-3">
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">Telefone</label>
+                      <input
+                        name="responsavelTelefone"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o telefone"
+                        value={responsavelTelefone}
+                        onChange={(e) => setResponsavelTelefone(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-md xs:text-lg font-bold mb-1 p-2">CPF</label>
+                      <input
+                        name="responsavelCpf"
+                        className={`p-2 w-full ${inputBorder}`}
+                        type="text"
+                        placeholder="Digite o CPF"
+                        value={responsavelCpf}
+                        onChange={(e) => setResponsavelCpf(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Complemento</label>
-                    <input
-                      name="complemento"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o complemento"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CEP</label>
-                    <input
-                      name="cep"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o CEP"
-                    />
-                  </div>
+  
+                {/* Anotações */}
+                <div>
+                  <span className="text-xl font-bold">Anotações</span>
+                  <Quill />
                 </div>
               </div>
             </div>
-
-            {/* barra */}
-            <div className="hidden lg:block">
-              <div className="border-preto-whitemode border-[3px] h-full"></div>
-            </div>
-
-            {/* Informação Responsável */}
-            <div className="w-full lg:w-1/2 space-y-3">
-              <span className="underline">Menor de Idade</span>
-              <div>
-                <label className="text-md sm:text-lg font-bold mb-1 p-2">Nome do Responsável</label>
-                <input
-                  name="responsavelNome"
-                  className="p-1 w-full caixa-texto-cad"
-                  type="text"
-                  placeholder="Digite o nome do responsável"
-                />
-                <div className="flex flex-col sm:flex-row justify-between gap-3">
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">Telefone</label>
-                    <input
-                      name="responsavelTelefone"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o telefone"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-md sm:text-lg font-bold mb-1 p-2">CPF</label>
-                    <input
-                      name="responsavelCpf"
-                      className="p-1 w-full caixa-texto-cad"
-                      type="text"
-                      placeholder="Digite o CPF"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Anotações */}
-              <div>
-                <span className="underline">Anotações</span>
-                <Quill/>
-              </div>
-            </div>
-          </div>
-
-          {/* Botão */}
-          <div className="mt-12 flex justify-center">
-            <div className='justify-center flex items-center '>
-              
+  
+            {/* Botão */}
+            <div className="mt-12 flex justify-center">
+              <div className='justify-center flex items-center '>
                 <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                  <span>Agendar consulta</span>
+                  <span>Criar paciente</span>
                 </button>
-              
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
 };
 
+
 export const Consulta = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
-  const bgTxt= tema? 'bg-branco-whitemode':'bg-neutral-900 '
+  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900 ';
 
+  // Estados para o formulário
+  const [paciente, setPaciente] = useState('');
+  const [data, setData] = useState('');
+  const [inicio, setInicio] = useState('');
+  const [fim, setFim] = useState('');
   const [repete, setRepete] = useState('no');
+  const [ate, setAte] = useState('');
 
-  // Função para renderizar o campo "Até"
+  
+
+  // Função para renderizar o campo "Até" quando a consulta se repete
   const renderAte = () => {
     if (repete !== "no") {
       return (
@@ -216,15 +319,23 @@ export const Consulta = ({ closePopup }) => {
           <span>Até</span>
           <div>
             <input
-              name="data"
+              name="ate"
               className={`p-2 w-full ${inputBorder}`}
               type="date"
+              value={ate}
+              onChange={(e) => setAte(e.target.value)}
             />
           </div>
         </>
       );
     }
     return null;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário para o backend
+    console.log("Consulta agendada:", { paciente, data, inicio, fim, repete, ate });
   };
 
   return (
@@ -237,7 +348,7 @@ export const Consulta = ({ closePopup }) => {
           </div>
         </div>
         
-        <form className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-10">
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Paciente */}
@@ -248,6 +359,8 @@ export const Consulta = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o nome do Paciente"
+                  value={paciente}
+                  onChange={(e) => setPaciente(e.target.value)}
                 />
               </div>
               
@@ -260,9 +373,10 @@ export const Consulta = ({ closePopup }) => {
                       <label className="text-sm font-bold mb-1 block p-2">Data</label>
                       <input
                         name="data"
-                        className={`p-2 full ${inputBorder}`}
+                        className={`p-2 w-full ${inputBorder}`}
                         type="date"
-                        
+                        value={data}
+                        onChange={(e) => setData(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -271,6 +385,8 @@ export const Consulta = ({ closePopup }) => {
                         name="inicio"
                         className={`p-2 w-full ${inputBorder}`}
                         type="time"
+                        value={inicio}
+                        onChange={(e) => setInicio(e.target.value)}
                       />
                     </div>
                     <div className="flex-1">
@@ -279,6 +395,8 @@ export const Consulta = ({ closePopup }) => {
                         name="fim"
                         className={`p-2 w-full ${inputBorder}`}
                         type="time"
+                        value={fim}
+                        onChange={(e) => setFim(e.target.value)}
                       />
                     </div>
                   </div>
@@ -288,6 +406,7 @@ export const Consulta = ({ closePopup }) => {
                   <div className="">
                     <select
                       className={`p-2 flex flex-row ${inputBorder} cursor-pointer`}
+                      value={repete}
                       onChange={(e) => setRepete(e.target.value)}
                     >
                       <option value="no" className={`py-2 ${drop}`}>Não se repete</option>
@@ -300,25 +419,23 @@ export const Consulta = ({ closePopup }) => {
               </div>
             </div>
 
-            {/* barra */}
+            {/* Barra de separação */}
             <div className="hidden lg:block border-preto-whitemode border-[3px] h-auto"></div>
 
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Anotações */}
               <div>
                 <span className="text-base sm:text-lg font-semibold block mb-2">Anotações</span>
-                <Quill/>
+                <Quill />
               </div>
             </div>
           </div>
 
           {/* Botão */}
-          <div className='justify-center flex items-center '>
-            
-              <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                <span>Agendar consulta</span>
-              </button>
-            
+          <div className="justify-center flex items-center">
+            <button type="submit" className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all">
+              <span>Agendar consulta</span>
+            </button>
           </div>
         </form>
       </div>
@@ -326,25 +443,59 @@ export const Consulta = ({ closePopup }) => {
   );
 };
 
-export const Pagamento = () => {
-
-
-
-  
-};
-
 export const Adm = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
-  
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+
+  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [username, setUsername] = useState("")
+
+  const navigate = useNavigate()
+
 
   const togglePassword = (field) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
     } else {
       setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
+
+  const checkPassword = () => {
+    return password === confirmPassword
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if(!checkPassword()) {
+      return console.log("senhas diferentes")
+    }
+  
+    try {
+      const response = await axios.post('http://127.0.0.1:8001/novo-usuario-admin', {
+        email,
+        password,
+        phonenumber : telefone,
+        CPF: cpf        
+      });
+  
+      if (response.status === 200) {
+        console.log('Administrador salvo com sucesso:', response.data);
+        closePopup()
+        navigate(0)
+      } else {
+        console.error('Erro ao salvar o administrador');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
     }
   };
   
@@ -358,15 +509,18 @@ export const Adm = ({ closePopup }) => {
           </div>
         </div>
         
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
+            
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
                 name="email"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="email"
                 placeholder="Digite o email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -375,18 +529,22 @@ export const Adm = ({ closePopup }) => {
                 <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
                 <input
                   name="cpf"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o CPF"
+                  value={cpf}
+                  onChange={(e) => setCpf(e.target.value)}
                 />
               </div>
               <div className="flex-1">
                 <label className="text-md sm:text-lg font-bold mb-2 p-2">Telefone</label>
                 <input
                   name="telefone"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o telefone"
+                  value={telefone}
+                  onChange={(e) => setTelefone(e.target.value)}
                 />
               </div>
             </div>
@@ -396,9 +554,11 @@ export const Adm = ({ closePopup }) => {
               <div className="relative">
                 <input
                   name="password"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type={showPassword ? "text" : "password"}
                   placeholder="Digite a senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -424,9 +584,11 @@ export const Adm = ({ closePopup }) => {
               <div className="relative">
                 <input
                   name="confirmPassword"
-                  className="p-2 w-full caixa-texto-cad"
+                  className={`p-2 w-full ${inputBorder}`}
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirme a senha"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -468,12 +630,14 @@ export const Adm = ({ closePopup }) => {
 export const Financeiro = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
+  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
+  const drop = tema ? '' : 'bg-neutral-900 text-white';
   
   return (
     <div className={`${bgTxt} relative w-full h-auto lg:w-[35rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Pagamento</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Financeiro</div>
           <div>
             <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
           </div>
@@ -482,15 +646,21 @@ export const Financeiro = ({ closePopup }) => {
         <form className="space-y-6">
           <div className="space-y-6">
             <div>
-              <label className="text-md sm:text-lg font-bold mb-2 underline p-2">Sobre</label>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome do paciente</label>
+              <input
+                name="sobre"
+                className={`p-2 w-full ${inputBorder}`}
+                type="text"
+                placeholder="Digite a descrição"
+              />
             </div>
 
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Valor</label>
               <input
                 name="valor"
-                className="p-2 w-full caixa-texto-cad"
-                type="text"
+                className={`p-2 w-full ${inputBorder}`}
+                type="number"
                 placeholder="Digite o valor"
                 onChange={(e) => {
                   const value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -503,17 +673,17 @@ export const Financeiro = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Data de Vencimento</label>
               <input
                 name="vencimento"
-                className="p-2 w-full caixa-texto-cad"
+                className={`p-2 w-full ${inputBorder}`}
                 type="date"
               />
             </div>
 
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Estado</label>
-              <select className="p-2 w-full caixa-texto-cad cursor-pointer">
-                <option value="pendente">Pendente</option>
-                <option value="pago">Pago</option>
-                <option value="atrasado">Atrasado</option>
+              <select className={`p-2 flex w-full flex-row ${inputBorder} cursor-pointer`}>
+                <option value="Pendente" className={`py-2 ${drop}`}>Pendente</option>
+                <option value="Pago" className={`py-2 ${drop}`}>Pago</option>
+                <option value="Atrasado" className={`py-2 ${drop}`}>Atrasado</option>
               </select>
             </div>
           </div>
@@ -521,7 +691,7 @@ export const Financeiro = ({ closePopup }) => {
           {/* Botões */}
           <div className="mt-12 flex justify-center">
             <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between px-9 font-bold hover:bg-purple-950 transition-all'>
-              <span>Gravar</span>
+              <span>Salvar</span>
             </button>
           </div>
         </form>

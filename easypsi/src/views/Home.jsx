@@ -4,7 +4,7 @@ import Titulo from '../components/Titulo';
 import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
 import { TemaContexto } from '../components/WhiteMode';
-import { Paciente, Consulta} from '../components/Cards/Novo';
+import { Paciente, Consulta, Financeiro} from '../components/Cards/Novo';
 
 
 const Home = () => {
@@ -33,12 +33,16 @@ const Home = () => {
   const [popupAberto, setpopupAberto] = useState(false);
   const [popupName, setpopupName] = useState("");
 
+  const nome = "null" //Colocar o nome do usuário nesta variável
+
   const renderPopup = () => {
     switch (popupName) {
       case "Paciente":
         return <Paciente closePopup={closePopup} />;
       case "Consulta":
         return <Consulta closePopup={closePopup} />;
+      case "Financeiro":
+        return <Financeiro closePopup={closePopup}></Financeiro>
       
       default:
         return null;
@@ -49,7 +53,7 @@ const Home = () => {
     <div>
       <Sidebar />
       <div className='container-dash'>
-        <Titulo showButton={false}>Olá, <span className='text-roxo'>Nome</span>!</Titulo>
+        <Titulo showButton={false}>Olá, <span className='text-roxo'>{nome}</span>!</Titulo>
         <div className='mt-10'>
           <div className=' ml-20 mr-20'>
             <div name="botao-rapidos" className='flex justify-around'>
@@ -123,7 +127,7 @@ const Home = () => {
               <div className='justify-center flex items-center '>
                 <a className=' mt-5' href='/financeiro'>
                   <button className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                    <span>Ver em financeiro</span>
+                    <span>Ver em Financeiro</span>
                   </button>
                 </a>
               </div>
@@ -131,17 +135,20 @@ const Home = () => {
             </div>
             
           </div>
-          {popupAberto && (
-          <div className='popup' onClick={() => setpopupAberto(false)}>
+          
+        </div>
+      </div>
+      <WhiteMode />
+      {popupAberto && (
+          <div className='popup popup-background' onClick={() => setpopupAberto(false)}>
             <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
               {renderPopup()}
             </div>
           </div>
         )}
-        </div>
-      </div>
-      <WhiteMode />
+      
     </div>
+    
   );
 };
 

@@ -3,11 +3,70 @@ import Logo from '../assets/Logo.png';
 import WhiteMode from '../components/WhiteMode';
 import { TemaContexto } from '../components/WhiteMode';
 import LogoDark from '../assets/LogoDark.png'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function Cadastro() {
+  //acesso de rota
+  const navigate = useNavigate();
+
+  {/*Fofocando com back*/}
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [crp, setCRP] = useState('');
+  const [cpf, setCPF] = useState('');
+  const [email, setEmail] = useState('');
+
+  const checkPassword = () => {
+    return password === passwordCheck
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if(!checkPassword()) {
+      return console.log("senhas diferentes")
+    }
+    console.log("Senhas iguais")
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8001/solicitar-codigo-confirmacao', {
+        username,
+        password,
+        email,
+        CRP: crp,
+        CPF: cpf
+        
+      });
+      console.log("pediu")
+
+      // Check if the response was successful
+      if (response.status === 200) {
+          
+          // Store token in localStorage //por enquanto vamos armazenar o token no indexedDB
+
+          const psicologo = response.data;
+          localStorage.setItem('psicologo', JSON.stringify(psicologo));
+          
+          console.log(response.data)
+
+          navigate('/confirmacao');
+      } else {
+          // Authentication failed, display an error message
+          console.error('Error creating user');
+      }
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        console.log("deu erro", error)
+      } 
+    }
+  };
+
+  //estilos
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const {tema} = useContext(TemaContexto)
   const inputBorder = tema ? 'whitemode' : ''; 
   const logo = tema? LogoDark : Logo
@@ -49,7 +108,9 @@ function Cadastro() {
       <div className="mb-5 mt-0">
         <img src={logo} alt="Logo EasyPSI" className="max-w-full h-auto" />
       </div>
-      <div className="w-full max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 mb-8">
+      <form onSubmit={handleSubmit} >
+        
+        <div className='className="w-full max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 mb-8"'>
         <div className="flex flex-col gap-4 w-full lg:w-1/2">
           <label className="w-full">
             <span className="font-bold">EMAIL</span>
@@ -57,6 +118,10 @@ function Cadastro() {
               type="email"
               className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU EMAIL"
+              id='email'
+              name='email'
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
             />
           </label>
 
@@ -66,6 +131,9 @@ function Cadastro() {
               type="text"
               className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU NOME"
+              name='username'
+              value={username}
+              onChange={(e)=>setUsername(e.target.value)}
             />
           </label>
 
@@ -75,17 +143,24 @@ function Cadastro() {
               type="text"
               className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU CRP"
+              name='crp'
+              value={crp}
+              onChange={(e)=>setCRP(e.target.value)}
             />
           </label>
+          
         </div>
 
         <div className="flex flex-col gap-4 w-full lg:w-1/2">
           <label className="w-full">
-            <span className="font-bold">CNPJ</span>
+            <span className="font-bold">CPF</span>
             <input
               type="text"
               className={`caixa-texto-cad ${inputBorder} w-full mt-1`}
               placeholder="DIGITE SEU CNPJ"
+              name='cpf'
+              value={cpf}
+              onChange={(e)=>setCPF(e.target.value)}
             />
           </label>
 
@@ -96,6 +171,9 @@ function Cadastro() {
                 type={showPassword ? 'text' : 'password'}
                 className={`caixa-texto-cad ${inputBorder} w-full`}
                 placeholder="DIGITE SUA SENHA"
+                name='password'
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
               />
               <div onClick={togglePasswordVisibility} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-6 h-6'>
                 {renderEye()}
@@ -110,6 +188,9 @@ function Cadastro() {
                 type={showConfirmPassword ? 'text' : 'password'}
                 className={`caixa-texto-cad ${inputBorder} w-full`}
                 placeholder="DIGITE SUA SENHA NOVAMENTE"
+                name='passwordCheck'
+                value={passwordCheck}
+                onChange={(e)=>setPasswordCheck(e.target.value)}
               />
               <div onClick={toggleConfirmPasswordVisibility} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-6 h-6'>
                 {renderEyeConfirm()}
@@ -117,15 +198,15 @@ function Cadastro() {
             </div>
           </label>
         </div>
-      </div>
-
-      <div className="w-full max-w-4xl flex justify-center">
-        <a href="/confirmacao" className="w-full sm:w-auto">
-          <button className="bg-roxo text-branco-whitemode text-xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all">
+        </div>
+        <div className="w-full max-w-4xl flex justify-center mt-8">
+          <button className="bg-roxo text-branco-whitemode text-xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all" type="submit">
             CADASTRAR
           </button>
-        </a>
       </div>
+      </form>
+
+      
 
       <div className='mt-6'>
         <a href="/login" className='hover:text-roxo'>Já tenho uma conta</a>
