@@ -512,16 +512,29 @@ export const Adm = ({ closePopup }) => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
             
-            <div>
-              <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
-              <input
-                name="email"
-                className={`p-2 w-full ${inputBorder}`}
-                type="email"
-                placeholder="Digite o email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
+                <input
+                  name="nome"
+                  className={`p-2 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="Digite o Nome"
+                  value={cpf}
+                  onChange={(e) => setNome(e.target.value)}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
+                <input
+                  name="email"
+                  className={`p-2 w-full ${inputBorder}`}
+                  type="email"
+                  placeholder="Digite o email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between gap-3">
