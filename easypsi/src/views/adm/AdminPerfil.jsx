@@ -12,6 +12,7 @@ const AdminPerfil = () => {
   const [popupAberto, setPopupAberto] = useState(false);
   const [dados, setDados] = useState(null);
   const togglePopup = () => setPopupAberto((prev) => !prev);
+  const token = localStorage.getItem('token')
 
   const username = async () => {
     try {
@@ -28,7 +29,11 @@ const AdminPerfil = () => {
     const buscarUsuario = async () => {
       try {
         const usernameData = await username(); // Obtém o username
-        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`); // Chama a API para obter os dados do usuário
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
         console.log(response.data);
         setDados(response.data); // Atualiza o estado com os dados
       } catch (error) {

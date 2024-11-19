@@ -45,7 +45,11 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
         return async (row) => {
           const consultaId = row[0];
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/buscar-consulta/${consultaId}`);
+            const response = await axios.get(`http://127.0.0.1:8001/buscar-consulta/${consultaId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
             const dados = response.data;
             setDadosPopup(dados);
             setpopupAberto(true);
@@ -69,7 +73,11 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
         return async (row) => {
           const username = row[0];
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${username}`);
+            const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${username}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
             const dados = response.data;
             setDadosPopup(dados);
             setpopupAberto(true);
@@ -81,7 +89,11 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
         return async (row) => {
           const username = row[0];
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${username}`);
+            const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${username}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
             const dados = response.data;
             setDadosPopup(dados);
             setpopupAberto(true);

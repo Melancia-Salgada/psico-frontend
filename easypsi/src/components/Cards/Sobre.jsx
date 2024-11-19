@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { TemaContexto } from '../WhiteMode';
-
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -420,6 +420,8 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
   const [CPF, setCpf] = useState("");
   const [phonenumber, setPhone] = useState("");
 
+  const token = localStorage.getItem('token')
+
   const username = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -435,7 +437,11 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
     const buscarUsuario = async () => {
       try {
         const usernameData = await username();
-        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`);
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         console.log(response.data);
         setDados(response.data);
       } catch (error) {
@@ -449,9 +455,9 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
   // Atualiza os campos quando os dados são carregados
   useEffect(() => {
     if (dados) {
-      setNome(dados[0].username);
+      setNome(dados .username);
       setEmail(dados[0].email);
-      setPhone(dados[0].CRP);
+      setPhone(dados[0].phonenumber);
       setCpf(dados[0].CPF)
     }
   }, [dados]);
@@ -519,7 +525,7 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
                 name="phone"
                 className={`p-2 w-full ${inputBorder}`}
                 type="phone"
-                placeholder="Digite seu CRP"
+                placeholder="Digite seu Telefone"
                 value={phonenumber}
                 onChange={(e) => setPhone(e.target.value)}
               />

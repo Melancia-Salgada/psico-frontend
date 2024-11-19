@@ -6,14 +6,14 @@ import List from '../../components/Lista/List';
 import { TemaContexto } from '../../components/WhiteMode';
 import { Adm } from '../../components/Cards/Novo';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importe o axios
+import axios from 'axios'; 
 
 const AdminHome = () => {
   const { tema } = useContext(TemaContexto);
   const estilo = tema ? " bg-cinza  hover:bg-azul hover:bg-opacity-60" : "bg-neutral-800  hover:bg-azul hover:bg-opacity-60";
 
   const headers = ["Email", "CPF", "CRP", "Ações"];
-  const [data, setData] = useState([]); // State para armazenar os dados
+  const [data, setData] = useState([]); 
 
   const closePopup = () => setpopupAberto(false);
   const navigate = useNavigate();

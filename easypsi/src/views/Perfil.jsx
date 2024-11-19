@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Perfil = () => {
   const navigate = useNavigate();
   const [popupAberto, setPopupAberto] = useState(false);
@@ -17,11 +18,16 @@ const Perfil = () => {
   const togglePopup = () => {
     setPopupAberto((prev) => !prev);
   }
+  const token = localStorage.getItem('token')
 
   const username = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`);
+      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -36,6 +42,8 @@ const Perfil = () => {
         const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`); // Chama a API para obter os dados do usuário
         console.log(response.data);
         setDados(response.data); // Atualiza o estado com os dados
+        navigate(0)
+        closePopup()
       } catch (error) {
         console.error("Erro ao buscar os dados:", error);
       }
