@@ -10,12 +10,17 @@ const Gerenciamento = () => {
   const headers = ['Email', 'CPF', 'Telefone', 'Ações'];
   const [data, setData] = useState([]); // State para armazenar os dados
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
+  const token = localStorage.getItem('token');
 
   // Função para carregar os dados da API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/listar-usuarios'); // Chama a API para obter os dados
+        const response = await axios.get('http://127.0.0.1:8001/listar-usuarios', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }); // Chama a API para obter os dados
         const users = response.data.users; // Pega a lista de usuários da resposta
         const filteredPsychologists = users.filter(user => user.tipo === 'Administrador'); // Filtra apenas os psicólogos
         const formattedData = filteredPsychologists.map(user => [user.email, user.CPF, user.phonenumber]); // Formata os dados para o formato da tabela

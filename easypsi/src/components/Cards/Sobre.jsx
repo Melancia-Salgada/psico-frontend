@@ -500,7 +500,7 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
                 name="email"
-                className={`p-2 w-full ${inputBorder}`}
+                className={`p-2 w-full ${inputBorder} bg-gray-300`}
                 type="email"
                 placeholder="Digite seu nome"
                 disabled
@@ -512,7 +512,7 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
               <label className="text-md sm:text-lg font-bold mb-2 p-2">CPF</label>
               <input
                 name="cpf"
-                className={`p-2 w-full ${inputBorder}`}
+                className={`p-2 w-full ${inputBorder} bg-gray-300`}
                 type="cpf"
                 placeholder="Digite seu CPF"
                 disabled

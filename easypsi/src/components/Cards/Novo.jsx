@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Paciente = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
+  const navigate =useNavigate()
 
   // States para cada input
   const [nome, setNome] = useState('');
@@ -36,6 +37,7 @@ export const Paciente = ({ closePopup }) => {
 
 
     try {
+      console.log(token)
       const response = await axios.post('http://127.0.0.1:8002/novo-paciente', {
         nomeCompleto: nome,
         nascimento,
@@ -50,14 +52,18 @@ export const Paciente = ({ closePopup }) => {
         telefoneResponsavel: responsavelTelefone,
         cpfResponsavel: responsavelCpf,
         emailPsi,
+      }, {
         headers: {
-          Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
+          Authorization: `Bearer ${token}`
         }
       });
 
       if (response.status === 200) {
         console.log(response.data)
         console.log("salvo com sucesso");
+        
+        navigate(0)
+        closePopup()
       } else {
           console.error('Error authenticating user');
       }
@@ -98,6 +104,7 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o nome"
                       value={nome}
                       onChange={(e) => setNome(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -112,6 +119,7 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite a data de nascimento"
                       value={nascimento}
                       onChange={(e) => setNascimento(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="flex-1">
@@ -123,6 +131,7 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o Telefone"
                       value={telefone}
                       onChange={(e) => setTelefone(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -139,6 +148,7 @@ export const Paciente = ({ closePopup }) => {
                       placeholder="Digite o email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="flex flex-col xs:flex-row justify-between gap-3">
@@ -151,6 +161,7 @@ export const Paciente = ({ closePopup }) => {
                         placeholder="Digite o CPF"
                         value={cpf}
                         onChange={(e) => setCpf(e.target.value)}
+                        required
                       />
                     </div>
                   <div className="flex flex-col xs:flex-row justify-between gap-3">
@@ -447,7 +458,7 @@ export const Adm = ({ closePopup }) => {
 
   const navigate = useNavigate()
 
-
+  const token = localStorage.getItem('token');
   const togglePassword = (field) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
@@ -469,10 +480,15 @@ export const Adm = ({ closePopup }) => {
   
     try {
       const response = await axios.post('http://127.0.0.1:8001/novo-usuario-admin', {
+        username: email,
         email,
         password,
         phonenumber : telefone,
         CPF: cpf        
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
   
       if (response.status === 200) {

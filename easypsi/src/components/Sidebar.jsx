@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TemaContexto } from '../components/WhiteMode';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -8,6 +9,12 @@ const Sidebar = () => {
   const cor = "#FFFFFF";
   const background =  tema? 'bg-azul transition-colors duration-500' : 'bg-preto-darkmode transition-colors duration-500';
   const sombra = tema ? 'shadow-[0_0_20px_rgba(0,0,0,0.6)]' : '';
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    // Remove o token do localStorage
+    localStorage.removeItem('token');
+  }
 
   return (
     <div className={`fixed top-0 left-0 w-24 h-screen ${sombra}`}>
@@ -51,7 +58,7 @@ const Sidebar = () => {
                 <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
               </svg>
             </a>
-            <a href='/login' className=''>
+            <a href='/' className='' onClick={handleLogout}>
               <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.9998 31H4.33328C3.44924 31 2.60141 30.6488 1.97629 30.0237C1.35118 29.3986 1 28.5507 1 27.6667V4.33333C1 3.44928 1.35118 2.60143 1.97629 1.97631C2.60141 1.35119 3.44924 1 4.33328 1H10.9998" stroke={cor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M22.666 24.3332L30.9992 15.9998L22.666 7.6665" stroke={cor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

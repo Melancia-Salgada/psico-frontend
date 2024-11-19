@@ -10,12 +10,17 @@ const AdminPsicologo = () => {
   const headers = ['Email', 'CRP', 'CPF','Ações'];
   const [data, setData] = useState([]); // State para armazenar os dados
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
+  const token = localStorage.getItem('token');
 
   // Função para carregar os dados da API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/listar-usuarios'); // Chama a API para obter os dados
+        const response = await axios.get('http://127.0.0.1:8001/listar-usuarios', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }); // Chama a API para obter os dados
         console.log(response.data); // Verifique a estrutura dos dados da API
 
         const users = response.data.users; // Pega a lista de usuários da resposta

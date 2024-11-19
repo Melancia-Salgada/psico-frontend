@@ -56,16 +56,23 @@ const Login = () => {
 
       // Check if the response was successful
       if (response.status === 200) {
-          
-          // Store token in localStorage //por enquanto vamos armazenar o token no indexedDB
           const token = response.data;
           console.log(token)
           localStorage.setItem('token', token)
-          localStorage.setItem('user', token)
           
-          console.log(response.data)
-          // Successful authentication, redirect to /home page
-          navigate('/home');
+          try {
+            const verificar = await axios.get(`http://127.0.0.1:8000/tipo-usuario/${token}`)
+            if (verificar.data === "Psicólogo") {
+              navigate('/home');
+            } else if (verificar.data === "Administrador") {
+              navigate('/home-adm');
+            }
+          } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+              console.log("deu erro", error)
+            } 
+          }
+
       } else {
           // Authentication failed, display an error message
           console.error('Error authenticating user');
