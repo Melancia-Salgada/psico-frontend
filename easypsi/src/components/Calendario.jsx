@@ -7,7 +7,7 @@ import ptlocale from '@fullcalendar/core/locales/pt-br';
 import { TemaContexto } from './WhiteMode' // Adjust the path accordingly
 
 const Calendario = () => {
-  const { tema } = useContext(TemaContexto);
+  /*const { tema } = useContext(TemaContexto);
   const [events, setEvents] = useState([]);
 
   const fetchEvents = async () => {
@@ -36,10 +36,11 @@ const Calendario = () => {
   useEffect(() => {
     fetchEvents();
   }, []);
+  */
 
   return (
-    <div className={`h-[75vh] w-[80%] transition-all p-5 rounded-md ${tema ? 'bg-white text-black' : 'bg-neutral-900 text-white'}`}>
-      <FullCalendar
+    <div className={`h-[75vh] w-[80%] transition-all p-5 rounded-md`}>
+      {/*<FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
         events={events}
@@ -54,7 +55,16 @@ const Calendario = () => {
         }}
         height="100%"
          // Apply different backgrounds based on the theme
-      />
+      />*/}
+      <iframe
+  src="https://calendar.google.com/calendar/embed?src=contacomercial155%40gmail.com&ctz=America%2FSao_Paulo"
+  style={{ border: '0' }} // Corrigido
+  width="1100"
+  height="500"
+  frameBorder="0"
+  scrolling="no"
+/>
+
     </div>
   );
 };
