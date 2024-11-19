@@ -13,6 +13,7 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
   const isEmpty = !data || (Array.isArray(data) && data.length === 0);
 
   const ma = margin ? "mt-[5.3rem] ml-[6.3rem] mr-[6.3rem]" : "";
+  const token = localStorage.getItem('token')
 
   const closePopup = () => {
     setpopupAberto(false);
@@ -24,10 +25,16 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
     switch (appName) {
       case "Paciente":
         return async (row) => {
-          const patientId = row[0]; // Exemplo de uso: assumindo que o ID do paciente está na primeira coluna
+          const patientEmail = row[1]; // Exemplo de uso: assumindo que o ID do paciente está na primeira coluna
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/buscar-paciente/${patientId}`);
+            const response = await axios.get(`http://127.0.0.1:8002/buscar-paciente/${patientEmail}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            
             const dados = response.data;
+            console.log(response.data)
             setDadosPopup(dados);
             setpopupAberto(true);
           } catch (error) {

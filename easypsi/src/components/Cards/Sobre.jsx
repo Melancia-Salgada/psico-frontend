@@ -4,7 +4,7 @@ import { TemaContexto } from '../WhiteMode';
 import { useNavigate } from 'react-router-dom';
 
 
-export const SobrePaciente = ({ closePopup }) => {
+export const SobrePaciente = ({dadosPopup, closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   return (
@@ -22,17 +22,17 @@ export const SobrePaciente = ({ closePopup }) => {
             {/* Informações Pessoais */}
             <div className="flex flex-col">
               <label className="text-md sm:text-lg font-bold">Nome</label>
-              <span className="text-sm block">João da Silva</span>
+              <span className="text-sm block">{dadosPopup.nomeCompleto}</span>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between gap-3">
               <div className="flex-1">
                 <label className="text-md sm:text-lg font-bold">Email</label>
-                <span className="text-sm block">joao@exemplo.com</span>
+                <span className="text-sm block">{dadosPopup.email}</span>
               </div>
               <div className="flex-1">
                 <label className="text-md sm:text-lg font-bold">Telefone</label>
-                <span className="text-sm block">(00) 00000-0000</span>
+                <span className="text-sm block">{dadosPopup.phonenumber}</span>
               </div>
             </div>
 
@@ -42,11 +42,11 @@ export const SobrePaciente = ({ closePopup }) => {
               <div className="flex flex-row justify-between gap-3">
                 <div className="flex-1">
                   <label className="text-md font-bold">CPF</label>
-                  <span className="text-sm block">000.000.000-00</span>
+                  <span className="text-sm block">{dadosPopup.CPF}0</span>
                 </div>
                 <div className="flex-1">
-                  <label className="text-md font-bold">RG</label>
-                  <span className="text-sm block">00.000.000-0</span>
+                  <label className="text-md font-bold">Grupo</label>
+                  <span className="text-sm block">{dadosPopup.group}</span>
                 </div>
               </div>
             </div>
@@ -56,11 +56,11 @@ export const SobrePaciente = ({ closePopup }) => {
               <span className="text-md sm:text-lg font-bold">Local</span>
               <div>
                 <label className="text-md font-bold">Endereço</label>
-                <span className="text-sm block">Rua Exemplo, 123</span>
+                <span className="text-sm block">{dadosPopup.endereco}</span>
               </div>
               <div>
                 <label className="text-md font-bold">Complemento</label>
-                <span className="text-sm block">Apto 123</span>
+                <span className="text-sm block">{dadosPopup.complemento}</span>
               </div>
             </div>
           </div>
@@ -69,29 +69,22 @@ export const SobrePaciente = ({ closePopup }) => {
           <div className="hidden lg:block border-l-2 border-preto-whitemode h-auto"></div>
 
           <div className="w-full lg:w-1/2">
-            {/* Consultas */}
+            {/* Endereço */}
             <div>
-              <span className="text-lg font-bold">Últimas Consultas</span>
-              <div className="flex justify-between text-sm font-bold mt-2">
-                <span>DATA</span>
-                <span>HORA</span>
-                <span>ESTADO</span>
+              <span className="text-md sm:text-lg font-bold">Menor de idade</span>
+              <div>
+                <label className="text-md font-bold">Nome do Responsável</label>
+                <span className="text-sm block">{dadosPopup.nomeCompletoResponsavel}</span>
               </div>
-
-              <div className="space-y-1 mt-2">
-                <div className="flex justify-between text-sm">
-                  <span>15/03/24</span>
-                  <span>14:00</span>
-                  <span>Concluída</span>
-                </div>
-                <hr/>
-                <div className="flex justify-between text-sm">
-                  <span>22/03/24</span>
-                  <span>15:00</span>
-                  <span>Agendada</span>
-                </div>
+              <div>
+                <label className="text-md font-bold">Telefone do Responsável</label>
+                <span className="text-sm block">{dadosPopup.telefoneResponsavel}</span>
               </div>
-          </div>
+              <div>
+                <label className="text-md font-bold">CPF do responsável</label>
+                <span className="text-sm block">{dadosPopup.cpfResponsavel}</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
