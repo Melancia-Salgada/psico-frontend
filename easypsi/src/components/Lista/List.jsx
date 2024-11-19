@@ -105,7 +105,11 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
         return async (row) => {
           const requisicaoId = row[0];
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/buscar-requisicao/${requisicaoId}`);
+            const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${requisicaoId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
             const dados = response.data;
             setDadosPopup(dados);
             setpopupAberto(true);

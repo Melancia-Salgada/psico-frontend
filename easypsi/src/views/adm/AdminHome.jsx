@@ -14,17 +14,61 @@ const AdminHome = () => {
 
   const headers = ["Email", "CPF", "CRP", "Ações"];
   const [data, setData] = useState([]); 
+  const [nome, setNome] = useState("")
+
+  const token = localStorage.getItem('token')
 
   const closePopup = () => setpopupAberto(false);
   const navigate = useNavigate();
   const [popupAberto, setpopupAberto] = useState(false);
   const [popupName, setpopupName] = useState("");
 
+  const username = async () => {
+    try {
+      
+      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+    }
+  };
+
+  useEffect(() => {
+    const buscarUsuario = async () => {
+      try {
+        const usernameData = await username(); // Obtém o username
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(response.data);
+        setNome(response.data[0].username); // Atualiza o estado com os dados
+      } catch (error) {
+        console.error("Erro ao buscar os dados:", error);
+      }
+    };
+    
+    buscarUsuario(); // Chama a função para buscar os dados
+  }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
+
+
+
+
   // Função para carregar os dados da API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/listar-psicologos-pendentes'); // Chama a API para obter os dados
+        const response = await axios.get('http://127.0.0.1:8001/listar-psicologos-pendentes', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
         const users = response.data.users; // Pega a lista de usuários da resposta
         const formattedData = users.map(user => [user.email, user.CPF, user.CRP]); // Formata os dados para o formato da tabela
         setData(formattedData); // Atualiza o estado com os dados formatados
@@ -51,7 +95,7 @@ const AdminHome = () => {
     <div>
       <Sidebar />
       <div className='container-dash'>
-        <Titulo showButton={false}>Olá, <span className='text-roxo'>Nome</span>!</Titulo>
+        <Titulo showButton={false}>Olá, <span className='text-roxo'>{nome}</span>!</Titulo>
         <div className='mt-10'>
           <div className='ml-20 mr-20'>
             <div name="botao-rapidos" className='flex justify-around'>

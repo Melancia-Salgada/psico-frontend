@@ -479,7 +479,7 @@ export const Adm = ({ closePopup }) => {
   
     try {
       const response = await axios.post('http://127.0.0.1:8001/novo-usuario-admin', {
-        username: email,
+        username,
         email,
         password,
         phonenumber : telefone,
@@ -523,8 +523,8 @@ export const Adm = ({ closePopup }) => {
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
                   placeholder="Digite o Nome"
-                  value={cpf}
-                  onChange={(e) => setNome(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="flex-1">
@@ -631,7 +631,7 @@ export const Adm = ({ closePopup }) => {
             <div className='justify-center flex items-center '>
               
                 <button type="submit" className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
-                  <span>Agendar consulta</span>
+                  <span>Criar administrador</span>
                 </button>
               
             </div>

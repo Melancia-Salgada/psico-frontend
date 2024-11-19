@@ -5,15 +5,17 @@ import WhiteMode from '../components/WhiteMode';
 import List from '../components/Lista/List';
 import { TemaContexto } from '../components/WhiteMode';
 import { Paciente, Consulta, Financeiro} from '../components/Cards/Novo';
+import axios from 'axios';
 
 
 const Home = () => {
-
+  const token = localStorage.getItem('token')
   const { tema } = useContext(TemaContexto);
 
   const estilo = tema? " bg-cinza  hover:bg-azul hover:bg-opacity-60": "bg-neutral-800  hover:bg-azul hover:bg-opacity-60 "
 
   const headers = ["Paciente", "Data", "Tipo", "Ações"]
+  const [nome, setNome] = useState("")
   const dataConsulta = [
     ["a", "b", "c"],
     ["a", "b", "c"],
@@ -28,12 +30,46 @@ const Home = () => {
     ["d", "f", "g"]
   ]
 
+  const username = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://127.0.0.1:8000/recuperar-email/${token}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+    }
+  };
+
+  useEffect(() => {
+    const buscarUsuario = async () => {
+      try {
+        const usernameData = await username(); // Obtém o username
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(response.data);
+        setNome(response.data[0].username); // Atualiza o estado com os dados
+      } catch (error) {
+        console.error("Erro ao buscar os dados:", error);
+      }
+    };
+    
+    buscarUsuario(); // Chama a função para buscar os dados
+  }, []); // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
+
+
   const closePopup = () => setpopupAberto(false);
 
   const [popupAberto, setpopupAberto] = useState(false);
   const [popupName, setpopupName] = useState("");
 
-  const nome = "null" //Colocar o nome do usuário nesta variável
 
   const renderPopup = () => {
     switch (popupName) {
@@ -56,7 +92,7 @@ const Home = () => {
         <Titulo showButton={false}>Olá, <span className='text-roxo'>{nome}</span>!</Titulo>
         <div className='mt-10'>
           <div className=' ml-20 mr-20'>
-            <div name="botao-rapidos" className='flex justify-around'>
+            <div name="botao-rapidos" className='flex justify-around '>
               <div className={`p-4 rounded-2xl transition-all cursor-pointer ${estilo}` } onClick={() => {setpopupAberto(true);setpopupName("Paciente")}}>
                 <div className='w-[15rem] h-[15rem] flex items-center justify-center'> {/* Adicionei flex e items-center */}
                   <div className='flex flex-col items-center'> {/* Mudei para flex-col e adicionei items-center */}
@@ -105,7 +141,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className='justify-between flex gap-40 mt-10 ml-6 mr-6'>
+          {/*<div className='justify-between flex gap-40 mt-10 ml-6 mr-6'>
             <div className='w-full'> 
               <span className='text-2xl font-bold'>Próximas Consultas</span>
               <div className='mt-5 ml-10 mr-10'>
@@ -134,7 +170,7 @@ const Home = () => {
               
             </div>
             
-          </div>
+          </div>*/}
           
         </div>
       </div>

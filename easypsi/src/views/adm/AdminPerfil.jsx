@@ -68,9 +68,13 @@ const AdminPerfil = () => {
             </div>
 
             <div className="flex flex-wrap justify-center gap-8">
+            <div>
+                <label className="text-roxo font-bold text-lg md:text-2xl">Nome</label>
+                <p className=" text-xl">{dados ? dados[0].username : 'Carregando...'}</p>
+              </div>
               <div>
                 <label className="text-roxo font-bold text-lg md:text-2xl">Email</label>
-                <p className=" text-xl">{dados ? dados[0].username : 'Carregando...'}</p>
+                <p className=" text-xl">{dados ? dados[0].email : 'Carregando...'}</p>
               </div>
               
               <div>

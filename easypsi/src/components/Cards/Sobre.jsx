@@ -301,7 +301,11 @@ export const EditarPerfil = ({ closePopup }) => {
     const buscarUsuario = async () => {
       try {
         const usernameData = await username();
-        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`);
+        const response = await axios.get(`http://127.0.0.1:8001/buscar-usuario/${usernameData}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         console.log(response.data);
         setDados(response.data);
       } catch (error) {
@@ -328,6 +332,10 @@ export const EditarPerfil = ({ closePopup }) => {
       const usernameData = await username();
       const response = await axios.patch(`http://127.0.0.1:8001/atualizar-usuario/${usernameData}`, {
         username: nome
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
       if (response.status === 200) {
         console.log("editou");
@@ -455,7 +463,7 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
   // Atualiza os campos quando os dados são carregados
   useEffect(() => {
     if (dados) {
-      setNome(dados .username);
+      setNome(dados[0].username);
       setEmail(dados[0].email);
       setPhone(dados[0].phonenumber);
       setCpf(dados[0].CPF)
@@ -465,11 +473,20 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
   const handleEditar = async (e) => {
     e.preventDefault();
     try {
+      console.log(nome,phonenumber)
       const usernameData = await username();
-      const response = await axios.patch(`http://127.0.0.1:8001/atualizar-usuario/${usernameData}`, {
-        username: email,
-        phonenumber
-      });
+      const response = await axios.patch(
+        `http://127.0.0.1:8001/atualizar-usuario/${usernameData}`,
+        {
+          username: nome,
+          phonenumber
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
       if (response.status === 200) {
         console.log("editou");
         
@@ -484,7 +501,7 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
   };
   return (
     <>
-      <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[28rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
+      <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:rounded-none lg:rounded-2xl`}>
       <form onSubmit={handleEditar}>
       <div className="p-4">
         <div className="flex justify-between font-bold mb-4">
@@ -495,6 +512,17 @@ export const EditarPerfilAdmin = ({ closePopup }) => {
         </div>
 
         <div className="space-y-6">
+            <div>
+              <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
+              <input
+                name="name"
+                className={`p-2 w-full ${inputBorder} `}
+                type="name"
+                placeholder="Digite seu nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+            </div>
             <div>
               <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
               <input
@@ -551,6 +579,7 @@ export const SobreRequisicao = ({ dadosPopup, closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   const navigate = useNavigate()
+  const token = localStorage.getItem('token');
 
   const [cpf, setCpf] = useState("");
 
@@ -563,10 +592,14 @@ export const SobreRequisicao = ({ dadosPopup, closePopup }) => {
 
   const handleAceitar = async () => {
     try {
-      const response = await axios.patch(`http://127.0.0.1:8001/aprovar-psicologo/${cpf}`);
+      const response = await axios.patch(`http://127.0.0.1:8001/aprovar-psicologo/${cpf}`)
       if (response.status === 200) {
         console.log("aprovado");
-        navigate(0)
+        closePopup()        
+
+
+        closePopup()
+        
       } else {
         console.log("erro na aprovação");
       }
@@ -577,7 +610,8 @@ export const SobreRequisicao = ({ dadosPopup, closePopup }) => {
 
   const handleNegar = async () => {
     try {
-      const response = await axios.patch(`http://127.0.0.1:8001/desaprovar-psicologo/${cpf}`);
+      const response = await axios.patch(`http://127.0.0.1:8001/desaprovar-psicologo/${cpf}`)
+      
       if (response.status === 200) {
         
         console.log("negado");
@@ -618,10 +652,10 @@ export const SobreRequisicao = ({ dadosPopup, closePopup }) => {
         </div>
 
         <div className='flex justify-between'>
-          <button type="button" onClick={handleAceitar} className='bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+          <button type="button" onClick={handleAceitar} className='mt-28 bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
             <span>Aceitar</span>
           </button>
-          <button type="button" onClick={handleNegar} className='bg-red-600 text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all'>
+          <button type="button" onClick={handleNegar} className='mt-28 bg-red-600 text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-red-950 transition-all'>
             <span>Negar</span>
           </button>
         </div>
