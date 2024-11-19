@@ -300,7 +300,7 @@ export const Consulta = ({ closePopup }) => {
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900 ';
 
   // Estados para o formulário
-  const [paciente, setPaciente] = useState('');
+  const [emailPaciente, setEmailPaciente] = useState('');
   const [data, setData] = useState('');
   const [inicio, setInicio] = useState('');
   const [fim, setFim] = useState('');
@@ -351,14 +351,14 @@ export const Consulta = ({ closePopup }) => {
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Paciente */}
               <div>
-                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Nome do paciente</label>
+                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Email do paciente</label>
                 <input
                   name="paciente"
                   className={`p-2 w-full ${inputBorder}`}
                   type="text"
-                  placeholder="Digite o nome do Paciente"
-                  value={paciente}
-                  onChange={(e) => setPaciente(e.target.value)}
+                  placeholder="Digite o email do Paciente"
+                  value={emailPaciente}
+                  onChange={(e) => setEmailPaciente(e.target.value)}
                 />
               </div>
               

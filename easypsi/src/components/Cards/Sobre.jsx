@@ -92,7 +92,7 @@ export const SobrePaciente = ({dadosPopup, closePopup }) => {
     );
 };
 
-export const SobreConsulta = ({ closePopup }) => {
+export const SobreConsulta = ({dadosPopup, closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar';
@@ -111,7 +111,7 @@ export const SobreConsulta = ({ closePopup }) => {
           <div className="w-1/2 space-y-4">
             <div>
               <label className="text-md sm:text-lg font-bold block">NOME DO PACIENTE</label>
-              <span className="text-sm block p-1">João da Silva</span>
+              <span className="text-sm block p-1">{}</span>
             </div>
 
             <div>
@@ -119,16 +119,16 @@ export const SobreConsulta = ({ closePopup }) => {
               <div className="space-y-2">
                 <div>
                   <label className="block">DIA</label>
-                  <span className="text-sm block p-1">15/03/2024</span>
+                  <span className="text-sm block p-1">{}</span>
                 </div>
                 <div className="flex gap-4">
                   <div className="flex-1">
                     <label className="block">HORA INÍCIO</label>
-                    <span className="text-sm block p-1">14:00</span>
+                    <span className="text-sm block p-1">{}</span>
                   </div>
                   <div className="flex-1">
                     <label className="block">HORA FIM</label>
-                    <span className="text-sm block p-1">15:00</span>
+                    <span className="text-sm block p-1">{}</span>
                   </div>
                 </div>
               </div>
@@ -140,11 +140,11 @@ export const SobreConsulta = ({ closePopup }) => {
                 <div className="flex gap-4">
                   <div className="flex-1">
                     <label className="block">VALOR</label>
-                    <span className="text-sm block p-1">R$ 150,00</span>
+                    <span className="text-sm block p-1">{}</span>
                   </div>
                   <div className="flex-1">
                     <label className="block">DATA MAX PGMNT</label>
-                    <span className="text-sm block p-1">20/03/2024</span>
+                    <span className="text-sm block p-1">{}</span>
                   </div>
                 </div>
               </div>
@@ -162,7 +162,11 @@ export const SobreConsulta = ({ closePopup }) => {
                 placeholder="Digite suas anotações aqui..."
               />
             </div>
+
+            
           </div>
+
+          
         </div>
       </div>
     </div>
@@ -274,6 +278,7 @@ export const SobrePsicologo = ({dadosPopup ,closePopup }) => {
     </div>
   );
 };
+
 export const EditarPerfil = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900';
@@ -414,7 +419,6 @@ export const EditarPerfil = ({ closePopup }) => {
     </div>
   );
 };
-
 
 export const EditarPerfilAdmin = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
