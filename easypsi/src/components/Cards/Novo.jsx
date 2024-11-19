@@ -37,7 +37,6 @@ export const Paciente = ({ closePopup }) => {
 
 
     try {
-      console.log(token)
       const response = await axios.post('http://127.0.0.1:8002/novo-paciente', {
         nomeCompleto: nome,
         nascimento,
@@ -516,16 +515,29 @@ export const Adm = ({ closePopup }) => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
             
-            <div>
-              <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
-              <input
-                name="email"
-                className={`p-2 w-full ${inputBorder}`}
-                type="email"
-                placeholder="Digite o email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-2 p-2">Nome</label>
+                <input
+                  name="nome"
+                  className={`p-2 w-full ${inputBorder}`}
+                  type="text"
+                  placeholder="Digite o Nome"
+                  value={cpf}
+                  onChange={(e) => setNome(e.target.value)}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="text-md sm:text-lg font-bold mb-2 p-2">Email</label>
+                <input
+                  name="email"
+                  className={`p-2 w-full ${inputBorder}`}
+                  type="email"
+                  placeholder="Digite o email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between gap-3">
@@ -637,9 +649,8 @@ export const Financeiro = ({ closePopup }) => {
   const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
   const drop = tema ? '' : 'bg-neutral-900 text-white';
   
-  
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[40rem] lg:h-[40rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div className={`${bgTxt} relative w-full h-auto lg:w-[35rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Novo Financeiro</div>
@@ -667,6 +678,10 @@ export const Financeiro = ({ closePopup }) => {
                 className={`p-2 w-full ${inputBorder}`}
                 type="number"
                 placeholder="Digite o valor"
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                  e.target.value = (value / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                }}
               />
             </div>
 

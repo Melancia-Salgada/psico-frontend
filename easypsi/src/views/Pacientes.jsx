@@ -16,12 +16,12 @@ const Pacientes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Obtém o token, por exemplo, de localStorage, sessão ou de outro lugar
-        const token = localStorage.getItem('token'); // ou o método adequado que você utiliza para armazenar o token
+       
+        const token = localStorage.getItem('token'); 
   
         const response = await axios.get(`http://127.0.0.1:8002/todos-pacientes`, {
           headers: {
-            Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
+            Authorization: `Bearer ${token}`
           }
         });
   

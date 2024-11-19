@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { TemaContexto } from '../WhiteMode';
-import axios from 'axios';
+
 import { useNavigate } from 'react-router-dom';
 
 
