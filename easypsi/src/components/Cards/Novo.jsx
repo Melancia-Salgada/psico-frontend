@@ -4,7 +4,6 @@ import { TemaContexto } from '../WhiteMode';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-
 export const Paciente = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
   const navigate =useNavigate()
@@ -293,22 +292,24 @@ export const Paciente = ({ closePopup }) => {
 };
 
 
+
 export const Consulta = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
-  const inputBorder = tema ? 'pesquisar whitemode' : 'pesquisar'; 
-  const drop = tema ? '' : 'bg-neutral-900 text-white';
-  const bgTxt = tema ? 'bg-branco-whitemode' : 'bg-neutral-900 ';
+  const inputBorder = tema ? "pesquisar whitemode" : "pesquisar";
+  const drop = tema ? "" : "bg-neutral-900 text-white";
+  const bgTxt = tema ? "bg-branco-whitemode" : "bg-neutral-900";
 
   // Estados para o formulário
-  const [emailPaciente, setEmailPaciente] = useState('');
-  const [data, setData] = useState('');
-  const [inicio, setInicio] = useState('');
-  const [fim, setFim] = useState('');
-  const [repete, setRepete] = useState('no');
-  const [ate, setAte] = useState('');
-
+  const [nome, setNome] = useState("");
+  const [emailPaciente, setEmailPaciente] = useState("");
+  const [data, setData] = useState("");
+  const [inicio, setInicio] = useState("");
+  const [fim, setFim] = useState("");
+  const [repete, setRepete] = useState("no");
+  const [ate, setAte] = useState("");
+  const [emailPsi, setEmailPsi] = useState("");
+  const [dadosPaciente, setDadosPaciente] = useState(null); // Dados do paciente
   
-
   // Função para renderizar o campo "Até" quando a consulta se repete
   const renderAte = () => {
     if (repete !== "no") {
@@ -330,28 +331,95 @@ export const Consulta = ({ closePopup }) => {
     return null;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar os dados do formulário para o backend
-    console.log("Consulta agendada:", { paciente, data, inicio, fim, repete, ate });
+
+    const token = localStorage.getItem("token");
+
+    // Obter e-mail do psicólogo
+    if (token) {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const emailPsi = payload.email;
+      setEmailPsi(emailPsi);
+      console.log(emailPsi);
+    }
+
+    // Buscar paciente
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8002/buscar-paciente/${emailPaciente}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const dados = response.data;
+      console.log("Dados do paciente:", dados);
+      setDadosPaciente(dados); // Armazena os dados do paciente no estado
+    } catch (error) {
+      console.error("Erro ao buscar dados do paciente:", error);
+      return; // Para impedir a continuação caso a busca falhe
+    }
+
+    // Criar agendamento
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8003/novo-agendamento",
+        {
+          nome: `Consulta de paciente`, // Usa o nome do paciente
+          data,
+          hora_inicio: inicio,
+          hora_fim: fim,
+          email_cliente: emailPaciente,
+          descricao: ""
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Agendamento salvo com sucesso:", response.data);
+        closePopup();
+      } else {
+        console.error("Erro ao salvar agendamento.");
+      }
+    } catch (error) {
+      console.error("Erro ao criar agendamento:", error);
+    }
   };
 
   return (
-    <div className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}>
+    <div
+      className={`${bgTxt} relative w-full h-auto lg:w-[60rem] lg:h-[35rem] md:w-[90%] sm:w-full sm:h-screen sm:rounded-none lg:rounded-2xl`}
+    >
       <div className="p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="flex justify-between font-bold mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Nova Consulta</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Nova Consulta
+          </div>
           <div>
-            <div className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer" onClick={closePopup}>X</div>
+            <div
+              className="hover:text-red-500 transition-colors text-2xl sm:text-3xl cursor-pointer"
+              onClick={closePopup}
+            >
+              X
+            </div>
           </div>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-10">
             <div className="w-full lg:w-1/2 space-y-4">
               {/* Paciente */}
               <div>
-                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">Email do paciente</label>
+                <label className="text-lg sm:text-xl font-bold mb-1 block p-2">
+                  Email do paciente
+                </label>
                 <input
                   name="paciente"
                   className={`p-2 w-full ${inputBorder}`}
@@ -361,14 +429,17 @@ export const Consulta = ({ closePopup }) => {
                   onChange={(e) => setEmailPaciente(e.target.value)}
                 />
               </div>
-              
               {/* Horário */}
               <div>
-                <span className="text-base sm:text-lg font-semibold block mb-2">Horário</span>
+                <span className="text-base sm:text-lg font-semibold block mb-2">
+                  Horário
+                </span>
                 <div>
                   <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4">
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Data</label>
+                      <label className="text-sm font-bold mb-1 block p-2">
+                        Data
+                      </label>
                       <input
                         name="data"
                         className={`p-2 w-full ${inputBorder}`}
@@ -378,7 +449,9 @@ export const Consulta = ({ closePopup }) => {
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Início</label>
+                      <label className="text-sm font-bold mb-1 block p-2">
+                        Início
+                      </label>
                       <input
                         name="inicio"
                         className={`p-2 w-full ${inputBorder}`}
@@ -388,7 +461,9 @@ export const Consulta = ({ closePopup }) => {
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="text-sm font-bold mb-1 block p-2">Fim</label>
+                      <label className="text-sm font-bold mb-1 block p-2">
+                        Fim
+                      </label>
                       <input
                         name="fim"
                         className={`p-2 w-full ${inputBorder}`}
@@ -399,7 +474,7 @@ export const Consulta = ({ closePopup }) => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="mt-3 flex justify-between">
                   <div className="">
                     <select
@@ -407,31 +482,28 @@ export const Consulta = ({ closePopup }) => {
                       value={repete}
                       onChange={(e) => setRepete(e.target.value)}
                     >
-                      <option value="no" className={`py-2 ${drop}`}>Não se repete</option>
-                      <option value="Semanalmente" className={`py-2 ${drop}`}>Semanalmente</option>
-                      <option value="Mensalmente" className={`py-2 ${drop}`}>Mensalmente</option>
+                      <option value="no" className={`py-2 ${drop}`}>
+                        Não se repete
+                      </option>
+                      <option value="Semanalmente" className={`py-2 ${drop}`}>
+                        Semanalmente
+                      </option>
+                      <option value="Mensalmente" className={`py-2 ${drop}`}>
+                        Mensalmente
+                      </option>
                     </select>
                   </div>
                   {renderAte()}
                 </div>
               </div>
             </div>
-
-            {/* Barra de separação */}
-            <div className="hidden lg:block border-preto-whitemode border-[3px] h-auto"></div>
-
-            <div className="w-full lg:w-1/2 space-y-4">
-              {/* Anotações */}
-              <div>
-                <span className="text-base sm:text-lg font-semibold block mb-2">Anotações</span>
-                <Quill />
-              </div>
-            </div>
           </div>
-
           {/* Botão */}
           <div className="justify-center flex items-center">
-            <button type="submit" className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all">
+            <button
+              type="submit"
+              className="bg-roxo text-branco-whitemode text-2xl rounded-full flex items-center h-[53px] justify-between pl-9 pr-9 font-bold hover:bg-purple-950 transition-all"
+            >
               <span>Agendar consulta</span>
             </button>
           </div>
@@ -440,6 +512,7 @@ export const Consulta = ({ closePopup }) => {
     </div>
   );
 };
+
 
 export const Adm = ({ closePopup }) => {
   const { tema } = useContext(TemaContexto);
@@ -484,11 +557,11 @@ export const Adm = ({ closePopup }) => {
         password,
         phonenumber : telefone,
         CPF: cpf        
-      }, {
+      }/*, {
         headers: {
           Authorization: `Bearer ${token}`
         }
-      });
+      }*/);
   
       if (response.status === 200) {
         console.log('Administrador salvo com sucesso:', response.data);

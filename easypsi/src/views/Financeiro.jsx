@@ -61,7 +61,7 @@ const Financeiro = () => {
                   <NoData></NoData>
                 ) : (
                   <div className="flex mt-16">
-                    <span className="font-bold text-8xl">R$500</span>
+                    <span className="font-bold text-8xl">R$150</span>
                   </div>
                 )}
               </div>

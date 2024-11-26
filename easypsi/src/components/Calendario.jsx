@@ -56,14 +56,15 @@ const Calendario = () => {
         height="100%"
          // Apply different backgrounds based on the theme
       />*/}
-      <iframe
-  src="https://calendar.google.com/calendar/embed?src=contacomercial155%40gmail.com&ctz=America%2FSao_Paulo"
-  style={{ border: '0' }} // Corrigido
-  width="1100"
-  height="500"
-  frameBorder="0"
-  scrolling="no"
-/>
+       <iframe
+      src="https://calendar.google.com/calendar/embed?src=14f499303607ce42b9ff60e5bd30d3309605cb26c959c7d923f8908c525100a3%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+      style={{ border: "0" }}
+      width="1100"
+      height="500"
+      frameBorder="0"
+      scrolling="no"
+      title="Google Calendar"
+    ></iframe>
 
     </div>
   );
