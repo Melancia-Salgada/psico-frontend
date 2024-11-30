@@ -1,73 +1,56 @@
-import React, { useEffect, useState, useContext } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ptlocale from '@fullcalendar/core/locales/pt-br';
-import { TemaContexto } from './WhiteMode' // Adjust the path accordingly
 
-const Calendario = () => {
-  /*const { tema } = useContext(TemaContexto);
-  const [events, setEvents] = useState([]);
+const MyComponent = () => {
+  const [data, setData] = useState(null); // Estado para armazenar o dado
+  const [error, setError] = useState(null); // Estado para armazenar erros
+  const [loading, setLoading] = useState(true); // Estado para indicar carregamento
 
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get('http://seu-backend-url/listar-agendamentos', {
-        headers: {
-          'Authorization': 'Bearer seu_token', // Adicione o token de autenticação aqui
-        },
-      });
-      const data = response.data;
-      const formattedEvents = data.map(event => ({
-        title: capitalizeFirstLetter(event.nome),
-        start: event.inicio,
-        end: event.fim,
-        description: event.descricao,
-        extendedProps: {
-          linkMeet: event['link meet'],
-        },
-      }));
-      setEvents(formattedEvents);
-    } catch (error) {
-      console.error("Erro ao buscar eventos:", error);
-    }
-  };
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-  */
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8003/retornar-agenda-usuario',  {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }); // Substitua pela URL correta
+        console.log('Resposta da API:', response.data); // Verifique os dados recebidos
+        setData(response.data); // Atualiza o estado com os dados recebidos
+      } catch (err) {
+        console.error('Erro na requisição:', err);
+        setError('Erro ao carregar os dados.');
+      } finally {
+        setLoading(false); // Finaliza o carregamento
+      }
+    };
+
+    fetchData();
+  }, []); // Executa apenas uma vez, na inicialização do componente
+
+  // Renderização condicional com base nos estados
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>{error}</p>;
+
 
   return (
-    <div className={`h-[75vh] w-[80%] transition-all p-5 rounded-md`}>
-      {/*<FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin]}
-        initialView="dayGridMonth"
-        events={events}
-        locale={ptlocale}
-        headerToolbar={{
-          left: 'dayGridMonth,timeGridWeek,timeGridDay',
-          center: 'title',
-          right: 'prev,next today'
-        }}
-        eventClick={(info) => {
-          alert(`Título: ${info.event.title}\nDescrição: ${info.event.extendedProps.description}\nLink: ${info.event.extendedProps.linkMeet}`);
-        }}
-        height="100%"
-         // Apply different backgrounds based on the theme
-      />*/}
-       <iframe
-      src="https://calendar.google.com/calendar/embed?src=14f499303607ce42b9ff60e5bd30d3309605cb26c959c7d923f8908c525100a3%40group.calendar.google.com&ctz=America%2FSao_Paulo"
-      style={{ border: "0" }}
-      width="1100"
-      height="500"
-      frameBorder="0"
-      scrolling="no"
-      title="Google Calendar"
-    ></iframe>
-
+    <div>
+      {data ? (
+        <iframe
+          src={`https://calendar.google.com/calendar/embed?src=${data}`}
+          style={{ border: "0" }}
+          width="800"
+          height="600"
+          frameBorder="0"
+          scrolling="no"
+          title="Google Calendar"
+        ></iframe>
+      ) : (
+        <p>Não foi possível carregar os dados.</p>
+      )}
     </div>
   );
 };
 
-export default Calendario;
+export default MyComponent;
