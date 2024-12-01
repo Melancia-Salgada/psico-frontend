@@ -59,14 +59,19 @@ const Consultas = () => {
 
         
         console.log(response.data); // Verifique a estrutura dos dados da API
-        const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
+        // Aqui ele retorna as consultas do tipo Array, não existe a propriedade pacientes dentro da resposta,
+        // checar a resposta deste console.log no navegador pra implementar a lista de agendamentos
+
+
+
+        {/*const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
         const formattedData = pacientes.map(paciente => [
           paciente.nomeCompleto,
           paciente.email,
           paciente.telefone, // Use 'telefone' aqui, e não 'phonenumber'
           paciente.grupo // Use 'grupo' aqui
         ]); 
-        setData(formattedData); // Atualiza o estado com os dados formatados
+        setData(formattedData); // Atualiza o estado com os dados formatados*/}
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
       }
