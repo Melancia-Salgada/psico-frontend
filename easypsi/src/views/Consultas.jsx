@@ -63,10 +63,10 @@ const Consultas = () => {
         // checar a resposta deste console.log no navegador pra implementar a lista de agendamentos
         const consultas = response.data
         const formattedData = consultas.map(consulta => {
-          const [data, hora] = consulta[0].inicio.split(' ');
+          const [data, hora] = consultas[0].inicio.split(' ');
           return [
-            consulta[0].nome,
-            consulta[0].email_cliente,
+            consultas[0].nome,
+            consultas[0].email_cliente,
             data,        // Data separada
             hora,        // Horário separado
           ];
