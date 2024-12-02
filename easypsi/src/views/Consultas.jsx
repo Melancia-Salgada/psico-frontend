@@ -7,7 +7,7 @@ import List from '../components/Lista/List';
 import axios from 'axios';
 
 const Consultas = () => {
-  const headers = ['Paciente', 'Data', 'Horário', 'Status', 'Tipo', 'Ações'];
+  const headers = ['Nome', 'Email do Paciente', 'Data', 'Horário', 'Ações'];
   const [data, setData] = useState([]); // State para armazenar os dados
 
   
@@ -45,7 +45,6 @@ const Consultas = () => {
     </svg>
   );
 
-  var agendamentos;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,8 +61,19 @@ const Consultas = () => {
         console.log(response.data); // Verifique a estrutura dos dados da API
         // Aqui ele retorna as consultas do tipo Array, não existe a propriedade pacientes dentro da resposta,
         // checar a resposta deste console.log no navegador pra implementar a lista de agendamentos
-        agendamentos = response.data
-
+        const consultas = response.data
+        const formattedData = consultas.map(consulta => {
+          const [data, hora] = consulta[0].inicio.split(' ');
+          return [
+            consulta[0].nome,
+            consulta[0].email_cliente,
+            data,        // Data separada
+            hora,        // Horário separado
+          ];
+        });
+        
+        
+        setData(formattedData)
 
         {/*const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
         const formattedData = pacientes.map(paciente => [
