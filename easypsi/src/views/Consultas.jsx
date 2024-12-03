@@ -61,7 +61,7 @@ const Consultas = () => {
         console.log(response.data); // Verifique a estrutura dos dados da API
         // Aqui ele retorna as consultas do tipo Array, não existe a propriedade pacientes dentro da resposta,
         // checar a resposta deste console.log no navegador pra implementar a lista de agendamentos
-        const consultas = response.data
+        const consultas = response.data[0]
         const formattedData = consultas.map(consulta => {
           const [data, hora] = consulta.inicio.split(' ');
           return [
