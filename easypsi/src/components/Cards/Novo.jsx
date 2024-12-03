@@ -368,7 +368,7 @@ export const Consulta = ({ closePopup }) => {
       const response = await axios.post(
         "http://127.0.0.1:8003/novo-agendamento",
         {
-          nome: `Consulta de paciente`, // Usa o nome do paciente
+          nome: nome, // Usa o nome do paciente
           data,
           hora_inicio: inicio,
           hora_fim: fim,
