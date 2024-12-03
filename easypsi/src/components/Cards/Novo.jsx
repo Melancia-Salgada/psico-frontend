@@ -386,6 +386,7 @@ export const Consulta = ({ closePopup }) => {
         console.log("Agendamento salvo com sucesso:", response.data);
         closePopup();
       } else {
+        console.log(nome, " ",inicio," ",fim," ", data," ",emailPaciente)
         console.error("Erro ao salvar agendamento.");
       }
     } catch (error) {
