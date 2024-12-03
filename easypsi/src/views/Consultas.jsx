@@ -9,35 +9,24 @@ import axios from 'axios';
 const Consultas = () => {
   const headers = ['Nome', 'Email do Paciente', 'Data', 'Horário', 'Ações'];
   const [data, setData] = useState([]); // State para armazenar os dados
-
-  
-
-  
-
-  const [filtroStatus, setFiltroStatus] = useState(''); // Armazena filtro de status
-  const [filtroTipo, setFiltroTipo] = useState(''); // Armazena filtro de tipo
   const [searchTerm, setSearchTerm] = useState(''); // Armazena busca
   const [dateRange, setDateRange] = useState({ inicio: '', fim: '' });
 
-  // função para filtro
+  // Função para filtro
   const filteredData = data.filter((paciente) => {
-    const isStatusMatch = filtroStatus === '' || paciente[3] === filtroStatus;
-    const isTipoMatch = filtroTipo === '' || paciente[4].toLowerCase() === filtroTipo.toLowerCase();
-    const isSearchMatch = paciente[0].toLowerCase().includes(searchTerm.toLowerCase());
-  
-    const consultaData = new Date(paciente[1].split('/').reverse().join('-'));
+    const isSearchMatch = paciente.email_cliente && paciente.email_cliente.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const consultaData = new Date(paciente.data.split('/').reverse().join('-'));
     const inicio = dateRange.inicio ? new Date(dateRange.inicio) : null;
     const fim = dateRange.fim ? new Date(dateRange.fim) : null;
     const isDateMatch = (!inicio || consultaData >= inicio) && (!fim || consultaData <= fim);
-  
-    return isStatusMatch && isTipoMatch && isSearchMatch && isDateMatch;
+
+    return isSearchMatch && isDateMatch;
   });
 
   const handleDateRangeChange = (inicio, fim) => {
     setDateRange({ inicio, fim });
   };
-  
-
 
   const svg = (
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -48,41 +37,25 @@ const Consultas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); // ou o método adequado que você utiliza para armazenar o token
-  
+        const token = localStorage.getItem('token');
         const response = await axios.get(`http://127.0.0.1:8003/listar-agendamentos`, {
-          headers: {
-            Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
-          }
+          headers: { Authorization: `Bearer ${token}` },
         });
-        
 
-        
-        console.log(response.data); // Verifique a estrutura dos dados da API
-        // Aqui ele retorna as consultas do tipo Array, não existe a propriedade pacientes dentro da resposta,
-        // checar a resposta deste console.log no navegador pra implementar a lista de agendamentos
-        const consultas = response.data[0]
-        const formattedData = consultas.map(consulta => {
-          const [data, hora] = consulta.inicio.split(' ');
-          return [
-            consulta.nome,
-            consulta.email_cliente,
-            data,        // Data separada
-            hora,        // Horário separado
-          ];
-        });
-        
-        
-        setData(formattedData)
+        console.log('Dados completos da API:', response.data);
 
-        {/*const pacientes = response.data.Pacientes; // Acesse a chave 'Pacientes'
-        const formattedData = pacientes.map(paciente => [
-          paciente.nomeCompleto,
-          paciente.email,
-          paciente.telefone, // Use 'telefone' aqui, e não 'phonenumber'
-          paciente.grupo // Use 'grupo' aqui
-        ]); 
-        setData(formattedData); // Atualiza o estado com os dados formatados*/}
+        const consultas = Array.isArray(response.data) ? response.data : [];
+        console.log('Consultas extraídas:', consultas);
+
+        const formattedData = consultas.map(consulta => ({
+          nome: consulta.nome,
+          email_cliente: consulta.email_cliente,
+          data: consulta.inicio.split(' ')[0],  // Data
+          hora: consulta.inicio.split(' ')[1],  // Hora
+        }));
+
+        console.log('Dados formatados:', formattedData);
+        setData(formattedData);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
       }
@@ -90,6 +63,8 @@ const Consultas = () => {
 
     fetchData();
   }, []);
+
+  console.log('Estado final de data:', data);
 
   return (
     <div>
@@ -99,13 +74,9 @@ const Consultas = () => {
         <Pesquisa
           showButton={true}
           appName='Consulta'
-          onFiltroChange={setFiltroStatus}
           onSearchChange={setSearchTerm}
-          onTipoChange={setFiltroTipo}
           onDateRangeChange={handleDateRangeChange}
         />
-
-
         <List headers={headers} data={filteredData} appName='Consulta' limite="h-[30rem]"/> {/* Usa filteredData */}
       </div>
       <WhiteMode />

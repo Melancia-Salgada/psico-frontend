@@ -184,11 +184,20 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
               <div className={limite ? 'overflow-y-auto' : ''}>
                 {data.map((row, index) => (
                   <div className={`flex justify-between border-b-[1px] p-2 ${bar}`} key={index}>
-                    {row.map((item, itemIndex) => (
-                      <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
-                        {item}
-                      </div>
-                    ))}
+                    {Array.isArray(row) ? (
+                      row.map((item, itemIndex) => (
+                        <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
+                          {item}
+                        </div>
+                      ))
+                    ) : (
+                      // Caso row não seja um array, faça o tratamento adequado
+                      Object.values(row).map((item, itemIndex) => (
+                        <div className='flex-1 text-center text-[18px] p-2' key={itemIndex}>
+                          {item}
+                        </div>
+                      ))
+                    )}
                     {renderAcao(row)}
                   </div>
                 ))}
@@ -196,14 +205,8 @@ const List = ({ headers, data, onViewMore, appName, margin = true, limite }) => 
             </>
           )}
         </div>
+        {popupAberto && renderPopup()}
       </div>
-      {popupAberto && dadosPopup && (
-        <div className='popup popup-background' onClick={closePopup}>
-          <div onClick={(e) => e.stopPropagation()} className='m-20 moveis:m-0'>
-            {renderPopup()}
-          </div>
-        </div>
-      )}
     </div>
   );
 };
