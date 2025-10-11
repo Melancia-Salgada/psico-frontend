@@ -2,13 +2,6 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 > Um sistema de gerenciamento de pacientes e controle financeiro voltado para psicólogos
 
-### Ajustes e melhorias
-
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
-
-- Landing Page
-- Telas de Cadastro
-- Lista CRUD de pacientes
 
 ## 🚀 Instalando a EasyPsi
 
